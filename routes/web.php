@@ -11,9 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// default
+/* Route::get('/', function () {
+     return view('welcome');
+     });
+*/
+
+Route::get('/', 'pelanggan\indexController@index');
+
 
 Auth::routes();
 
@@ -22,3 +27,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Route::group(
+//     ['namespace' => 'Pelanggan', 'prefix' => 'pelanggan'],
+//     function () {
+//         Route::get('', '');
+//     }
+// );
