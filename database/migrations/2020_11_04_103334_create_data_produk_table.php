@@ -15,7 +15,7 @@ class CreateDataProdukTable extends Migration
     {
         Schema::create('data_produk', function (Blueprint $table) {
             $table->increments('id_produk');
-            $table->string('nama_produk, 30');
+            $table->string('nama_produk', 30);
             $table->binary('foto_produk');
             $table->integer('harga_produk');
             $table->integer('stok');

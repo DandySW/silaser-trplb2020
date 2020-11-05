@@ -114,16 +114,7 @@
                         <div class="header-advance-search">
 
                             <form action="#">
-                                <div class="input"><input type="text" placeholder="Search your product"></div>
-                                <div class="select">
-                                    <select class="nice-select">
-                                        <option>All Categories</option>
-                                        <option>Mobile</option>
-                                        <option>Computer</option>
-                                        <option>Laptop</option>
-                                        <option>Camera</option>
-                                    </select>
-                                </div>
+                                <div class="input"><input type="text" placeholder="Cari produk yang diinginkan"></div>
                                 <div class="submit"><button><i class="icofont icofont-search-alt-1"></i></button></div>
                             </form>
 
@@ -214,101 +205,8 @@
                         <!-- Category Menu -->
                         <nav class="category-menu">
                             <ul>
-                                <li><a href="category-1.html">Tv & Audio System</a></li>
-                                <li class="menu-item-has-children"><a href="category-2.html">Computer & Laptop</a>
-
-                                    <!-- Mega Category Menu Start -->
-                                    <ul class="category-mega-menu">
-                                        <li class="menu-item-has-children">
-                                            <a href="category-1.html">Smartphone</a>
-                                            <ul>
-                                                <li><a href="category-1.html">Samsome</a></li>
-                                                <li><a href="category-2.html">GL Stylus</a></li>
-                                                <li><a href="category-3.html">Uawei</a></li>
-                                                <li><a href="category-1.html">Cherry Berry</a></li>
-                                                <li><a href="category-2.html">uPhone</a></li>
-                                                <li><a href="category-3.html">Sany Experia</a></li>
-                                                <li><a href="category-1.html">Syphony</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children">
-                                            <a href="category-2.html">headphone</a>
-                                            <ul>
-                                                <li><a href="category-1.html">Desktop Headphone</a></li>
-                                                <li><a href="category-2.html">Mobile Headphone</a></li>
-                                                <li><a href="category-3.html">Wireless Headphone</a></li>
-                                                <li><a href="category-1.html">LED Headphone</a></li>
-                                                <li><a href="category-2.html">Over-ear</a></li>
-                                                <li><a href="category-3.html">Neck-sitting</a></li>
-                                                <li><a href="category-1.html">Biometric</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children">
-                                            <a href="category-3.html">accessories</a>
-                                            <ul>
-                                                <li><a href="category-1.html">Power Bank</a></li>
-                                                <li><a href="category-2.html">Data Cable</a></li>
-                                                <li><a href="category-3.html">Power Cable</a></li>
-                                                <li><a href="category-1.html">Battery</a></li>
-                                                <li><a href="category-2.html">OTG Cable</a></li>
-                                                <li><a href="category-3.html">Neck-sitting</a></li>
-                                                <li><a href="category-1.html">Memory Card</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="add"><a href="#"><img src="pelanggan/images/banner/menu-banner.jpg" alt=""></a></li>
-                                    </ul><!-- Mega Category Menu End -->
-
-                                </li>
-                                <li class="menu-item-has-children"><a href="category-2.html">Phones & Tablets</a>
-
-                                    <!-- Mega Category Menu Start -->
-                                    <ul class="category-mega-menu">
-                                        <li class="menu-item-has-children">
-                                            <a href="category-1.html">Smartphone</a>
-                                            <ul>
-                                                <li><a href="category-1.html">Samsome</a></li>
-                                                <li><a href="category-2.html">GL Stylus</a></li>
-                                                <li><a href="category-3.html">Uawei</a></li>
-                                                <li><a href="category-1.html">Cherry Berry</a></li>
-                                                <li><a href="category-2.html">uPhone</a></li>
-                                                <li><a href="category-3.html">Sany Experia</a></li>
-                                                <li><a href="category-1.html">Syphony</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children">
-                                            <a href="category-2.html">headphone</a>
-                                            <ul>
-                                                <li><a href="category-1.html">Desktop Headphone</a></li>
-                                                <li><a href="category-2.html">Mobile Headphone</a></li>
-                                                <li><a href="category-3.html">Wireless Headphone</a></li>
-                                                <li><a href="category-1.html">LED Headphone</a></li>
-                                                <li><a href="category-2.html">Over-ear</a></li>
-                                                <li><a href="category-3.html">Neck-sitting</a></li>
-                                                <li><a href="category-1.html">Biometric</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children">
-                                            <a href="category-3.html">accessories</a>
-                                            <ul>
-                                                <li><a href="category-1.html">Power Bank</a></li>
-                                                <li><a href="category-2.html">Data Cable</a></li>
-                                                <li><a href="category-3.html">Power Cable</a></li>
-                                                <li><a href="category-1.html">Battery</a></li>
-                                                <li><a href="category-2.html">OTG Cable</a></li>
-                                                <li><a href="category-3.html">Neck-sitting</a></li>
-                                                <li><a href="category-1.html">Memory Card</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="add"><a href="#"><img src="pelanggan/images/banner/menu-banner.jpg" alt=""></a></li>
-                                    </ul><!-- Mega Category Menu End -->
-
-                                </li>
-                                <li><a href="category-1.html">Home Appliances</a></li>
-                                <li><a href="category-2.html">Kitchen appliances</a></li>
-                                <li><a href="category-3.html">Printer & Scanner</a></li>
-                                <li><a href="category-1.html">Camera & CC Camera</a></li>
-                                <li><a href="category-2.html">Smart Watch</a></li>
-                                <li><a href="category-3.html">Accessories</a></li>
+                                <li><a href="#">Category 1</a></li>
+                                <li><a href="#">Categroy 2</a></li>
                             </ul>
                         </nav>
 
