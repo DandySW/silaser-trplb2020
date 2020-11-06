@@ -30,6 +30,11 @@
 
     <!-- Modernizer JS -->
     <script src="/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <!-- Form -->
+    <link rel="stylesheet" type="text/css" href="/form/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/form/css/main.css">
+
 </head>
 
 <body>
@@ -195,9 +200,6 @@
                 </div><!-- Footer Section End -->
 
 
-                <!-- JS
-============================================ -->
-
                 <!-- jQuery JS -->
                 <script src="/assets/js/vendor/jquery-1.12.4.min.js"></script>
                 <!-- Popper JS -->
@@ -210,7 +212,6 @@
                 <script src="/assets/js/ajax-mail.js"></script>
                 <!-- Main JS -->
                 <script src="/assets/js/main.js"></script>
-
 </body>
 
 </html>

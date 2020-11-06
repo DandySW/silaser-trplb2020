@@ -25,42 +25,47 @@
 <div class="contact1">
     <div class="container-contact1">
         <div class="contact1-pic js-tilt" data-tilt>
-            <img src="images/img-01.png" alt="IMG">
+            <img src="/form/images/img-01.png" alt="IMG">
         </div>
 
-        <form class="contact1-form validate-form">
+        <form action="/admin/produk" method="post" class="contact1-form validate-form" enctype="multipart/form-data">
             <span class="contact1-form-title">
-                Get in touch
+                Tambah Data Produk
             </span>
-
-            <div class="wrap-input1 validate-input" data-validate="Name is required">
-                <input class="input1" type="text" name="name" placeholder="Name">
+            @csrf
+            <div class="wrap-input1 validate-input" data-validate="Wajib diisi!">
+                <input class="input1" type="text" name="nama_produk" placeholder="Nama Produk">
                 <span class="shadow-input1"></span>
             </div>
 
-            <div class="wrap-input1 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                <input class="input1" type="text" name="email" placeholder="Email">
+            <div class="wrap-input1 validate-input" data-validate="Wajib diisi!">
+                <input class="input1" type="text" name="harga_produk" placeholder="Harga Produk">
                 <span class="shadow-input1"></span>
             </div>
 
-            <div class="wrap-input1 validate-input" data-validate="Subject is required">
-                <input class="input1" type="text" name="subject" placeholder="Subject">
+            <div class="wrap-input1 validate-input" data-validate="Wajib diisi!">
+                <input class="input1" type="text" name="stok" placeholder="Stok Produk">
                 <span class="shadow-input1"></span>
             </div>
 
-            <div class="wrap-input1 validate-input" data-validate="Message is required">
-                <textarea class="input1" name="message" placeholder="Message"></textarea>
+            <div class="wrap-input1 validate-input" data-validate="Wajib diisi!">
+                <textarea class="input1" name="deskripsi" placeholder="Deskripsi Produk"></textarea>
                 <span class="shadow-input1"></span>
+            </div>
+
+            <div class="wrap-input1 validate-input" data-validate="Wajib diisi!">
+                <input type="file" style="width:400px;" class="input1" name="foto_produk" alt="foto_produk">
             </div>
 
             <div class="container-contact1-form-btn">
-                <button class="contact1-form-btn">
+                <button type="submit" class="contact1-form-btn">
                     <span>
-                        Send Email
+                        Tambah
                         <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                     </span>
                 </button>
             </div>
+
         </form>
     </div>
 </div>
@@ -71,11 +76,11 @@
     <div class="main-menu menu-3">
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="{{ url('/admin') }}">Home</a></li>
                 <li class="menu-item-has-children"><a href="#">Tambah Data</a>
                     <ul class="sub-menu">
-                        <li class="menu-item"><a href="/admin/tambah-produk">Data Produk</a></li>
-                        <li class="menu-item"><a href="/admin/tambah-konsltan">Data Konsultan</a></li>
+                        <li class="menu-item"><a href="{{ url('/admin/produk/create') }}">Data Produk</a></li>
+                        <li class="menu-item"><a href="{{ url('/admin/konsultan/create') }}">Data Konsultan</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Rekap Data Pesanan</a></li>

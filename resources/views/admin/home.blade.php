@@ -1,6 +1,4 @@
 @extends('base-front')
-<link rel="stylesheet" type="text/css" href="/assets/css/util.css">
-<link rel="stylesheet" type="text/css" href="/assets/css/main.css">
 
 @section('title')
 <title>SILASER - Sistem Informasi Penjualan dan Layanan Servis Laptop</title>
@@ -28,7 +26,7 @@
     <div class="main-menu menu-3">
         <nav>
             <ul>
-                <li><a href="{{ url('/') }}">Home</a></li>
+                <li><a href="{{ url('/admin') }}">Home</a></li>
                 <li class="menu-item-has-children"><a href="#">Tambah Data</a>
                     <ul class="sub-menu">
                         <li class="menu-item"><a href="{{ url('/admin/produk/create') }}">Data Produk</a></li>
