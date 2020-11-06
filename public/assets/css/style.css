@@ -3771,13 +3771,13 @@ img.mfp-img {
   .header-advance-search .input {
     border-right: 1px solid #dcdcdc;
     float: left;
-    width: 360px; }
+    width: 240px; }
     @media only screen and (min-width: 992px) and (max-width: 1199px) {
       .header-advance-search .input {
-        width: 240px; } }
+        width: 160px; } }
     @media only screen and (max-width: 767px) {
       .header-advance-search .input {
-        width: 270px; } }
+        width: 180px; } }
     @media only screen and (max-width: 479px) {
       .header-advance-search .input {
         width: 100%;

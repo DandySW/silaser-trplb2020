@@ -17,20 +17,19 @@
      });
 */
 
-Route::get('/', 'pelanggan\indexController@index');
+//Admin
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', /*'middleware' => ['auth']*/], function () {
+     Route::get('/', 'homeController@index');
+     Route::resource('produk', 'produkController');
+});
 
 
+//Pelanggan
+Route::group(['namespace' => 'Pelanggan'], function () {
+     Route::get('/', 'homeController@index');
+});
+
+/* Route default login/register
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-// Route::group(
-//     ['namespace' => 'Pelanggan', 'prefix' => 'pelanggan'],
-//     function () {
-//         Route::get('', '');
-//     }
-// );
+*/
