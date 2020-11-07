@@ -47,25 +47,6 @@
         <div class="row">
             <div class="col">
 
-                <!-- Header Category -->
-                <div class="hero-side-category">
-
-                    <!-- Category Toggle Wrap -->
-                    <div class="category-toggle-wrap">
-                        <!-- Category Toggle -->
-                        <button class="category-toggle">Categories <i class="ti-menu"></i></button>
-                    </div>
-
-                    <!-- Category Menu -->
-                    <nav class="category-menu">
-                        <ul>
-                            <li><a href="#">Category 1</a></li>
-                            <li><a href="#">Categroy 2</a></li>
-                        </ul>
-                    </nav>
-
-                </div><!-- Header Bottom End -->
-
                 <!-- Hero Slider Start -->
                 <div class="hero-slider hero-slider-three fix">
 

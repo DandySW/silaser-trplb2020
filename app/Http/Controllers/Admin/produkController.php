@@ -37,7 +37,7 @@ class produkController extends Controller
     public function store(Request $request)
     {
         data_produk::create($request->all());
-        return redirect('admin/produk');
+        return redirect('admin/');
     }
 
     /**

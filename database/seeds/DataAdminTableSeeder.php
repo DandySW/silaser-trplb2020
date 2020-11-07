@@ -13,7 +13,7 @@ class DataAdminTableSeeder extends Seeder
     {
         DB::table('data_admin')->insert([
             'username' => 'admin',
-            'password' => bcrypt('admin123'),
+            'password' => bcrypt('admin'),
             'nama' => 'Admin Silaser',
             'email' => 'admin@silaser.com',
         ]);
