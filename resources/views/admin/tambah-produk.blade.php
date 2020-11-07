@@ -29,10 +29,9 @@
         </div>
 
         <form action="/admin/produk" method="post" class="contact1-form validate-form" enctype="multipart/form-data">
-            <span class="contact1-form-title">
-                Tambah Data Produk
-            </span>
             @csrf
+            <span class="contact1-form-title">Tambah Data Produk</span>
+            <label for="tambah-produk"></label>
             <div class="wrap-input1 validate-input" data-validate="Wajib diisi!">
                 <input class="input1" type="text" name="nama_produk" placeholder="Nama Produk">
                 <span class="shadow-input1"></span>
@@ -44,12 +43,12 @@
             </div>
 
             <div class="wrap-input1 validate-input" data-validate="Wajib diisi!">
-                <input class="input1" type="text" name="stok" placeholder="Stok Produk">
+                <input class="input1" type="text" name="stok_produk" placeholder="Stok Produk">
                 <span class="shadow-input1"></span>
             </div>
 
             <div class="wrap-input1 validate-input" data-validate="Wajib diisi!">
-                <textarea class="input1" name="deskripsi" placeholder="Deskripsi Produk"></textarea>
+                <textarea class="input1" name="deskripsi_produk" placeholder="Deskripsi Produk"></textarea>
                 <span class="shadow-input1"></span>
             </div>
 
