@@ -33,7 +33,6 @@
                         <td>{{$product->id}}</td>
                         <td style="text-align: center;"><img src="{{url('products/small',$product->gambar)}}" alt="" width="50"></td>
                         <td style="vertical-align: middle;">{{$product->nama_produk}}</td>
-                        <td style="vertical-align: middle;">{{$product->category->name}}</td>
                         <td style="vertical-align: middle;">{{$product->no_barcode}}</td>
                         <td style="vertical-align: middle;">{{$product->harga}}</td>
                         <td style="vertical-align: middle;text-align: center;"><a href="{{route('image-gallery.show',$product->id)}}" class="btn btn-default btn-mini">Add Images</a></td>
