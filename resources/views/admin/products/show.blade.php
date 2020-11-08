@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master')
+@extends('admin.layouts.master')
 @section('title','Show Product Page')
 @section('content')
 @endsection

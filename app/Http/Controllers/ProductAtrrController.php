@@ -15,7 +15,6 @@ class ProductAtrrController extends Controller
      */
     public function index()
     {
-
     }
     /**
      * Show the form for creating a new resource.
@@ -24,7 +23,6 @@ class ProductAtrrController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -35,14 +33,14 @@ class ProductAtrrController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'sku'=>'required',
-            'size'=>'required',
-            'price'=>'required|numeric|between:0,99.99',
-            'stock'=>'required|numeric'
+        $this->validate($request, [
+            'sku' => 'required',
+            'size' => 'required',
+            'price' => 'required|numeric|between:0,99.99',
+            'stock' => 'required|numeric'
         ]);
         ProductAtrr_model::create($request->all());
-        return back()->with('message','Add Attribute Successed');
+        return back()->with('message', 'Add Attribute Successed');
     }
 
     /**
@@ -53,10 +51,10 @@ class ProductAtrrController extends Controller
      */
     public function show($id)
     {
-        $menu_active =3;
-        $attributes=ProductAtrr_model::where('products_id',$id)->get();
-        $product=Products_model::findOrFail($id);
-        return view('backEnd.products.add_pro_atrr',compact('menu_active','product','attributes'));
+        $menu_active = 3;
+        $attributes = ProductAtrr_model::where('products_id', $id)->get();
+        $product = Products_model::findOrFail($id);
+        return view('admin.products.add_pro_atrr', compact('menu_active', 'product', 'attributes'));
     }
 
     /**
@@ -79,13 +77,15 @@ class ProductAtrrController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request_data=$request->all();
-        foreach ($request_data['id'] as $key=>$attr){
-            $update_attr=ProductAtrr_model::where([['products_id',$id],['id',$request_data['id'][$key]]])
-                ->update(['sku'=>$request_data['sku'][$key],'size'=>$request_data['size'][$key],'price'=>$request_data['price'][$key],
-                    'stock'=>$request_data['stock'][$key]]);
+        $request_data = $request->all();
+        foreach ($request_data['id'] as $key => $attr) {
+            $update_attr = ProductAtrr_model::where([['products_id', $id], ['id', $request_data['id'][$key]]])
+                ->update([
+                    'sku' => $request_data['sku'][$key], 'size' => $request_data['size'][$key], 'price' => $request_data['price'][$key],
+                    'stock' => $request_data['stock'][$key]
+                ]);
         }
-        return back()->with('message','Update Attribute Successed');
+        return back()->with('message', 'Update Attribute Successed');
     }
 
     /**
@@ -98,9 +98,10 @@ class ProductAtrrController extends Controller
     {
         //
     }
-    public function deleteAttr($id){
-        $deleteAttr=ProductAtrr_model::findOrFail($id);
+    public function deleteAttr($id)
+    {
+        $deleteAttr = ProductAtrr_model::findOrFail($id);
         $deleteAttr->delete();
-        return back()->with('message','Deleted Success!');
+        return back()->with('message', 'Deleted Success!');
     }
 }

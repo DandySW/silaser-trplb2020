@@ -1,10 +1,10 @@
-@extends('backEnd.layouts.master')
+@extends('admin.layouts.master')
 @section('title','Add Category')
 @section('content')
-    <div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('category.index')}}">Categories</a> <a href="{{route('category.create')}}" class="current">Add New Category</a> </div>
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span12">
+<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('category.index')}}">Categories</a> <a href="{{route('category.create')}}" class="current">Add New Category</a> </div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
                     <h5>Add New Category</h5>
@@ -23,19 +23,19 @@
                             <label class="control-label">Category Lavel :</label>
                             <div class="controls" style="width: 245px;">
                                 <select name="parent_id" id="parent_id">
-                                        @foreach($cate_levels as $key=>$value)
-                                            <option value="{{$key}}">{{$value}}</option>
-                                            <?php
-                                                if($key!=0){
-                                                    $subCategory=DB::table('categories')->select('id','name')->where('parent_id',$key)->get();
-                                                    if(count($subCategory)>0){
-                                                        foreach ($subCategory as $subCate){
-                                                            echo '<option value="'.$subCate->id.'">&nbsp;&nbsp;--'.$subCate->name.'</option>';
-                                                        }
-                                                    }
-                                                }
-                                            ?>
-                                        @endforeach
+                                    @foreach($cate_levels as $key=>$value)
+                                    <option value="{{$key}}">{{$value}}</option>
+                                    <?php
+                                    if ($key != 0) {
+                                        $subCategory = DB::table('categories')->select('id', 'name')->where('parent_id', $key)->get();
+                                        if (count($subCategory) > 0) {
+                                            foreach ($subCategory as $subCate) {
+                                                echo '<option value="' . $subCate->id . '">&nbsp;&nbsp;--' . $subCate->name . '</option>';
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -69,19 +69,19 @@
                 </div>
             </div>
         </div>
-        </div>
     </div>
+</div>
 @endsection
 @section('jsblock')
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.ui.custom.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.uniform.js') }}"></script>
-    <script src="{{ asset('js/select2.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.validate.js') }}"></script>
-    <script src="{{ asset('js/matrix.js') }}"></script>
-    <script src="{{ asset('js/matrix.form_validation.js') }}"></script>
-    <script src="{{ asset('js/matrix.tables.js') }}"></script>
-    <script src="{{ asset('js/matrix.popover.js') }}"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/jquery.ui.custom.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/jquery.uniform.js') }}"></script>
+<script src="{{ asset('js/select2.min.js') }}"></script>
+<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/jquery.validate.js') }}"></script>
+<script src="{{ asset('js/matrix.js') }}"></script>
+<script src="{{ asset('js/matrix.form_validation.js') }}"></script>
+<script src="{{ asset('js/matrix.tables.js') }}"></script>
+<script src="{{ asset('js/matrix.popover.js') }}"></script>
 @endsection

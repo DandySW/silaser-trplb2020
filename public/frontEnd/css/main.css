@@ -361,8 +361,9 @@ ul.sub-menu {
 .companyinfo p {
   color: #B3B3AD;
   font-family: 'Roboto', sans-serif;
-  font-size: 12px;
+  font-size: 20px;
   font-weight: 300;
+  border-top: 1px solid #D6D6D0;
 }
 
 .footer-top .col-sm-3{
@@ -433,7 +434,7 @@ ul.sub-menu {
   margin-top:0px;
 }
 
-
+/* 
 .address {
   margin-top: 30px;
   position: relative;
@@ -451,7 +452,7 @@ ul.sub-menu {
   left: 25px;
   position: absolute;
   top: 50px;
-}
+} */
 
 .footer-widget {
   margin-bottom: 68px;
