@@ -18,9 +18,8 @@ class ProductsController extends Controller
     public function index()
     {
         $menu_active = 3;
-        $i = 0;
-        $products = Products_model::orderBy('created_at', 'desc')->get();
-        return view('admin.products.index', compact('menu_active', 'products', 'i'));
+        $products = Products_model::all();
+        return view('admin.products.index', compact('menu_active', 'products'));
     }
 
     /**
