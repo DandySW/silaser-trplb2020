@@ -30,7 +30,7 @@ class ProductsController extends Controller
     public function create()
     {
         $menu_active = 3;
-        $categories = Category_model::where('parent_id', 0)->pluck('name', 'id')->all();
+        $categories = Category_model::all();
         return view('admin.products.create', compact('menu_active', 'categories'));
     }
 
@@ -43,21 +43,20 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'p_name' => 'required|min:5',
-            'p_code' => 'required',
-            'p_color' => 'required',
-            'description' => 'required',
-            'price' => 'required|numeric',
-            'image' => 'required|image|mimes:png,jpg,jpeg|max:1000',
+            'nama_produk' => 'required|max:50',
+            'no_barcode' => 'required|numeric|digits:13|unique:products,no_barcode',
+            'deskripsi' => 'required',
+            'harga' => 'required|numeric',
+            'gambar' => 'required|image|mimes:png,jpg,jpeg|max:1000',
         ]);
         $formInput = $request->all();
-        if ($request->file('image')) {
-            $image = $request->file('image');
+        if ($request->file('gambar')) {
+            $image = $request->file('gambar');
             if ($image->isValid()) {
-                $fileName = time() . '-' . str_slug($formInput['p_name'], "-") . '.' . $image->getClientOriginalExtension();
-                $large_image_path = public_path('products/large/' . $fileName);
-                $medium_image_path = public_path('products/medium/' . $fileName);
-                $small_image_path = public_path('products/small/' . $fileName);
+                $fileName = time() . $formInput['nama_produk'] . '_'  . '.' . $image->getClientOriginalExtension();
+                $large_image_path = public_path('storage/products/large/' . $fileName);
+                $medium_image_path = public_path('storage/products/medium/' . $fileName);
+                $small_image_path = public_path('storage/products/small/' . $fileName);
                 //Resize Image
                 Image::make($image)->save($large_image_path);
                 Image::make($image)->resize(600, 600)->save($medium_image_path);
@@ -88,9 +87,9 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $menu_active = 3;
-        $categories = Category_model::where('parent_id', 0)->pluck('name', 'id')->all();
         $edit_product = Products_model::findOrFail($id);
-        $edit_category = Category_model::findOrFail($edit_product->categories_id);
+        $edit_category = Category_model::findOrFail($edit_product->id_kategori);
+        $categories = Category_model::all();
         return view('admin.products.edit', compact('edit_product', 'menu_active', 'categories', 'edit_category'));
     }
 
@@ -105,31 +104,28 @@ class ProductsController extends Controller
     {
         $update_product = Products_model::findOrFail($id);
         $this->validate($request, [
-            'p_name' => 'required|min:5',
-            'p_code' => 'required',
-            'p_color' => 'required',
-            'description' => 'required',
-            'price' => 'required|numeric',
-            'image' => 'image|mimes:png,jpg,jpeg|max:1000',
+            'nama_produk' => 'required|max:50',
+            'no_barcode' => 'required|numeric|digits:13|unique:products,no_barcode',
+            'deskripsi' => 'required',
+            'harga' => 'required|numeric',
+            'gambar' => 'image|mimes:png,jpg,jpeg|max:1000',
         ]);
         $formInput = $request->all();
-        if ($update_product['image'] == '') {
-            if ($request->file('image')) {
-                $image = $request->file('image');
-                if ($image->isValid()) {
-                    $fileName = time() . '-' . str_slug($formInput['p_name'], "-") . '.' . $image->getClientOriginalExtension();
-                    $large_image_path = public_path('products/large/' . $fileName);
-                    $medium_image_path = public_path('products/medium/' . $fileName);
-                    $small_image_path = public_path('products/small/' . $fileName);
-                    //Resize Image
-                    Image::make($image)->save($large_image_path);
-                    Image::make($image)->resize(600, 600)->save($medium_image_path);
-                    Image::make($image)->resize(300, 300)->save($small_image_path);
-                    $formInput['image'] = $fileName;
-                }
+        if ($request->file('gambar')) {
+            $image = $request->file('gambar');
+            if ($image->isValid()) {
+                $fileName = time() . $formInput['nama_produk'] . '_'  . '.' . $image->getClientOriginalExtension();
+                $large_image_path = public_path('storage/products/large/' . $fileName);
+                $medium_image_path = public_path('storage/products/medium/' . $fileName);
+                $small_image_path = public_path('storage/products/small/' . $fileName);
+                //Resize Image
+                Image::make($image)->save($large_image_path);
+                Image::make($image)->resize(600, 600)->save($medium_image_path);
+                Image::make($image)->resize(300, 300)->save($small_image_path);
+                $formInput['image'] = $fileName;
             }
         } else {
-            $formInput['image'] = $update_product['image'];
+            $formInput['gambar'] = $update_product['gambar'];
         }
         $update_product->update($formInput);
         return redirect()->route('product.index')->with('message', 'Update Products Successfully!');
@@ -144,9 +140,9 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         $delete = Products_model::findOrFail($id);
-        $image_large = public_path() . '/products/large/' . $delete->image;
-        $image_medium = public_path() . '/products/medium/' . $delete->image;
-        $image_small = public_path() . '/products/small/' . $delete->image;
+        $image_large = public_path() . 'storage/products/large/' . $delete->image;
+        $image_medium = public_path() . 'storage/products/medium/' . $delete->image;
+        $image_small = public_path() . 'storage/products/small/' . $delete->image;
         if ($delete->delete()) {
             unlink($image_large);
             unlink($image_medium);

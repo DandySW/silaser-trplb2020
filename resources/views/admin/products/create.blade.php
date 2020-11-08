@@ -10,79 +10,63 @@
     @endif
     <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-            <h5>Add New Products</h5>
+            <h5>Tambah Produk</h5>
         </div>
         <div class="widget-content nopadding">
             <form action="{{route('product.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
-                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                @csrf
                 <div class="control-group">
-                    <label class="control-label">Select Category</label>
+                    <label class="control-label">Kategori Produk</label>
                     <div class="controls">
-                        <select name="categories_id" style="width: 415px;">
-                            @foreach($categories as $key=>$value)
-                            <option value="{{$key}}">{{$value}}</option>
-                            <?php
-                            if ($key != 0) {
-                                $sub_categories = DB::table('categories')->select('id', 'name')->where('parent_id', $key)->get();
-                                if (count($sub_categories) > 0) {
-                                    foreach ($sub_categories as $sub_category) {
-                                        echo '<option value="' . $sub_category->id . '">&nbsp;&nbsp;--' . $sub_category->name . '</option>';
-                                    }
-                                }
-                            }
-                            ?>
+                        <select name="id_kategori" style="width: 415px;">
+                            <option selected>Pilih Kategori</option>
+                            @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->nama_kategori}}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="control-group">
-                    <label for="p_name" class="control-label">Name</label>
-                    <div class="controls{{$errors->has('p_name')?' has-error':''}}">
-                        <input type="text" name="p_name" id="p_name" class="form-control" value="{{old('p_name')}}" title="" required="required" style="width: 400px;">
-                        <span class="text-danger">{{$errors->first('p_name')}}</span>
+                    <label for="nama_produk" class="control-label">Nama Produk</label>
+                    <div class="controls{{$errors->has('nama_produk')?' has-error':''}}">
+                        <input type="text" name="nama_produk" id="nama_produk" class="form-control" value="{{old('nama_produk')}}" title="" placeholder="Nama Produk" required="required" style="width: 400px;">
+                        <span class="text-danger">{{$errors->first('nama_produk')}}</span>
                     </div>
                 </div>
                 <div class="control-group">
-                    <label for="p_code" class="control-label">Code</label>
-                    <div class="controls{{$errors->has('p_code')?' has-error':''}}">
-                        <input type="text" name="p_code" id="p_code" class="form-control" value="{{old('p_code')}}" title="" required="required" style="width: 400px;">
-                        <span class="text-danger">{{$errors->first('p_code')}}</span>
+                    <label for="no_barcode" class="control-label">No Barcode</label>
+                    <div class="controls{{$errors->has('no_barcode')?' has-error':''}}">
+                        <input type="text" name="no_barcode" id="no_barcode" class="form-control" value="{{old('no_barcode')}}" placeholder="No Barcode" title="" required="required" style="width: 400px;">
+                        <span class="text-danger">{{$errors->first('no_barcode')}}</span>
                     </div>
                 </div>
                 <div class="control-group">
-                    <label for="p_color" class="control-label">Color</label>
-                    <div class="controls{{$errors->has('p_color')?' has-error':''}}">
-                        <input type="text" name="p_color" id="p_color" value="{{old('p_color')}}" required="required" style="width: 400px;">
-                        <span class="text-danger">{{$errors->first('p_color')}}</span>
+                    <label for="deskripsi" class="control-label">Deskripsi</label>
+                    <div class="controls{{$errors->has('deskripsi')?' has-error':''}}">
+                        <textarea class="textarea_editor span12" name="deskripsi" id="deskripsi" rows="6" placeholder="Deskripsi Produk" style="width: 580px;">{{old('deskripsi')}}</textarea>
+                        <span class="text-danger">{{$errors->first('deskripsi')}}</span>
                     </div>
                 </div>
                 <div class="control-group">
-                    <label for="description" class="control-label">Description</label>
-                    <div class="controls{{$errors->has('description')?' has-error':''}}">
-                        <textarea class="textarea_editor span12" name="description" id="description" rows="6" placeholder="Product Description" style="width: 580px;">{{old('description')}}</textarea>
-                        <span class="text-danger">{{$errors->first('description')}}</span>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label for="price" class="control-label">Price</label>
-                    <div class="controls{{$errors->has('price')?' has-error':''}}">
-                        <div class="input-prepend"> <span class="add-on">$</span>
-                            <input type="number" name="price" id="price" class="" value="{{old('price')}}" title="" required="required">
-                            <span class="text-danger">{{$errors->first('price')}}</span>
+                    <label for="harga" class="control-label">Harga</label>
+                    <div class="controls{{$errors->has('harga')?' has-error':''}}">
+                        <div class="input-prepend"> <span class="add-on">Rp</span>
+                            <input type="number" name="harga" id="harga" class="" value="{{old('harga')}}" title="" placeholder="Harga Produk" required="required">
+                            <span class="text-danger">{{$errors->first('harga')}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label">Image upload</label>
+                    <label class="control-label">Upload Gambar</label>
                     <div class="controls">
-                        <input type="file" name="image" id="image" />
-                        <span class="text-danger">{{$errors->first('image')}}</span>
+                        <input type="file" name="gambar" id="gambar" />
+                        <span class="text-danger">{{$errors->first('gambar')}}</span>
                     </div>
                 </div>
                 <div class="control-group">
                     <label for="" class="control-label"></label>
                     <div class="controls">
-                        <button type="submit" class="btn btn-success">Add New Product</button>
+                        <button type="submit" class="btn btn-success">Tambah Produk</button>
                     </div>
                 </div>
             </form>

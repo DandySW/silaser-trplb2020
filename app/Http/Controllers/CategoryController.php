@@ -28,8 +28,7 @@ class CategoryController extends Controller
     public function create()
     {
         $menu_active = 2;
-        $categories = Category_model::all();
-        return view('admin.category.create', compact('menu_active', 'categories'));
+        return view('admin.category.create', compact('menu_active'));
     }
 
     /**

@@ -33,6 +33,7 @@
                         <td>{{$product->id}}</td>
                         <td style="text-align: center;"><img src="{{url('products/small',$product->gambar)}}" alt="" width="50"></td>
                         <td style="vertical-align: middle;">{{$product->nama_produk}}</td>
+                        <td style="vertical-align: middle;">{{$product->category->nama_kategori}}</td>
                         <td style="vertical-align: middle;">{{$product->no_barcode}}</td>
                         <td style="vertical-align: middle;">{{$product->harga}}</td>
                         <td style="vertical-align: middle;text-align: center;"><a href="{{route('image-gallery.show',$product->id)}}" class="btn btn-default btn-mini">Add Images</a></td>
@@ -50,7 +51,7 @@
                             <h3>{{$product->nama_produk}}</h3>
                         </div>
                         <div class="modal-body">
-                            <div class="text-center"><img src="{{url('products/small',$product->gambar)}}" width="100" alt="{{$product->no_arcode}}"></div>
+                            <div class="text-center"><img src="{{url('/storage/products/small',$product->gambar)}}" width="100" alt="{{$product->no_arcode}}"></div>
                             <p class="text-center">{{$product->deskripsi}}</p>
                         </div>
                     </div>

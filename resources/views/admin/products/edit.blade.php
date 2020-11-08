@@ -14,25 +14,16 @@
         </div>
         <div class="widget-content nopadding">
             <form action="{{route('product.update',$edit_product->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
-                <!-- <input type="hidden" name="_token" value="{{csrf_token()}}"> -->
                 @csrf
                 {{method_field("PUT")}}
                 <div class="control-group">
                     <label class="control-label">Select Category</label>
                     <div class="controls">
                         <select name="id_kategori" style="width: 415px;">
-                            @foreach($categories as $key=>$value)
-                            <option value="{{$key}}" {{$edit_category->id==$key?' selected':''}}>{{$value}}</option>
-                            <?php
-                            if ($key != 0) {
-                                $sub_categories = DB::table('categories')->select('id', 'name')->where('parent_id', $key)->get();
-                                if (count($sub_categories) > 0) {
-                                    foreach ($sub_categories as $sub_category) { ?>
-                                        <option value="{{$sub_category->id}}" {{$edit_category->id==$sub_category->id?' selected':''}}>&nbsp;&nbsp;--{{$sub_category->name}}</option>
-                            <?php }
-                                }
-                            }
-                            ?>
+                            <!-- <option placeholder="{{$edit_category}}">{{$edit_product->category->nama_kategori}}</option> -->
+                            <option selected>Pilih Kategori</option>
+                            @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->nama_kategori}}</option>
                             @endforeach
                         </select>
                     </div>
