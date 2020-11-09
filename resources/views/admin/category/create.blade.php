@@ -22,6 +22,7 @@
                         <div class="control-group">
                             <label for="control-label"></label>
                             <div class="controls">
+                                <a href="{{url('/admin/category')}}"><button type="button" class="btn btn-info">Batal</button></a>
                                 <input type="submit" value="Tambah Kategori" class="btn btn-success">
                             </div>
                         </div>
