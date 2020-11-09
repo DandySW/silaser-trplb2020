@@ -18,9 +18,8 @@ class ProductsController extends Controller
     public function index()
     {
         $menu_active = 3;
-        $i = 0;
-        $products = Products_model::orderBy('created_at', 'desc')->get();
-        return view('admin.products.index', compact('menu_active', 'products', 'i'));
+        $products = Products_model::all();
+        return view('admin.products.index', compact('menu_active', 'products'));
     }
 
     /**
@@ -31,7 +30,7 @@ class ProductsController extends Controller
     public function create()
     {
         $menu_active = 3;
-        $categories = Category_model::where('parent_id', 0)->pluck('name', 'id')->all();
+        $categories = Category_model::all();
         return view('admin.products.create', compact('menu_active', 'categories'));
     }
 
@@ -44,10 +43,10 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'p_name' => 'required|min:5',
-            'p_code' => 'required',
-            'p_color' => 'required',
+            'p_name' => 'required|max:50',
+            'p_code' => 'required|numeric|digits:13|unique:products,p_code',
             'description' => 'required',
+            'stock' => 'required|numeric',
             'price' => 'required|numeric',
             'image' => 'required|image|mimes:png,jpg,jpeg|max:1000',
         ]);
@@ -67,7 +66,7 @@ class ProductsController extends Controller
             }
         }
         Products_model::create($formInput);
-        return redirect()->route('product.create')->with('message', 'Add Products Successfully!');
+        return redirect()->route('product.index')->with('message', 'Data Produk berhasil ditambahkan.');
     }
 
     /**
@@ -89,7 +88,7 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $menu_active = 3;
-        $categories = Category_model::where('parent_id', 0)->pluck('name', 'id')->all();
+        $categories = Category_model::all();
         $edit_product = Products_model::findOrFail($id);
         $edit_category = Category_model::findOrFail($edit_product->categories_id);
         return view('admin.products.edit', compact('edit_product', 'menu_active', 'categories', 'edit_category'));
@@ -108,8 +107,8 @@ class ProductsController extends Controller
         $this->validate($request, [
             'p_name' => 'required|min:5',
             'p_code' => 'required',
-            'p_color' => 'required',
             'description' => 'required',
+            'stock' => 'required|numeric',
             'price' => 'required|numeric',
             'image' => 'image|mimes:png,jpg,jpeg|max:1000',
         ]);
@@ -133,7 +132,7 @@ class ProductsController extends Controller
             $formInput['image'] = $update_product['image'];
         }
         $update_product->update($formInput);
-        return redirect()->route('product.index')->with('message', 'Update Products Successfully!');
+        return redirect()->route('product.index')->with('message', 'Data Produk berhasil diubah.');
     }
 
     /**
@@ -153,18 +152,18 @@ class ProductsController extends Controller
             unlink($image_medium);
             unlink($image_small);
         }
-        return redirect()->route('product.index')->with('message', 'Delete Success!');
+        return redirect()->route('product.index')->with('message', 'Berhasil menghapus.');
     }
     public function deleteImage($id)
     {
-        //Products_model::where(['id'=>$id])->update(['image'=>'']);
+        // Products_model::where(['id' => $id])->update(['image' => '']);
         $delete_image = Products_model::findOrFail($id);
         $image_large = public_path() . '/products/large/' . $delete_image->image;
         $image_medium = public_path() . '/products/medium/' . $delete_image->image;
         $image_small = public_path() . '/products/small/' . $delete_image->image;
         if ($delete_image) {
-            $delete_image->image = '';
-            $delete_image->save();
+            // $delete_image->image = '';
+            // $delete_image->save();
             ////// delete image ///
             unlink($image_large);
             unlink($image_medium);
