@@ -51,12 +51,12 @@ Route::group(['middleware' => 'FrontLogin_middleware'], function () {
 /* Admin Location */
 Auth::routes(['register' => false]);
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
-    Route::get('/', 'AdminController@index')->name('admin_home');
+    Route::get('/', 'ProductsController@index');
 
     /// Setting Area
-    Route::get('/settings', 'AdminController@settings');
-    Route::get('/check-pwd', 'AdminController@chkPassword');
-    Route::post('/update-pwd', 'AdminController@updatAdminPwd');
+    // Route::get('/settings', 'AdminController@settings');
+    // Route::get('/check-pwd', 'AdminController@chkPassword');
+    // Route::post('/update-pwd', 'AdminController@updatAdminPwd');
 
     /// Category Area
     Route::resource('/category', 'CategoryController');
