@@ -34,6 +34,7 @@ class ProductsController extends Controller
         return view('admin.products.create', compact('menu_active', 'categories'));
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -53,19 +54,19 @@ class ProductsController extends Controller
         if ($request->file('gambar')) {
             $image = $request->file('gambar');
             if ($image->isValid()) {
-                $fileName = time() . $formInput['nama_produk'] . '_'  . '.' . $image->getClientOriginalExtension();
-                $large_image_path = public_path('storage/products/large/' . $fileName);
-                $medium_image_path = public_path('storage/products/medium/' . $fileName);
-                $small_image_path = public_path('storage/products/small/' . $fileName);
+                $fileName = time() . '_' . $formInput['nama_produk']  . '.' . $image->getClientOriginalExtension();
+                $large_image_path = public_path('products/large/' . $fileName);
+                $medium_image_path = public_path('products/medium/' . $fileName);
+                $small_image_path = public_path('products/small/' . $fileName);
                 //Resize Image
                 Image::make($image)->save($large_image_path);
                 Image::make($image)->resize(600, 600)->save($medium_image_path);
                 Image::make($image)->resize(300, 300)->save($small_image_path);
-                $formInput['image'] = $fileName;
+                $formInput['gambar'] = $fileName;
             }
         }
         Products_model::create($formInput);
-        return redirect()->route('product.create')->with('message', 'Add Products Successfully!');
+        return redirect()->route('product.index')->with('message', 'Data Produk berhasil ditambahkan');
     }
 
     /**
@@ -93,6 +94,7 @@ class ProductsController extends Controller
         return view('admin.products.edit', compact('edit_product', 'menu_active', 'categories', 'edit_category'));
     }
 
+
     /**
      * Update the specified resource in storage.
      *
@@ -104,31 +106,34 @@ class ProductsController extends Controller
     {
         $update_product = Products_model::findOrFail($id);
         $this->validate($request, [
-            'nama_produk' => 'required|max:50',
-            'no_barcode' => 'required|numeric|digits:13|unique:products,no_barcode',
-            'deskripsi' => 'required',
-            'harga' => 'required|numeric',
+            'p_name' => 'required|min:5',
+            'p_code' => 'required',
+            'p_color' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric',
             'gambar' => 'image|mimes:png,jpg,jpeg|max:1000',
         ]);
         $formInput = $request->all();
-        if ($request->file('gambar')) {
-            $image = $request->file('gambar');
-            if ($image->isValid()) {
-                $fileName = time() . $formInput['nama_produk'] . '_'  . '.' . $image->getClientOriginalExtension();
-                $large_image_path = public_path('storage/products/large/' . $fileName);
-                $medium_image_path = public_path('storage/products/medium/' . $fileName);
-                $small_image_path = public_path('storage/products/small/' . $fileName);
-                //Resize Image
-                Image::make($image)->save($large_image_path);
-                Image::make($image)->resize(600, 600)->save($medium_image_path);
-                Image::make($image)->resize(300, 300)->save($small_image_path);
-                $formInput['image'] = $fileName;
+        if ($update_product['gambar'] == '') {
+            if ($request->file('gambar')) {
+                $image = $request->file('gambar');
+                if ($image->isValid()) {
+                    $fileName = time() . '_' . $formInput['nama_produk']  . '.' . $image->getClientOriginalExtension();
+                    $large_image_path = public_path('products/large/' . $fileName);
+                    $medium_image_path = public_path('products/medium/' . $fileName);
+                    $small_image_path = public_path('products/small/' . $fileName);
+                    //Resize Image
+                    Image::make($image)->save($large_image_path);
+                    Image::make($image)->resize(600, 600)->save($medium_image_path);
+                    Image::make($image)->resize(300, 300)->save($small_image_path);
+                    $formInput['gambar'] = $fileName;
+                }
             }
         } else {
             $formInput['gambar'] = $update_product['gambar'];
         }
         $update_product->update($formInput);
-        return redirect()->route('product.index')->with('message', 'Update Products Successfully!');
+        return redirect()->route('product.index')->with('message', 'Data Produk berhasil diubah');
     }
 
     /**
@@ -140,25 +145,25 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         $delete = Products_model::findOrFail($id);
-        $image_large = public_path() . 'storage/products/large/' . $delete->image;
-        $image_medium = public_path() . 'storage/products/medium/' . $delete->image;
-        $image_small = public_path() . 'storage/products/small/' . $delete->image;
+        $image_large = public_path() . '/products/large/' . $delete->gambar;
+        $image_medium = public_path() . '/products/medium/' . $delete->gambar;
+        $image_small = public_path() . '/products/small/' . $delete->gambar;
         if ($delete->delete()) {
             unlink($image_large);
             unlink($image_medium);
             unlink($image_small);
         }
-        return redirect()->route('product.index')->with('message', 'Delete Success!');
+        return redirect()->route('product.index')->with('message', 'Data Produk berhasil dihapus');
     }
     public function deleteImage($id)
     {
-        //Products_model::where(['id'=>$id])->update(['image'=>'']);
+        //Products_model::where(['id'=>$id])->update(['gambar'=>'']);
         $delete_image = Products_model::findOrFail($id);
-        $image_large = public_path() . '/products/large/' . $delete_image->image;
-        $image_medium = public_path() . '/products/medium/' . $delete_image->image;
-        $image_small = public_path() . '/products/small/' . $delete_image->image;
+        $image_large = public_path() . '/products/large/' . $delete_image->gambar;
+        $image_medium = public_path() . '/products/medium/' . $delete_image->gambar;
+        $image_small = public_path() . '/products/small/' . $delete_image->gambar;
         if ($delete_image) {
-            $delete_image->image = '';
+            $delete_image->gambar = '';
             $delete_image->save();
             ////// delete image ///
             unlink($image_large);

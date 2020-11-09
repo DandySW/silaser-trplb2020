@@ -66,6 +66,7 @@
                 <div class="control-group">
                     <label for="" class="control-label"></label>
                     <div class="controls">
+                        <a href="{{url('/admin/product')}}"><button type="button" class="btn btn-info">Batal</button></a>
                         <button type="submit" class="btn btn-success">Tambah Produk</button>
                     </div>
                 </div>

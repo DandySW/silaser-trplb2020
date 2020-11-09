@@ -68,7 +68,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     /// Products Area
     Route::resource('/product', 'ProductsController');
     Route::get('delete-product/{id}', 'ProductsController@destroy');
-    Route::get('delete-image/{id}', 'ProductsController@deleteImage');
+    Route::get('delete-gambar/{id}', 'ProductsController@deleteImage');
 
     /// Product Attribute
     Route::resource('/product_attr', 'ProductAtrrController');

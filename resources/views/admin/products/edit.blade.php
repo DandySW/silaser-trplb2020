@@ -73,6 +73,7 @@
                 <div class="control-group">
                     <label for="" class="control-label"></label>
                     <div class="controls">
+                        <a href="{{url('/admin/product')}}"><button type="button" class="btn btn-info">Batal</button></a>
                         <button type="submit" class="btn btn-success">Edit Produk</button>
                     </div>
                 </div>
@@ -101,14 +102,14 @@
         var id = $(this).attr('rel');
         var deleteFunction = $(this).attr('rel1');
         swal({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Apakah kamu yakin akan menghapus produk?',
+            text: "Tindakan tidak dapat dikembalikan",
             type: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
+            confirmButtonColor: '#da4f49',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
+            confirmButtonText: 'Oke',
+            cancelButtonText: 'Batal',
             confirmButtonClass: 'btn btn-success',
             cancelButtonClass: 'btn btn-danger',
             buttonsStyling: false,
