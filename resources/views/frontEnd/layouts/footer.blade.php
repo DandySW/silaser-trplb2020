@@ -1,5 +1,4 @@
-<footer id="footer">
-    <!--Footer-->
+<footer id="footer"><!--Footer-->
     <div class="footer-top">
         <div class="container">
             <div class="row">
@@ -14,7 +13,7 @@
                         <div class="video-gallery text-center">
                             <a href="#">
                                 <div class="iframe-img">
-                                    <img src="{{asset('pelanggan/images/home/iframe1.png')}}" alt="" />
+                                    <img src="{{asset('frontEnd/images/home/iframe1.png')}}" alt="" />
                                 </div>
                                 <div class="overlay-icon">
                                     <i class="fa fa-play-circle-o"></i>
@@ -29,7 +28,7 @@
                         <div class="video-gallery text-center">
                             <a href="#">
                                 <div class="iframe-img">
-                                    <img src="{{asset('pelanggan/images/home/iframe2.png')}}" alt="" />
+                                    <img src="{{asset('frontEnd/images/home/iframe2.png')}}" alt="" />
                                 </div>
                                 <div class="overlay-icon">
                                     <i class="fa fa-play-circle-o"></i>
@@ -44,7 +43,7 @@
                         <div class="video-gallery text-center">
                             <a href="#">
                                 <div class="iframe-img">
-                                    <img src="{{asset('pelanggan/images/home/iframe3.png')}}" alt="" />
+                                    <img src="{{asset('frontEnd/images/home/iframe3.png')}}" alt="" />
                                 </div>
                                 <div class="overlay-icon">
                                     <i class="fa fa-play-circle-o"></i>
@@ -59,7 +58,7 @@
                         <div class="video-gallery text-center">
                             <a href="#">
                                 <div class="iframe-img">
-                                    <img src="{{asset('pelanggan/images/home/iframe4.png')}}" alt="" />
+                                    <img src="{{asset('frontEnd/images/home/iframe4.png')}}" alt="" />
                                 </div>
                                 <div class="overlay-icon">
                                     <i class="fa fa-play-circle-o"></i>
@@ -72,7 +71,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="address">
-                        <img src="{{asset('pelanggan/images/home/map.png')}}" alt="" />
+                        <img src="{{asset('frontEnd/images/home/map.png')}}" alt="" />
                         <p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
                     </div>
                 </div>
@@ -154,5 +153,4 @@
             </div>
         </div>
     </div>
-</footer>
-<!--/Footer-->
+</footer><!--/Footer-->

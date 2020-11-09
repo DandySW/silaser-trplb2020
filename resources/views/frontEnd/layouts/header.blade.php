@@ -1,7 +1,5 @@
-<header id="header">
-    <!--header-->
-    <div class="header_top">
-        <!--header_top-->
+<header id="header"><!--header-->
+    <div class="header_top"><!--header_top-->
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
@@ -25,16 +23,14 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!--/header_top-->
+    </div><!--/header_top-->
 
-    <div class="header-middle">
-        <!--header-middle-->
+    <div class="header-middle"><!--header-middle-->
         <div class="container">
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
-                        <a href="{{url('/')}}"><img src="{{asset('pelanggan/images/home/logo.png')}}" alt="" /></a>
+                        <a href="{{url('/')}}"><img src="{{asset('frontEnd/images/home/logo.png')}}" alt="" /></a>
                     </div>
                     <div class="btn-group pull-right">
                         <div class="btn-group">
@@ -65,22 +61,20 @@
                         <ul class="nav navbar-nav">
                             <li><a href="{{url('/viewcart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             @if(Auth::check())
-                            <li><a href="{{url('/myaccount')}}"><i class="fa fa-user"></i> My Account</a></li>
-                            <li><a href="{{ url('/logout') }}"><i class="fa fa-lock"></i> Logout </a>
-                            </li>
+                                <li><a href="{{url('/myaccount')}}"><i class="fa fa-user"></i> My Account</a></li>
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-lock"></i> Logout </a>
+                                </li>
                             @else
-                            <li><a href="{{url('/login_page')}}"><i class="fa fa-lock"></i> Login</a></li>
+                                <li><a href="{{url('/login_page')}}"><i class="fa fa-lock"></i> Login</a></li>
                             @endif
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--/header-middle-->
+    </div><!--/header-middle-->
 
-    <div class="header-bottom">
-        <!--header-bottom-->
+    <div class="header-bottom"><!--header-bottom-->
         <div class="container">
             <div class="row">
                 <div class="col-sm-9">
@@ -108,12 +102,10 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
-                        <input type="text" placeholder="Search" />
+                        <input type="text" placeholder="Search"/>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--/header-bottom-->
-</header>
-<!--/header-->
+    </div><!--/header-bottom-->
+</header><!--/header-->
