@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $menu_active = 2;
+        $menu_active = 0;
         $categories = Category_model::all();
         return view('admin.category.index', compact('menu_active', 'categories'));
     }
@@ -28,7 +28,9 @@ class CategoryController extends Controller
     public function create()
     {
         $menu_active = 2;
-        return view('admin.category.create', compact('menu_active'));
+        $plucked = Category_model::where('parent_id', 0)->pluck('name', 'id');
+        $cate_levels = ['0' => 'Main Category'] + $plucked->all();
+        return view('admin.category.create', compact('menu_active', 'cate_levels'));
     }
 
     /**
@@ -40,9 +42,9 @@ class CategoryController extends Controller
     public function checkCateName(Request $request)
     {
         $data = $request->all();
-        $category_name = $data['nama_kategori'];
-        $ch_cate_name_atDB = Category_model::select('nama_kategori')->where('nama_kategori', $category_name)->first();
-        if ($category_name == $ch_cate_name_atDB['nama_kategori']) {
+        $category_name = $data['name'];
+        $ch_cate_name_atDB = Category_model::select('name')->where('name', $category_name)->first();
+        if ($category_name == $ch_cate_name_atDB['name']) {
             echo "true";
             die();
         } else {
@@ -53,11 +55,12 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nama_kategori' => 'required|max:30|unique:categories,nama_kategori',
+            'name' => 'required|max:255|unique:categories,name',
+            'url' => 'required',
         ]);
         $data = $request->all();
         Category_model::create($data);
-        return redirect()->route('category.index')->with('message', 'Berhasil menambahkan Kategori');
+        return redirect()->route('category.index')->with('message', 'Added Success!');
     }
 
     /**
@@ -79,9 +82,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $menu_active = 2;
-        $categories = Category_model::findOrFail($id);
-        return view('admin.category.edit', compact('categories', 'menu_active'));
+        $menu_active = 0;
+        $plucked = Category_model::where('parent_id', 0)->pluck('name', 'id');
+        $cate_levels = ['0' => 'Main Category'] + $plucked->all();
+        $edit_category = Category_model::findOrFail($id);
+        return view('admin.category.edit', compact('edit_category', 'menu_active', 'cate_levels'));
     }
 
     /**
@@ -95,13 +100,16 @@ class CategoryController extends Controller
     {
         $update_categories = Category_model::findOrFail($id);
         $this->validate($request, [
-            'nama_kategori' => 'required|max:30|unique:categories,nama_kategori,' . $update_categories->id,
+            'name' => 'required|max:255|unique:categories,name,' . $update_categories->id,
+            'url' => 'required',
         ]);
         //dd($request->all());die();
         $input_data = $request->all();
-
+        if (empty($input_data['status'])) {
+            $input_data['status'] = 0;
+        }
         $update_categories->update($input_data);
-        return redirect()->route('category.index')->with('message', 'Berhasil mengubah Kategori');
+        return redirect()->route('category.index')->with('message', 'Updated Success!');
     }
 
     /**
@@ -114,6 +122,6 @@ class CategoryController extends Controller
     {
         $delete = Category_model::findOrFail($id);
         $delete->delete();
-        return redirect()->route('category.index')->with('message', 'Berhasil menghapus Kategori');
+        return redirect()->route('category.index')->with('message', 'Delete Success!');
     }
 }

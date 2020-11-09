@@ -18,8 +18,9 @@ class ProductsController extends Controller
     public function index()
     {
         $menu_active = 3;
-        $products = Products_model::all();
-        return view('admin.products.index', compact('menu_active', 'products'));
+        $i = 0;
+        $products = Products_model::orderBy('created_at', 'desc')->get();
+        return view('admin.products.index', compact('menu_active', 'products', 'i'));
     }
 
     /**
@@ -30,10 +31,9 @@ class ProductsController extends Controller
     public function create()
     {
         $menu_active = 3;
-        $categories = Category_model::all();
+        $categories = Category_model::where('parent_id', 0)->pluck('name', 'id')->all();
         return view('admin.products.create', compact('menu_active', 'categories'));
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -44,17 +44,18 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nama_produk' => 'required|max:50',
-            'no_barcode' => 'required|numeric|digits:13|unique:products,no_barcode',
-            'deskripsi' => 'required',
-            'harga' => 'required|numeric',
-            'gambar' => 'required|image|mimes:png,jpg,jpeg|max:1000',
+            'p_name' => 'required|min:5',
+            'p_code' => 'required',
+            'p_color' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric',
+            'image' => 'required|image|mimes:png,jpg,jpeg|max:1000',
         ]);
         $formInput = $request->all();
-        if ($request->file('gambar')) {
-            $image = $request->file('gambar');
+        if ($request->file('image')) {
+            $image = $request->file('image');
             if ($image->isValid()) {
-                $fileName = time() . '_' . $formInput['nama_produk']  . '.' . $image->getClientOriginalExtension();
+                $fileName = time() . '-' . str_slug($formInput['p_name'], "-") . '.' . $image->getClientOriginalExtension();
                 $large_image_path = public_path('products/large/' . $fileName);
                 $medium_image_path = public_path('products/medium/' . $fileName);
                 $small_image_path = public_path('products/small/' . $fileName);
@@ -62,11 +63,11 @@ class ProductsController extends Controller
                 Image::make($image)->save($large_image_path);
                 Image::make($image)->resize(600, 600)->save($medium_image_path);
                 Image::make($image)->resize(300, 300)->save($small_image_path);
-                $formInput['gambar'] = $fileName;
+                $formInput['image'] = $fileName;
             }
         }
         Products_model::create($formInput);
-        return redirect()->route('product.index')->with('message', 'Data Produk berhasil ditambahkan');
+        return redirect()->route('product.create')->with('message', 'Add Products Successfully!');
     }
 
     /**
@@ -88,12 +89,11 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $menu_active = 3;
+        $categories = Category_model::where('parent_id', 0)->pluck('name', 'id')->all();
         $edit_product = Products_model::findOrFail($id);
-        $edit_category = Category_model::findOrFail($edit_product->id_kategori);
-        $categories = Category_model::all();
+        $edit_category = Category_model::findOrFail($edit_product->categories_id);
         return view('admin.products.edit', compact('edit_product', 'menu_active', 'categories', 'edit_category'));
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -111,14 +111,14 @@ class ProductsController extends Controller
             'p_color' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
-            'gambar' => 'image|mimes:png,jpg,jpeg|max:1000',
+            'image' => 'image|mimes:png,jpg,jpeg|max:1000',
         ]);
         $formInput = $request->all();
-        if ($update_product['gambar'] == '') {
-            if ($request->file('gambar')) {
-                $image = $request->file('gambar');
+        if ($update_product['image'] == '') {
+            if ($request->file('image')) {
+                $image = $request->file('image');
                 if ($image->isValid()) {
-                    $fileName = time() . '_' . $formInput['nama_produk']  . '.' . $image->getClientOriginalExtension();
+                    $fileName = time() . '-' . str_slug($formInput['p_name'], "-") . '.' . $image->getClientOriginalExtension();
                     $large_image_path = public_path('products/large/' . $fileName);
                     $medium_image_path = public_path('products/medium/' . $fileName);
                     $small_image_path = public_path('products/small/' . $fileName);
@@ -126,14 +126,14 @@ class ProductsController extends Controller
                     Image::make($image)->save($large_image_path);
                     Image::make($image)->resize(600, 600)->save($medium_image_path);
                     Image::make($image)->resize(300, 300)->save($small_image_path);
-                    $formInput['gambar'] = $fileName;
+                    $formInput['image'] = $fileName;
                 }
             }
         } else {
-            $formInput['gambar'] = $update_product['gambar'];
+            $formInput['image'] = $update_product['image'];
         }
         $update_product->update($formInput);
-        return redirect()->route('product.index')->with('message', 'Data Produk berhasil diubah');
+        return redirect()->route('product.index')->with('message', 'Update Products Successfully!');
     }
 
     /**
@@ -145,25 +145,25 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         $delete = Products_model::findOrFail($id);
-        $image_large = public_path() . '/products/large/' . $delete->gambar;
-        $image_medium = public_path() . '/products/medium/' . $delete->gambar;
-        $image_small = public_path() . '/products/small/' . $delete->gambar;
+        $image_large = public_path() . '/products/large/' . $delete->image;
+        $image_medium = public_path() . '/products/medium/' . $delete->image;
+        $image_small = public_path() . '/products/small/' . $delete->image;
         if ($delete->delete()) {
             unlink($image_large);
             unlink($image_medium);
             unlink($image_small);
         }
-        return redirect()->route('product.index')->with('message', 'Data Produk berhasil dihapus');
+        return redirect()->route('product.index')->with('message', 'Delete Success!');
     }
     public function deleteImage($id)
     {
-        //Products_model::where(['id'=>$id])->update(['gambar'=>'']);
+        //Products_model::where(['id'=>$id])->update(['image'=>'']);
         $delete_image = Products_model::findOrFail($id);
-        $image_large = public_path() . '/products/large/' . $delete_image->gambar;
-        $image_medium = public_path() . '/products/medium/' . $delete_image->gambar;
-        $image_small = public_path() . '/products/small/' . $delete_image->gambar;
+        $image_large = public_path() . '/products/large/' . $delete_image->image;
+        $image_medium = public_path() . '/products/medium/' . $delete_image->image;
+        $image_small = public_path() . '/products/small/' . $delete_image->image;
         if ($delete_image) {
-            $delete_image->gambar = '';
+            $delete_image->image = '';
             $delete_image->save();
             ////// delete image ///
             unlink($image_large);

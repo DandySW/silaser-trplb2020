@@ -1,5 +1,5 @@
 @extends('pelanggan.layouts.master')
-@section('title','Halaman Cart | SILASER - Sistem Informasi Penjualan dan Layanan Servis Laptop')
+@section('title','Cart Page')
 @section('slider')
 @endsection
 @section('content')
@@ -14,18 +14,18 @@
             <table class="table table-condensed">
                 <thead>
                     <tr class="cart_menu">
-                        <td class="image">Gambar</td>
+                        <td class="image">Item</td>
                         <td class="description"></td>
-                        <td class="price">Harga</td>
-                        <td class="quantity">Jumlah</td>
-                        <td class="total">Total Harga</td>
+                        <td class="price">Price</td>
+                        <td class="quantity">Quantity</td>
+                        <td class="total">Total</td>
                         <td></td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($cart_datas as $cart_data)
                     <?php
-                    $image_products = DB::table('products')->select('gambar')->where('id', $cart_data->products_id)->get();
+                    $image_products = DB::table('products')->select('image')->where('id', $cart_data->products_id)->get();
                     ?>
                     <tr>
                         <td class="cart_product">

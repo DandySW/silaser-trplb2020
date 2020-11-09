@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title','Data Produk | Sistem Informasi Penjualan dan Layanan Servis Laptop ')
+@section('title','List Products')
 @section('content')
 <div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('product.index')}}" class="current">Products</a></div>
 <div class="container-fluid">
@@ -10,18 +10,19 @@
     @endif
     <div class="widget-box">
         <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Daftar Produk</h5>
+            <h5>List Products</h5>
         </div>
         <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Gambar</th>
-                        <th>Nama Produk</th>
-                        <th>Kategori</th>
-                        <th>No Barcode</th>
-                        <th>Harga</th>
+                        <th>Image</th>
+                        <th>Product Name</th>
+                        <th>Under Category</th>
+                        <th>Code Of Product</th>
+                        <th>Product Color</th>
+                        <th>Price</th>
                         <th>Image Gallery</th>
                         <th>Add Attribute</th>
                         <th>Action</th>
@@ -29,13 +30,15 @@
                 </thead>
                 <tbody>
                     @foreach($products as $product)
+                    <?php $i++; ?>
                     <tr class="gradeC">
-                        <td>{{$product->id}}</td>
-                        <td style="text-align: center;"><img src="{{url('products/small',$product->gambar)}}" alt="" width="50"></td>
-                        <td style="vertical-align: middle;">{{$product->nama_produk}}</td>
-                        <td style="vertical-align: middle;">{{$product->category->nama_kategori}}</td>
-                        <td style="vertical-align: middle;">{{$product->no_barcode}}</td>
-                        <td style="vertical-align: middle;">{{$product->harga}}</td>
+                        <td>{{$i}}</td>
+                        <td style="text-align: center;"><img src="{{url('products/small',$product->image)}}" alt="" width="50"></td>
+                        <td style="vertical-align: middle;">{{$product->p_name}}</td>
+                        <td style="vertical-align: middle;">{{$product->category->name}}</td>
+                        <td style="vertical-align: middle;">{{$product->p_code}}</td>
+                        <td style="vertical-align: middle;">{{$product->p_color}}</td>
+                        <td style="vertical-align: middle;">{{$product->price}}</td>
                         <td style="vertical-align: middle;text-align: center;"><a href="{{route('image-gallery.show',$product->id)}}" class="btn btn-default btn-mini">Add Images</a></td>
                         <td style="vertical-align: middle;text-align: center;"><a href="{{route('product_attr.show',$product->id)}}" class="btn btn-success btn-mini">Add Attr</a></td>
                         <td style="text-align: center; vertical-align: middle;">
@@ -48,11 +51,11 @@
                     <div id="myModal{{$product->id}}" class="modal hide">
                         <div class="modal-header">
                             <button data-dismiss="modal" class="close" type="button">×</button>
-                            <h3>{{$product->nama_produk}}</h3>
+                            <h3>{{$product->p_name}}</h3>
                         </div>
                         <div class="modal-body">
-                            <div class="text-center"><img src="{{url('/storage/products/small',$product->gambar)}}" width="100" alt="{{$product->no_arcode}}"></div>
-                            <p class="text-center">{{$product->deskripsi}}</p>
+                            <div class="text-center"><img src="{{url('products/small',$product->image)}}" width="100" alt="{{$product->p_code}}"></div>
+                            <p class="text-center">{{$product->description}}</p>
                         </div>
                     </div>
                     {{--Pop Up Model for View Product--}}
@@ -79,14 +82,14 @@
         var id = $(this).attr('rel');
         var deleteFunction = $(this).attr('rel1');
         swal({
-            title: 'Apakah kamu yakin akan menghapus produk?',
-            text: "Tindakan tidak dapat dikembalikan",
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
             type: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#da4f49',
+            confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Oke',
-            cancelButtonText: 'Batal',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
             confirmButtonClass: 'btn btn-success',
             cancelButtonClass: 'btn btn-danger',
             buttonsStyling: false,

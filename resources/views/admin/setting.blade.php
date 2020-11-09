@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title','Pengaturan Akun | SILASER - Sistem Informasi Penjualan dan Layanan Servis Laptop')
+@section('title','Setting')
 @section('content')
 <!--breadcrumbs-->
 <div id="content-header">

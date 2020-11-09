@@ -1,5 +1,5 @@
 @extends('pelanggan.layouts.master')
-@section('title','Detail Produk | SILASER - Sistem Informasi Penjualan dan Layanan Servis Laptop')
+@section('title','Detial Page')
 @section('slider')
 @endsection
 @section('content')
@@ -38,14 +38,15 @@
                     <form action="{{route('addToCart')}}" method="post" role="form">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <input type="hidden" name="products_id" value="{{$detail_product->id}}">
-                        <input type="hidden" name="product_name" value="{{$detail_product->nama_produk}}">
-                        <input type="hidden" name="product_code" value="{{$detail_product->no_barcode}}">
-                        <input type="hidden" name="price" value="{{$detail_product->harga}}" id="dynamicPriceInput">
+                        <input type="hidden" name="product_name" value="{{$detail_product->p_name}}">
+                        <input type="hidden" name="product_code" value="{{$detail_product->p_code}}">
+                        <input type="hidden" name="product_color" value="{{$detail_product->p_color}}">
+                        <input type="hidden" name="price" value="{{$detail_product->price}}" id="dynamicPriceInput">
                         <div class="product-information">
                             <!--/product-information-->
                             <img src="{{asset('pelanggan/images/product-details/new.jpg')}}" class="newarrival" alt="" />
-                            <h2>{{$detail_product->nama_produk}}</h2>
-                            <p>Code ID: {{$detail_product->no_barcode}}</p>
+                            <h2>{{$detail_product->p_name}}</h2>
+                            <p>Code ID: {{$detail_product->p_code}}</p>
                             <span>
                                 <select name="size" id="idSize" class="form-control">
                                     <option value="">Select Size</option>
