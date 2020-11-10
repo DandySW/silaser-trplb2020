@@ -41,7 +41,6 @@
                     <form action="{{route('addToCart')}}" method="post" role="form">
                         @csrf
                         <input type="hidden" name="products_id" value="{{$detail_product->id}}">
-                        <input type="hidden" name="product_name" value="{{$detail_product->p_name}}">
                         <input type="hidden" name="price" value="{{$detail_product->price}}" id="dynamicPriceInput">
                         <div class="product-information">
                             <!--/product-information-->
@@ -51,7 +50,7 @@
                                 <span id="dynamic_price">Rp {{$detail_product->price}}</span>
                                 @if($detail_product->stock>0)
                                 <label>Jumlah:</label>
-                                <input type="text" name="quantity" value="0" id="inputStock" />
+                                <input type="text" name="quantity" value="1" id="inputStock" />
                                 <button type="submit" class="btn btn-fefault cart" id="buttonAddToCart">
                                     <i class="fa fa-shopping-cart"></i>
                                     Add to cart

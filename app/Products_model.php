@@ -14,8 +14,8 @@ class Products_model extends Model
     {
         return $this->belongsTo(Category_model::class, 'categories_id', 'id');
     }
-    public function attributes()
-    {
-        return $this->hasMany(ProductAtrr_model::class, 'products_id', 'id');
-    }
+    // public function cart()
+    // {
+    //     return $this->hasMany(Cart_model::class, 'products_id', 'id');
+    // }
 }
