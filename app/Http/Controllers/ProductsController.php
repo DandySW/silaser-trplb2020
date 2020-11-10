@@ -44,7 +44,6 @@ class ProductsController extends Controller
     {
         $this->validate($request, [
             'p_name' => 'required|max:50',
-            'p_code' => 'required|numeric|digits:13|unique:products,p_code',
             'description' => 'required',
             'stock' => 'required|numeric',
             'price' => 'required|numeric',
@@ -106,7 +105,6 @@ class ProductsController extends Controller
         $update_product = Products_model::findOrFail($id);
         $this->validate($request, [
             'p_name' => 'required|min:5',
-            'p_code' => 'required',
             'description' => 'required',
             'stock' => 'required|numeric',
             'price' => 'required|numeric',

@@ -20,7 +20,6 @@
                         <th>Gambar</th>
                         <th>Nama Produk</th>
                         <th>Kategori</th>
-                        <th>No Barcode</th>
                         <th>Harga</th>
                         <th>Stok</th>
                         <th>Image Gallery</th>
@@ -35,7 +34,6 @@
                         <td style="text-align: center;"><img src="{{url('products/small',$product->image)}}" alt="" width="50"></td>
                         <td style="vertical-align: middle;">{{$product->p_name}}</td>
                         <td style="vertical-align: middle;">{{$product->category->name}}</td>
-                        <td style="vertical-align: middle;">{{$product->p_code}}</td>
                         <td style="vertical-align: middle;">{{$product->price}}</td>
                         <td style="vertical-align: middle;">{{$product->stock}}</td>
                         <td style="vertical-align: middle;text-align: center;"><a href="{{route('image-gallery.show',$product->id)}}" class="btn btn-default btn-mini">Add Images</a></td>

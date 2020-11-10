@@ -35,13 +35,6 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label for="p_code" class="control-label">No Barcode</label>
-                    <div class="controls{{$errors->has('p_code')?' has-error':''}}">
-                        <input type="text" name="p_code" id="p_code" class="form-control" value="{{$edit_product->p_code}}" title="" required="required" style="width: 400px;">
-                        <span class="text-danger">{{$errors->first('p_code')}}</span>
-                    </div>
-                </div>
-                <div class="control-group">
                     <label for="description" class="control-label">Deskripsi</label>
                     <div class="controls{{$errors->has('description')?' has-error':''}}">
                         <textarea class="textarea_editor span12" name="description" id="description" rows="6" placeholder="Deskripsi Produk" style="width: 580px;">{{$edit_product->description}}</textarea>

@@ -27,13 +27,13 @@ class IndexController extends Controller
         $byCate = Category_model::select('name')->where('id', $id)->first();
         return view('pelanggan.products', compact('list_product', 'byCate'));
     }
-    public function detialpro($id)
+    public function detailpro($id)
     {
         $detail_product = Products_model::findOrFail($id);
         $imagesGalleries = ImageGallery_model::where('products_id', $id)->get();
-        $totalStock = ProductAtrr_model::where('products_id', $id)->sum('stock');
+        // $totalStock = ProductAtrr_model::where('id_produk', $id)->sum('stock');
         $relateProducts = Products_model::where([['id', '!=', $id], ['categories_id', $detail_product->categories_id]])->get();
-        return view('pelanggan.product_details', compact('detail_product', 'imagesGalleries', 'totalStock', 'relateProducts'));
+        return view('pelanggan.product_details', compact('detail_product', 'imagesGalleries', 'relateProducts'));
     }
     public function getAttrs(Request $request)
     {
