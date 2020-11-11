@@ -11,32 +11,37 @@ use Illuminate\Support\Facades\Session;
 
 class OrdersController extends Controller
 {
-    public function index(){
-        $session_id=Session::get('session_id');
-        $cart_datas=Cart_model::where('session_id',$session_id)->get();
-        $total_price=0;
-        foreach ($cart_datas as $cart_data){
-            $total_price+=$cart_data->price*$cart_data->quantity;
+    public function index()
+    {
+        $auth_id = Auth::id();
+        $cart_datas = DB::select("SELECT cart.id, cart.users_id,products.description , products.p_name, products.price, cart.quantity, products.image, products.stock, users.address, users.postcode, users.mobile FROM `cart`,`products`, `users` WHERE users.id = $auth_id and cart.products_id = products.id and cart.users_id = users.id");
+
+        $total_price = 0;
+        foreach ($cart_datas as $cart_data) {
+            $total_price += $cart_data->price * $cart_data->quantity;
         }
-        $shipping_address=DB::table('delivery_address')->where('users_id',Auth::id())->first();
-        return view('checkout.review_order',compact('shipping_address','cart_datas','total_price'));
+        $total_price += 8;
+        return view('checkout.review_order', compact('cart_datas', 'total_price'));
     }
-    public function order(Request $request){
-        $input_data=$request->all();
-        $payment_method=$input_data['payment_method'];
+    public function order(Request $request)
+    {
+        $input_data = $request->all();
+        $payment_method = $input_data['payment_method'];
         Orders_model::create($input_data);
-        if($payment_method=="COD"){
+        if ($payment_method == "COD") {
             return redirect('/cod');
-        }else{
+        } else {
             return redirect('/paypal');
         }
     }
-    public function cod(){
-        $user_order=Orders_model::where('users_id',Auth::id())->first();
-        return view('payment.cod',compact('user_order'));
+    public function cod()
+    {
+        $user_order = Orders_model::where('users_id', Auth::id())->first();
+        return view('payment.cod', compact('user_order'));
     }
-    public function paypal(Request $request){
-        $who_buying=Orders_model::where('users_id',Auth::id())->first();
-        return view('payment.paypal',compact('who_buying'));
+    public function paypal(Request $request)
+    {
+        $who_buying = Orders_model::where('users_id', Auth::id())->first();
+        return view('payment.paypal', compact('who_buying'));
     }
 }

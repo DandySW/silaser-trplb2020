@@ -43,7 +43,7 @@
                                     <a class="cart_quantity_up"></a>
                                     @endif
 
-                                    <input class="cart_quantity_input" type="text" name="quantity" value="{{$cart_data->quantity}}" autocomplete="off" readonly size="2">
+                                    <input class="cart_quantity_input" type="text" name="quantity" value="{{$cart_data->quantity}}" autocomplete="off" disabled size="2">
 
                                     @if($cart_data->quantity>1)
                                     <a class="cart_quantity_down" href="{{url('/cart/update-quantity/'.$cart_data->id.'/-1')}}"> - </a>
@@ -69,23 +69,17 @@
 
 <section id="do_action">
     <div class="container">
-        <div class="heading">
-            <h3>What would you like to do next?</h3>
-            <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
-        </div>
         <div class="row">
             <div class="col-sm-6">
-                @if(Session::has('message_apply_sucess'))
-                <div class="alert alert-success text-center" role="alert">
-                    {{Session::get('message_apply_sucess')}}
-                </div>
-                @endif
+                @if($total_price>0)
                 <div class="total_area">
                     <ul>
-                        <li>Total <span>$ {{$total_price}}</span></li>
+                        <li>Pos Indonesia (1-2 hari) <span>Rp 10</span></li>
+                        <li>Total <span>Rp {{$total_price}}</span></li>
                     </ul>
                     <div style="margin-left: 20px;"><a class="btn btn-default check_out" href="{{url('/check-out')}}">Proses ke pembayaran.</a></div>
                 </div>
+                @endif
             </div>
         </div>
     </div>

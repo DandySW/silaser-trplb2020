@@ -16,15 +16,15 @@ class CartController extends Controller
     public function index()
     {
         $auth_id = Auth::id();
-        // $products = Products_model::all();
-        $cart_datas = DB::select("SELECT cart.id, cart.users_id,products.description , products.p_name, products.price, cart.quantity, products.image, products.stock FROM `cart`,`products`, `users` WHERE users.id = $auth_id and cart.products_id = products.id and cart.users_id = users.id");
+        $cart_datas = DB::select("SELECT cart.id, cart.users_id,products.description, cart.quantity, products.p_name, products.price, cart.quantity, products.image, products.stock FROM `cart`,`products`, `users` WHERE users.id = $auth_id and cart.products_id = products.id and cart.users_id = users.id");
+
 
         $total_price = 0;
         foreach ($cart_datas as $cart_data) {
             if ($cart_data->stock <= 0) {
                 DB::table('cart')->where('id', $cart_data->id)->delete();
             }
-            $total_price += $cart_data->price * $cart_data->quantity;
+            $total_price += ($cart_data->price * $cart_data->quantity) + 10;
         }
         return view('pelanggan.cart', compact('cart_datas', 'total_price'));
     }
@@ -33,21 +33,9 @@ class CartController extends Controller
     {
         $inputToCart = $request->all();
         $auth_id = Auth::id();
-        // Session::forget('discount_amount_price');
-        // Session::forget('coupon_code');
-        // $stockAvailable = DB::table('product_att')->select('stock', 'sku')->where([
-        //     'products_id' => $inputToCart['products_id'],
-        //     'price' => $inputToCart['price']
-        // ])->first();
         $stock = DB::table('products')->select('stock')->where(['id' => $inputToCart['products_id']]);
         if ($stock >= $inputToCart['quantity']) {
             $inputToCart['users_id'] = $auth_id;
-            // $session_id = Session::get('session_id');
-            // if (empty($session_id)) {
-            //     $session_id = str_random(40);
-            //     Session::put('session_id', $session_id);
-            // }
-            // $inputToCart['session_id'] = $session_id;
             $count_duplicateItems = Cart_model::where([
                 'products_id' => $inputToCart['products_id']
             ])->count();
@@ -73,7 +61,8 @@ class CartController extends Controller
     public function updateQuantity($id, $quantity)
     {
         $auth_id = Auth::id();
-        $cart_datas = DB::select("SELECT cart.id, cart.users_id,products.description , products.p_name, products.price, cart.quantity, products.image, products.stock FROM `cart`,`products`, `users` WHERE users.id = $auth_id and cart.products_id = products.id and cart.users_id = users.id");
+        $cart_datas = DB::select("SELECT cart.id, cart.users_id,products.description, cart.quantity, products.p_name, products.price, cart.quantity, products.image, products.stock FROM `cart`,`products`, `users` WHERE users.id = $auth_id and cart.products_id = products.id and cart.users_id = users.id");
+
 
         foreach ($cart_datas as $cart_data) {
             $updated_quantity = $cart_data->quantity + $quantity;
