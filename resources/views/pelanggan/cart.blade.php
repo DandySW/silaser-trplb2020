@@ -69,20 +69,52 @@
 
 <section id="do_action">
     <div class="container">
+        <div class="heading">
+            <h3>What would you like to do next?</h3>
+            <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+        </div>
         <div class="row">
             <div class="col-sm-6">
-                @if($total_price>0)
-                <div class="total_area">
-                    <ul>
-                        <li>Pos Indonesia (1-2 hari) <span>Rp 10</span></li>
-                        <li>Total <span>Rp {{$total_price}}</span></li>
-                    </ul>
-                    <div style="margin-left: 20px;"><a class="btn btn-default check_out" href="{{url('/check-out')}}">Proses ke pembayaran.</a></div>
+                @if(Session::has('message_coupon'))
+                <div class="alert alert-danger text-center" role="alert">
+                    {{Session::get('message_coupon')}}
                 </div>
                 @endif
+                <div class="chose_area" style="padding: 20px;">
+                    <form action="{{url('/apply-coupon')}}" method="post" role="form">
+                        @csrf
+                        <input type="hidden" name="Total_amountPrice" value="{{$total_price}}">
+                        <div class="form-group">
+                            <label for="coupon_code">Coupon Code</label>
+                            <div class="controls {{$errors->has('coupon_code')?'has-error':''}}">
+                                <input type="text" class="form-control" name="coupon_code" id="coupon_code" placeholder="Promotion By Coupon">
+                                <span class="text-danger">{{$errors->first('coupon_code')}}</span>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Apply</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                @if(Session::has('message_apply_sucess'))
+                <div class="alert alert-success text-center" role="alert">
+                    {{Session::get('message_apply_sucess')}}
+                </div>
+                @endif
+                <div class="total_area">
+                    <ul>
+                        @if(Session::has('discount_amount_price'))
+                        <li>Sub Total <span>$ {{$total_price}}</span></li>
+                        <li>Coupon Discount (Code : {{Session::get('coupon_code')}}) <span>$ {{Session::get('discount_amount_price')}}</span></li>
+                        <li>Total <span>$ {{$total_price-Session::get('discount_amount_price')}}</span></li>
+                        @else
+                        <li>Total <span>$ {{$total_price}}</span></li>
+                        @endif
+                    </ul>
+                    <div style="margin-left: 20px;"><a class="btn btn-default check_out" href="{{url('/check-out')}}">Check Out</a></div>
+                </div>
             </div>
         </div>
     </div>
-</section>
-<!--/#do_action-->
-@endsection
+    <!--/#do_action-->
+    @endsection

@@ -25,7 +25,9 @@ Route::get('/viewcart', 'CartController@index');
 Route::get('/cart/deleteItem/{id}', 'CartController@deleteItem');
 Route::get('/cart/update-quantity/{id}/{quantity}', 'CartController@updateQuantity');
 
-/// Apply Expedition
+/// Coupon Area ///
+Route::resource('/coupon', 'CouponController');
+Route::get('delete-coupon/{id}', 'CouponController@destroy');
 Route::post('/apply-coupon', 'CouponController@applycoupon');
 
 /// Simple User Login /////
