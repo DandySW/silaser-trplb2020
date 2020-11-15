@@ -33,7 +33,7 @@
                             <?= '<p>' . (substr($cart_data->description, 0, 30)) . '...' . '</p>' ?>
                         </td>
                         <td class="cart_price">
-                            <p>Rp{{$cart_data->price}}</p>
+                            <p>Rp {{$cart_data->price}}</p>
                         </td>
                         <td class="cart_quantity">
                             <div class="cart_quantity_button">
@@ -63,7 +63,33 @@
                 </tbody>
             </table>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-sm-6">
+                @if(Session::has('message_coupon'))
+                <div class="alert alert-danger text-center" role="alert">
+                    {{Session::get('message_coupon')}}
+                </div>
+                @endif
+                <div class="chose_area" style="padding: 20px;">
+                    <form action="{{url('/apply-coupon')}}" method="post" role="form">
+                        @csrf
+                        <input type="hidden" name="Total_amountPrice" value="{{$total_price}}">
+                        <div class="form-group">
+                            <label for="coupon_code">Pilih Jasa Ekspedisi</label>
+                            <div class="controls {{$errors->has('coupon_code')?'has-error':''}}">
+                                @foreach
+                                <select class="form-control" id="expedition" name="expedition">
+                                    <option value="">{{{}}</option>
+                                </select>
+                                <span class="text-danger">{{$errors->first('coupon_code')}}</span>
+                                @endforeach
+                            </div>
+                            <button type="submit" class="btn btn-primary">Apply</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 </section>
 <!--/#cart_items-->
 
@@ -85,9 +111,9 @@
                         @csrf
                         <input type="hidden" name="Total_amountPrice" value="{{$total_price}}">
                         <div class="form-group">
-                            <label for="coupon_code">Coupon Code</label>
+                            <label for="coupon_code">Kode Kupon</label>
                             <div class="controls {{$errors->has('coupon_code')?'has-error':''}}">
-                                <input type="text" class="form-control" name="coupon_code" id="coupon_code" placeholder="Promotion By Coupon">
+                                <input type="text" class="form-control" name="coupon_code" id="coupon_code" placeholder="Masukkan Kode Kupon">
                                 <span class="text-danger">{{$errors->first('coupon_code')}}</span>
                             </div>
                             <button type="submit" class="btn btn-primary">Apply</button>

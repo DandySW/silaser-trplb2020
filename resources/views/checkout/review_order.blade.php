@@ -10,28 +10,39 @@
     <div class="row">
         <form action="{{url('/submit-order')}}" method="post" class="form-horizontal">
             @csrf
-            <input type="hidden" name="users_id" value="{{$cart_datas->users_id}}">
+            <input type="hidden" name="users_id" value="{{$user_data->id}}">
+            <input type="hidden" name="shipping_charges" value="0">
+            @if(Session::has('discount_amount_price'))
+            <input type="hidden" name="coupon_code" value="{{Session::get('coupon_code')}}">
+            <input type="hidden" name="coupon_amount" value="{{Session::get('discount_amount_price')}}">
+            <input type="hidden" name="grand_total" value="{{$total_price-Session::get('discount_amount_price')}}">
+            @else
+            <input type="hidden" name="coupon_code" value="NO Coupon">
+            <input type="hidden" name="coupon_amount" value="0">
             <input type="hidden" name="grand_total" value="{{$total_price}}">
-            <input type="hidden" name="ekspedisi" value="Pos Indonesia (1-2 hari)">
-            <input type="hidden" name="status_pembayaran" value="belum dibayar">
+            @endif
 
             <div class="col-sm-12">
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>ID User</th>
+                                <th>Nama</th>
                                 <th>Alamat</th>
                                 <th>Kode Pos</th>
-                                <th>No HP</th>
+                                <th>Email</th>
+                                <th>No. HP</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{$cart_datas->name}}</td>
-                                <td>{{$cart_datas->address}}</td>
-                                <td>{{$cart_datas->postcode}}</td>
-                                <td>{{$cart_datas->mobile}}</td>
+                                <td>{{$user_data->id}}</td>
+                                <td>{{$user_data->name}}</td>
+                                <td>{{$user_data->address}}</td>
+                                <td>{{$user_data->postcode}}</td>
+                                <td>{{$user_data->email}}</td>
+                                <td>{{$user_data->mobile}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -53,27 +64,22 @@
                             </thead>
                             <tbody>
                                 @foreach($cart_datas as $cart_data)
-                                <?php
-                                $image_products = DB::table('products')->select('image')->where('id', $cart_data->products_id)->get();
-                                ?>
                                 <tr>
                                     <td class="cart_product">
-                                        @foreach($image_products as $image_product)
-                                        <a href=""><img src="{{url('products/small',$image_product->image)}}" alt="" style="width: 100px;"></a>
-                                        @endforeach
+                                        <a href=""><img src="{{url('products/small',$cart_data->image)}}" alt="" style="width: 100px;"></a>
                                     </td>
                                     <td class="cart_description">
-                                        <h4><a href="">{{$cart_data->product_name}}</a></h4>
+                                        <h4><a href="">{{$cart_data->p_name}}</a></h4>
                                         <?= '<p>' . (substr($cart_data->description, 0, 30)) . '...' . '</p>' ?>
                                     </td>
                                     <td class="cart_price">
-                                        <p>${{$cart_data->price}}</p>
+                                        <p>Rp {{$cart_data->price}}</p>
                                     </td>
-                                    <td class="cart_quantity">
+                                    <td class="cart_price">
                                         <p>{{$cart_data->quantity}}</p>
                                     </td>
                                     <td class="cart_total">
-                                        <p class="cart_total_price">Rp {{$cart_data->price*$cart_data->quantity}}</p>
+                                        <p class="cart_total_price">$ {{$cart_data->price*$cart_data->quantity}}</p>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -82,18 +88,39 @@
                                     <td colspan="2">
                                         <table class="table table-condensed total-result">
                                             <tr>
-                                                <td>Pos Indonesia (1-2 hari)</td>
-                                                <td>Rp 10</td>
+                                                <td>Cart Sub Total</td>
+                                                <td>$ {{$total_price}}</td>
+                                            </tr>
+                                            @if(Session::has('discount_amount_price'))
+                                            <tr class="shipping-cost">
+                                                <td>Coupon Discount</td>
+                                                <td>$ {{Session::get('discount_amount_price')}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
-                                                <td><span>Rp {{$total_price}}</span></td>
+                                                <td><span>$ {{$total_price-Session::get('discount_amount_price')}}</span></td>
                                             </tr>
+                                            @else
+                                            <tr>
+                                                <td>Total</td>
+                                                <td><span>$ {{$total_price}}</span></td>
+                                            </tr>
+                                            @endif
                                         </table>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="payment-options">
+                        <span>Select Payment Method : </span>
+                        <span>
+                            <label><input type="radio" name="payment_method" value="COD" checked> Cash On Delivery</label>
+                        </span>
+                        <span>
+                            <label><input type="radio" name="payment_method" value="Paypal"> Paypal</label>
+                        </span>
+                        <button type="submit" class="btn btn-primary" style="float: right;">Order Now</button>
                     </div>
                 </section>
 

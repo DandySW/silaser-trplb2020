@@ -29,6 +29,8 @@ Route::get('/cart/update-quantity/{id}/{quantity}', 'CartController@updateQuanti
 Route::resource('/coupon', 'CouponController');
 Route::get('delete-coupon/{id}', 'CouponController@destroy');
 Route::post('/apply-coupon', 'CouponController@applycoupon');
+Route::post('/remove-coupon', 'CouponController@removecoupon');
+
 
 /// Simple User Login /////
 Route::get('/login_page', 'UsersController@index');
