@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2020 at 05:40 AM
+-- Generation Time: Nov 15, 2020 at 09:43 AM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,6 +32,7 @@ CREATE TABLE `cart` (
   `users_id` int(11) NOT NULL,
   `products_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
+  `session_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -40,10 +41,9 @@ CREATE TABLE `cart` (
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`id`, `users_id`, `products_id`, `quantity`, `created_at`, `updated_at`) VALUES
-(49, 4, 33, 11, '2020-11-10 13:13:48', '2020-11-10 13:13:48'),
-(50, 4, 31, 4, '2020-11-10 13:13:58', '2020-11-10 13:13:58'),
-(51, 4, 34, 3, '2020-11-10 13:14:02', '2020-11-10 13:14:02');
+INSERT INTO `cart` (`id`, `users_id`, `products_id`, `quantity`, `session_id`, `created_at`, `updated_at`) VALUES
+(47, 4, 32, 2, 'VYBW15EuQaW0s84fbDvUEFZQ5XEOLqXHU4WaPptl', '2020-11-14 13:47:24', '2020-11-14 13:47:24'),
+(46, 4, 31, 3, 'VYBW15EuQaW0s84fbDvUEFZQ5XEOLqXHU4WaPptl', '2020-11-14 13:47:17', '2020-11-14 13:47:17');
 
 -- --------------------------------------------------------
 
@@ -54,7 +54,7 @@ INSERT INTO `cart` (`id`, `users_id`, `products_id`, `quantity`, `created_at`, `
 CREATE TABLE `categories` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -73,6 +73,55 @@ INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (17, 'Man Shoes', '2018-10-22 21:58:13', '2018-11-16 01:53:44'),
 (25, 'nasi ayam', '2020-11-09 07:06:20', '2020-11-09 07:06:41'),
 (26, 'jamur tiram', '2020-11-09 07:38:44', '2020-11-09 07:38:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `coupons`
+--
+
+CREATE TABLE `coupons` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `coupon_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` int(11) NOT NULL,
+  `amount_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiry_date` date NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `coupons`
+--
+
+INSERT INTO `coupons` (`id`, `coupon_code`, `amount`, `amount_type`, `expiry_date`, `status`, `created_at`, `updated_at`) VALUES
+(6, 'Coupon001', 10, 'Percentage', '2021-12-06', 1, '2018-12-05 20:19:15', '2018-12-05 20:19:15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `expeditions`
+--
+
+CREATE TABLE `expeditions` (
+  `id` int(11) NOT NULL,
+  `expedition_name` varchar(30) NOT NULL,
+  `type` varchar(30) NOT NULL,
+  `estimation` varchar(30) NOT NULL,
+  `base_charge` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `expeditions`
+--
+
+INSERT INTO `expeditions` (`id`, `expedition_name`, `type`, `estimation`, `base_charge`, `created_at`, `updated_at`) VALUES
+(1, 'Pos Indonesia', 'Express Next Day', '1-2 hari', 10, '2020-11-15 06:39:23', NULL),
+(2, 'J&T Express', 'EZ', '2-3 hari', 7, '2020-11-15 06:39:28', NULL),
+(3, 'JNE Express', 'CTC', '2-3 hari', 6, '2020-11-15 06:39:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -113,12 +162,14 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 CREATE TABLE `orders` (
   `id` int(10) UNSIGNED NOT NULL,
   `users_id` int(11) NOT NULL,
-  `expedition` enum('Go-Send','JNE Express','Pos Indonesia') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expedition` int(11) DEFAULT NULL,
   `shipping_charge` int(11) NOT NULL,
-  `total` int(11) NOT NULL,
+  `coupon_id` int(11) NOT NULL,
+  `coupon_amount` int(11) NOT NULL,
+  `grand_total` int(11) NOT NULL,
   `order_date` int(11) NOT NULL,
   `checkout_status` enum('belum dibayar','sudah dibayar','dibatalkan') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'belum dibayar',
-  `resi` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `resi` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `shipping_status` enum('belum dikirim','sudah dikirim','dibatalkan') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'belum dikirim',
   `receipt_status` enum('belum diterima','sudah diterima','dibatalkan') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'belum diterima',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -129,9 +180,9 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `users_id`, `expedition`, `shipping_charge`, `total`, `order_date`, `checkout_status`, `resi`, `shipping_status`, `receipt_status`, `created_at`, `updated_at`) VALUES
-(7, 1, 'Go-Send', 0, 0, 0, 'belum dibayar', '', 'belum dikirim', 'belum diterima', '2018-12-06 18:20:18', '2018-12-06 18:20:18'),
-(6, 4, 'Go-Send', 0, 0, 0, 'belum dibayar', '', 'belum dikirim', 'belum diterima', '2018-12-06 01:45:09', '2018-12-06 01:45:09');
+INSERT INTO `orders` (`id`, `users_id`, `expedition`, `shipping_charge`, `coupon_id`, `coupon_amount`, `grand_total`, `order_date`, `checkout_status`, `resi`, `shipping_status`, `receipt_status`, `created_at`, `updated_at`) VALUES
+(7, 1, 0, 0, 0, 0, 0, 0, 'belum dibayar', '1', 'belum dikirim', 'belum diterima', '2018-12-06 18:20:18', '2018-12-06 18:20:18'),
+(6, 4, 0, 0, 0, 0, 0, 0, 'belum dibayar', '2', 'belum dikirim', 'belum diterima', '2018-12-06 01:45:09', '2018-12-06 01:45:09');
 
 -- --------------------------------------------------------
 
@@ -143,7 +194,9 @@ CREATE TABLE `order_details` (
   `id` int(11) NOT NULL,
   `orders_id` int(11) NOT NULL,
   `products_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL
+  `quantity` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -171,8 +224,9 @@ CREATE TABLE `products` (
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `stock` int(11) NOT NULL,
   `price` int(11) NOT NULL,
+  `weight(gram)` int(11) NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -180,12 +234,12 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `categories_id`, `p_name`, `description`, `stock`, `price`, `image`, `created_at`, `updated_at`) VALUES
-(39, 14, 'wdwdwd', 's', 0, 3000, '1604937712-wdwdwd.png', '2020-11-09 09:01:52', '2020-11-09 09:02:07'),
-(31, 10, 'House', 'House For Sale', 12, 10, '1544064430-house.jpg', '2018-12-05 19:47:10', '2018-12-05 19:47:10'),
-(32, 11, 'Vionic Shoes Brand', 'Women Shoes', 12, 12, '1544064607-vionic-shoes-brand.jpg', '2018-12-05 19:50:07', '2018-12-05 19:50:07'),
-(33, 17, 'Cole Haan', 'Men\'s Original Grand Wingtip Oxfords', 12, 5, '1544064903-cole-haan.jpg', '2018-12-05 19:55:03', '2018-12-05 19:55:03'),
-(34, 13, 'Lenovo ThinkPad', 'Lenovo Thinkpad From China', 12, 2, '1544065331-lenovo-thinkpad.jpg', '2018-12-05 20:02:12', '2018-12-05 20:02:12');
+INSERT INTO `products` (`id`, `categories_id`, `p_name`, `description`, `stock`, `price`, `weight(gram)`, `image`, `created_at`, `updated_at`) VALUES
+(39, 14, 'wdwdwd', 's', 0, 3000, 50, '1604937712-wdwdwd.png', '2020-11-09 09:01:52', '2020-11-09 09:02:07'),
+(31, 10, 'House', 'House For Sale', 12, 10, 50, '1544064430-house.jpg', '2018-12-05 19:47:10', '2018-12-05 19:47:10'),
+(32, 11, 'Vionic Shoes Brand', 'Women Shoes', 12, 12, 50, '1544064607-vionic-shoes-brand.jpg', '2018-12-05 19:50:07', '2018-12-05 19:50:07'),
+(33, 17, 'Cole Haan', 'Men\'s Original Grand Wingtip Oxfords', 12, 5, 50, '1544064903-cole-haan.jpg', '2018-12-05 19:55:03', '2018-12-05 19:55:03'),
+(34, 13, 'Lenovo ThinkPad', 'Lenovo Thinkpad From China', 12, 2, 50, '1544065331-lenovo-thinkpad.jpg', '2018-12-05 20:02:12', '2018-12-05 20:02:12');
 
 -- --------------------------------------------------------
 
@@ -197,7 +251,7 @@ CREATE TABLE `tblgallery` (
   `id` int(10) UNSIGNED NOT NULL,
   `products_id` int(11) NOT NULL,
   `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -245,23 +299,23 @@ CREATE TABLE `users` (
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `postcode` char(5) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mobile` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `admin` tinyint(4) DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `postcode` char(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `mobile` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `admin`, `remember_token`, `created_at`, `updated_at`, `address`, `postcode`, `mobile`) VALUES
-(1, 'WeShare', 'demo@gmail.com', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', 1, 'mVl5KDXM0sTvFrtYmuwcerljFqmuCxu3bMQOJrLbCynegRkt0X1rVE5p49k8', '2018-10-15 02:32:54', '2018-12-05 01:39:52', '123 Street', '12252', '010313234'),
-(4, 'Dandy Satrio Wibowo', 'dandy@gmail.com', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', NULL, 'KSwVXS2lqlfa68YkWdesQBMExxn80XD5r02YQtDqc4HUDTV0Du8oBwY3tWSp', '2018-12-06 01:40:27', '2018-12-06 01:40:27', 'Perumahan Gunung Batu B28', '68121', '082234795673'),
-(5, 'tes', 'tes@a.in', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', NULL, 'IxQbHz5QyGjCvhN6a8aOhTAhPW93u8xcjtDWlkWmxkkqHxwZo0jcF7SFfuk6', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `address`, `postcode`, `mobile`, `admin`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'WeShare', 'demo@gmail.com', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', '', '', '', 1, 'mVl5KDXM0sTvFrtYmuwcerljFqmuCxu3bMQOJrLbCynegRkt0X1rVE5p49k8', '2018-10-15 02:32:54', '2018-12-05 01:39:52'),
+(4, 'Dandy Satrio Wibowo', 'dandy@a.com', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', 'Perumahan Gunung Batu B28', '22222', '1234567890123', NULL, 'KSwVXS2lqlfa68YkWdesQBMExxn80XD5r02YQtDqc4HUDTV0Du8oBwY3tWSp', '2018-12-06 01:40:27', '2018-12-06 01:40:27'),
+(5, 'tes', 'tes@a.in', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', '', '', '', NULL, 'IxQbHz5QyGjCvhN6a8aOhTAhPW93u8xcjtDWlkWmxkkqHxwZo0jcF7SFfuk6', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -283,6 +337,18 @@ ALTER TABLE `categories`
   ADD UNIQUE KEY `slug` (`name`);
 
 --
+-- Indexes for table `coupons`
+--
+ALTER TABLE `coupons`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `expeditions`
+--
+ALTER TABLE `expeditions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -293,7 +359,9 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `users_id` (`users_id`);
+  ADD KEY `users_id` (`users_id`),
+  ADD KEY `coupon_code` (`coupon_id`),
+  ADD KEY `expedition` (`expedition`);
 
 --
 -- Indexes for table `order_details`
@@ -338,13 +406,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `coupons`
+--
+ALTER TABLE `coupons`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `expeditions`
+--
+ALTER TABLE `expeditions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`

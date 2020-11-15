@@ -23,21 +23,21 @@
                         <th>Harga</th>
                         <th>Stok</th>
                         <th>Image Gallery</th>
-                        <th>Add Attribute</th>
+                        <th>Berat</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($products as $product)
                     <tr class="gradeC">
-                        <td>{{$product->id}}</td>
+                        <td style="vertical-align: middle;text-align: center;">{{$product->id}}</td>
                         <td style="text-align: center;"><img src="{{url('products/small',$product->image)}}" alt="" width="50"></td>
                         <td style="vertical-align: middle;">{{$product->p_name}}</td>
                         <td style="vertical-align: middle;">{{$product->category->name}}</td>
-                        <td style="vertical-align: middle;">{{$product->price}}</td>
-                        <td style="vertical-align: middle;">{{$product->stock}}</td>
+                        <td style="vertical-align: middle;text-align: center;">{{$product->price}}</td>
+                        <td style="vertical-align: middle;text-align: center;">{{$product->stock}}</td>
                         <td style="vertical-align: middle;text-align: center;"><a href="{{route('image-gallery.show',$product->id)}}" class="btn btn-default btn-mini">Add Images</a></td>
-                        <td style="vertical-align: middle;text-align: center;"><a href="{{route('product_attr.show',$product->id)}}" class="btn btn-success btn-mini">Add Attr</a></td>
+                        <td style="vertical-align: middle;text-align: center;">{{$product->weight}}</td>
                         <td style="text-align: center; vertical-align: middle;">
                             <a href="#myModal{{$product->id}}" data-toggle="modal" class="btn btn-info btn-mini">View</a>
                             <a href="{{route('product.edit',$product->id)}}" class="btn btn-primary btn-mini">Edit</a>

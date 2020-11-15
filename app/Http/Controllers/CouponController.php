@@ -15,9 +15,9 @@ class CouponController extends Controller
      */
     public function index()
     {
-        $menu_active = 4;
+        $menu_active = 5;
         $coupons = Coupon_model::all();
-        return view('backEnd.coupon.index', compact('menu_active', 'coupons'));
+        return view('admin.coupon.index', compact('menu_active', 'coupons'));
     }
 
     /**
@@ -27,8 +27,8 @@ class CouponController extends Controller
      */
     public function create()
     {
-        $menu_active = 4;
-        return view('backEnd.coupon.create', compact('menu_active'));
+        $menu_active = 5;
+        return view('admin.coupon.create', compact('menu_active'));
     }
 
     /**
@@ -49,7 +49,7 @@ class CouponController extends Controller
             $input_data['status'] = 0;
         }
         Coupon_model::create($input_data);
-        return back()->with('message', 'Add Coupon Already');
+        return back()->with('message', 'Kupon berhasil dibuat');
     }
 
     /**
@@ -71,9 +71,9 @@ class CouponController extends Controller
      */
     public function edit($id)
     {
-        $menu_active = 4;
+        $menu_active = 5;
         $edit_coupons = Coupon_model::findOrFail($id);
-        return view('backEnd.coupon.edit', compact('menu_active', 'edit_coupons'));
+        return view('admin.coupon.edit', compact('menu_active', 'edit_coupons'));
     }
 
     /**
@@ -96,7 +96,7 @@ class CouponController extends Controller
             $input_data['status'] = 0;
         }
         $update_coupon->update($input_data);
-        return redirect()->route('coupon.index')->with('message', 'Edit Coupon Already!');
+        return redirect()->route('coupon.index')->with('message', 'Kupon berhasil diubah!');
     }
 
     /**
@@ -109,7 +109,7 @@ class CouponController extends Controller
     {
         $delete_coupon = Coupon_model::findOrFail($id);
         $delete_coupon->delete();
-        return back()->with('message', 'Delete Coupon Already!');
+        return back()->with('message', 'Kupon berhasil dihapus');
     }
     public function applycoupon(Request $request)
     {
@@ -121,21 +121,21 @@ class CouponController extends Controller
         $total_amount_price = $input_data['Total_amountPrice'];
         $check_coupon = Coupon_model::where('coupon_code', $coupon_code)->count();
         if ($check_coupon == 0) {
-            return back()->with('message_coupon', 'Your Coupon Code Not Exist!');
+            return back()->with('message_coupon', 'Kupon tidak ditemukan');
         } else if ($check_coupon == 1) {
             $check_status = Coupon_model::where('status', 1)->first();
             if ($check_status->status == 0) {
-                return back()->with('message_coupon', 'Your Coupon was Disabled!');
+                return back()->with('message_coupon', 'Kupon sedang tidak aktif');
             } else {
                 $expiried_date = $check_status->expiry_date;
                 $date_now = date('Y-m-d');
                 if ($expiried_date < $date_now) {
-                    return back()->with('message_coupon', 'Your Coupon was Expired!');
+                    return back()->with('message_coupon', 'Kupon telah kadaluarsa');
                 } else {
                     $discount_amount_price = ($total_amount_price * $check_status->amount) / 100;
                     Session::put('discount_amount_price', $discount_amount_price);
                     Session::put('coupon_code', $check_status->coupon_code);
-                    return back()->with('message_apply_sucess', 'Your Coupon Code was Apply');
+                    return back()->with('message_apply_sucess', 'Berhasil menggunakan kupon');
                 }
             }
         }

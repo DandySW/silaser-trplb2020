@@ -21,6 +21,12 @@
                     <li><a href="#">Daftar Penerimaan</a></li>
                 </ul>
             </li>
+            <li class="submenu {{$menu_active==5? ' active':''}}"> <a href="#"><i class="icon icon-th-list"></i> <span>Kupon</span></a>
+                <ul>
+                    <li><a href="{{url('/admin/coupon/create')}}">Tambah Kupon</a></li>
+                    <li><a href="{{route('coupon.index')}}">Daftar Kupon</a></li>
+                </ul>
+            </li>
     </ul>
 </div>
 <!--sidebar-menu-->

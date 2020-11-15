@@ -26,11 +26,7 @@ Route::get('/cart/deleteItem/{id}', 'CartController@deleteItem');
 Route::get('/cart/update-quantity/{id}/{quantity}', 'CartController@updateQuantity');
 
 /// Coupon Area ///
-Route::resource('/coupon', 'CouponController');
-Route::get('delete-coupon/{id}', 'CouponController@destroy');
 Route::post('/apply-coupon', 'CouponController@applycoupon');
-Route::post('/remove-coupon', 'CouponController@removecoupon');
-
 
 /// Simple User Login /////
 Route::get('/login_page', 'UsersController@index');
@@ -81,4 +77,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     /// Product Images Gallery
     Route::resource('/image-gallery', 'ImagesController');
     Route::get('delete-imageGallery/{id}', 'ImagesController@destroy');
+
+    /// Coupon
+    Route::resource('/coupon', 'CouponController');
+    Route::get('delete-coupon/{id}', 'CouponController@destroy');
 });
