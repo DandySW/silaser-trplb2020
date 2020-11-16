@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Cart_model;
-// use App\Products_model;
-// use App\ProductAtrr_model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
+
     public function index()
     {
         $session_id = Session::get('session_id');

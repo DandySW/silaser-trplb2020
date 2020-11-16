@@ -35,13 +35,13 @@ class IndexController extends Controller
         $relateProducts = Products_model::where([['id', '!=', $id], ['categories_id', $detail_product->categories_id]])->get();
         return view('pelanggan.product_details', compact('detail_product', 'imagesGalleries', 'relateProducts'));
     }
-    public function getAttrs(Request $request)
-    {
-        $all_attrs = $request->all();
-        //print_r($all_attrs);die();
-        $attr = explode('-', $all_attrs['size']);
-        //echo $attr[0].' <=> '. $attr[1];
-        $result_select = ProductAtrr_model::where(['products_id' => $attr[0], 'size' => $attr[1]])->first();
-        echo $result_select->price . "#" . $result_select->stock;
-    }
+    // public function getAttrs(Request $request)
+    // {
+    //     $all_attrs = $request->all();
+    //     //print_r($all_attrs);die();
+    //     $attr = explode('-', $all_attrs['size']);
+    //     //echo $attr[0].' <=> '. $attr[1];
+    //     $result_select = ProductAtrr_model::where(['products_id' => $attr[0], 'size' => $attr[1]])->first();
+    //     echo $result_select->price . "#" . $result_select->stock;
+    // }
 }

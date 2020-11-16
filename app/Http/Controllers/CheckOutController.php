@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart_model;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,8 +12,13 @@ class CheckOutController extends Controller
 {
     public function index()
     {
-        $user_login = User::where('id', Auth::id())->first();
-        return view('checkout.index', compact('user_login'));
+        $cart_data = Cart_model::where('users_id', Auth::id())->count();
+        if ($cart_data == 0) {
+            return redirect(url('/'));
+        } else {
+            $user_login = User::where('id', Auth::id())->first();
+            return view('checkout.index', compact('user_login'));
+        }
     }
     public function submitcheckout(Request $request)
     {

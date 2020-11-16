@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Orders_model;
+use App\Cart_model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,17 +14,22 @@ class OrdersController extends Controller
 {
     public function index()
     {
-        $session_id = Session::get('session_id');
-        $auth_id = Auth::id();
-        $cart_datas = DB::select("SELECT cart.id, cart.users_id,products.description , products.p_name, products.price, cart.quantity, products.image, products.stock FROM `cart`,`products`, `users` WHERE users.id = $auth_id and cart.products_id = products.id and cart.users_id = users.id");
+        $cart_data = Cart_model::where('users_id', Auth::id())->count();
+        if ($cart_data == 0) {
+            return redirect(url('/'));
+        } else {
+            $session_id = Session::get('session_id');
+            $auth_id = Auth::id();
+            $cart_datas = DB::select("SELECT cart.id, cart.users_id,products.description , products.p_name, products.price, cart.quantity, products.image, products.stock FROM `cart`,`products`, `users` WHERE users.id = $auth_id and cart.products_id = products.id and cart.users_id = users.id");
 
-        $user_data = User::where('id', Auth::id())->first();
+            $user_data = User::where('id', Auth::id())->first();
 
-        $total_price = 0;
-        foreach ($cart_datas as $cart_data) {
-            $total_price += $cart_data->price * $cart_data->quantity;
+            $total_price = 0;
+            foreach ($cart_datas as $cart_data) {
+                $total_price += $cart_data->price * $cart_data->quantity;
+            }
+            return view('checkout.review_order', compact('cart_datas', 'total_price', 'user_data'));
         }
-        return view('checkout.review_order', compact('cart_datas', 'total_price', 'user_data'));
     }
     public function order(Request $request)
     {
