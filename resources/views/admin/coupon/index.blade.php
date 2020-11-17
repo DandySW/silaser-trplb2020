@@ -16,7 +16,7 @@
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>No</th>
                         <th>Kode Kupon</th>
                         <th>jumlah</th>
                         <th>Tipe Kupon</th>
@@ -28,7 +28,7 @@
                 <tbody>
                     @foreach($coupons as $coupon)
                     <tr class="gradeC">
-                        <td style="text-align: center; vertical-align: middle;">{{$coupon->id}}</td>
+                        <td style="text-align: center; vertical-align: middle;">{{$loop->iteration}}</td>
                         <td style="vertical-align: middle;">{{$coupon->coupon_code}}</td>
                         <td style="text-align: center; vertical-align: middle;">{{$coupon->amount}}</td>
                         <td style="text-align: center; vertical-align: middle;">{{$coupon->amount_type}}</td>

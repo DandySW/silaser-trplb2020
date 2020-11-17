@@ -37,8 +37,9 @@ Route::group(['middleware' => 'FrontLogin_middleware'], function () {
     Route::post('/submit-checkout', 'CheckOutController@submitcheckout');
     Route::get('/order-review', 'OrdersController@index');
     Route::post('/submit-order', 'OrdersController@order');
-    Route::get('/cod', 'OrdersController@cod');
-    Route::get('/paypal', 'OrdersController@paypal');
+    Route::get('/payment/transfer-bank/{id}', 'OrdersController@transferbank');
+    Route::get('/payment/e-wallet/{id}', 'OrdersController@ewallet');
+    // Route::get('/paypal', 'OrdersController@paypal');
 
     ///// Cart Area /////////
     Route::post('/addToCart', 'CartController@addToCart')->name('addToCart');

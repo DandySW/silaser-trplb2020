@@ -16,7 +16,7 @@
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>No</th>
                         <th>Gambar</th>
                         <th>Nama Produk</th>
                         <th>Kategori</th>
@@ -30,7 +30,7 @@
                 <tbody>
                     @foreach($products as $product)
                     <tr class="gradeC">
-                        <td style="vertical-align: middle;text-align: center;">{{$product->id}}</td>
+                        <td style="vertical-align: middle;text-align: center;">{{$loop->iteration}}</td>
                         <td style="text-align: center;"><img src="{{url('products/small',$product->image)}}" alt="" width="50"></td>
                         <td style="vertical-align: middle;">{{$product->p_name}}</td>
                         <td style="vertical-align: middle;">{{$product->category->name}}</td>

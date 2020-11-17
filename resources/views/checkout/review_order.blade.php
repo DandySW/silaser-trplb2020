@@ -11,13 +11,15 @@
         <form action="{{url('/submit-order')}}" method="post" class="form-horizontal">
             @csrf
             <input type="hidden" name="users_id" value="{{$user_data->id}}">
-            <input type="hidden" name="shipping_charges" value="0">
+            <input type="hidden" name="expedition" value="0">
+            <input type="hidden" name="shipping_charge" value="0">
+            <input type="hidden" name="order_date" value="{{now()}}">
             @if(Session::has('discount_amount_price'))
             <input type="hidden" name="coupon_code" value="{{Session::get('coupon_code')}}">
             <input type="hidden" name="coupon_amount" value="{{Session::get('discount_amount_price')}}">
             <input type="hidden" name="grand_total" value="{{$total_price-Session::get('discount_amount_price')}}">
             @else
-            <input type="hidden" name="coupon_code" value="NO Coupon">
+            <input type="hidden" name="coupon_id" value="">
             <input type="hidden" name="coupon_amount" value="0">
             <input type="hidden" name="grand_total" value="{{$total_price}}">
             @endif
@@ -27,7 +29,6 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>ID User</th>
                                 <th>Nama</th>
                                 <th>Alamat</th>
                                 <th>Kode Pos</th>
@@ -37,7 +38,6 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{$user_data->id}}</td>
                                 <td>{{$user_data->name}}</td>
                                 <td>{{$user_data->address}}</td>
                                 <td>{{$user_data->postcode}}</td>
@@ -113,14 +113,7 @@
                         </table>
                     </div>
                     <div class="payment-options">
-                        <span>Select Payment Method : </span>
-                        <span>
-                            <label><input type="radio" name="payment_method" value="COD" checked> Cash On Delivery</label>
-                        </span>
-                        <span>
-                            <label><input type="radio" name="payment_method" value="Paypal"> Paypal</label>
-                        </span>
-                        <button type="submit" class="btn btn-primary" style="float: right;">Order Now</button>
+                        <button type="submit" class="btn btn-primary" style="float: right;">Bayar Sekarang</button>
                     </div>
                 </section>
 

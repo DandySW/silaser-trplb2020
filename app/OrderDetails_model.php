@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OrdersDetails_model extends Model
+class OrderDetails_model extends Model
 {
     protected $table = 'order_details';
     protected $primaryKey = 'id';
