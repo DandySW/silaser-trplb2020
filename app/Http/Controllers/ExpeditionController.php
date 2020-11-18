@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Expedition_model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class ExpeditionController extends Controller
 {
@@ -82,33 +86,40 @@ class ExpeditionController extends Controller
         //
     }
 
-    public function applycoupon(Request $request)
+    public function applyexpedition(Request $request)
     {
         $this->validate($request, [
-            'coupon_code' => 'required'
+            'expedition' => 'required'
         ]);
+
+
         $input_data = $request->all();
-        $coupon_code = $input_data['coupon_code'];
-        $total_amount_price = $input_data['Total_amountPrice'];
-        $check_coupon = Coupon_model::where('coupon_code', $coupon_code)->count();
-        if ($check_coupon == 0) {
-            return back()->with('message_coupon', 'Kupon tidak ditemukan');
-        } else if ($check_coupon == 1) {
-            $check_status = Coupon_model::where('status', 1)->first();
-            if ($check_status->status == 0) {
-                return back()->with('message_coupon', 'Kupon sedang tidak aktif');
+        Session::forget('discount_amount_price');
+        Session::forget('coupon_code');
+        $auth_id = Auth::id();
+
+        $expedition = $input_data['expedition'];
+        $expedition_charge = DB::select("SELECT base_charge FROM `expeditions` WHERE id = $expedition");
+
+        $products = DB::select("SELECT sum(cart.quantity*products.weight) as quantityweight FROM `cart`,`products` WHERE cart.products_id = products.id and cart.users_id = $auth_id");
+        foreach ($expedition_charge as $charge) {
+            $base_charge = $charge->base_charge;
+            foreach ($products as $product) {
+                $sum_prod = $product->quantityweight;
+            }
+            if ($sum_prod <= 1500) {
+                $expedition_total = $base_charge;
             } else {
-                $expiried_date = $check_status->expiry_date;
-                $date_now = date('Y-m-d');
-                if ($expiried_date < $date_now) {
-                    return back()->with('message_coupon', 'Kupon telah kadaluarsa');
-                } else {
-                    $discount_amount_price = ($total_amount_price * $check_status->amount) / 100;
-                    Session::put('discount_amount_price', $discount_amount_price);
-                    Session::put('coupon_code', $check_status->coupon_code);
-                    return back()->with('message_apply_sucess', 'Berhasil menggunakan kupon');
+                $cons = 2500;
+                while ($sum_prod >= $cons) {
+                    $cons = $cons + 1000;
                 }
+                $int = floor($cons / 1000);
+                $expedition_total = $base_charge * $int;
             }
         }
+        Session::put('expedition', $expedition);
+        Session::put('expedition_total', $expedition_total);
+        return back()->with('message_apply_sucess', 'Berhasil memilih ekspedisi');
     }
 }

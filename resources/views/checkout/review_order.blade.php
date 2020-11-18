@@ -11,17 +11,22 @@
         <form action="{{url('/submit-order')}}" method="post" class="form-horizontal">
             @csrf
             <input type="hidden" name="users_id" value="{{$user_data->id}}">
-            <input type="hidden" name="expedition" value="0">
-            <input type="hidden" name="shipping_charge" value="0">
-            <input type="hidden" name="order_date" value="{{now()}}">
+            @if(Session::has('expedition'))
+            <input type="hidden" name="expedition" value="{{Session::get('expedition')}}">
+            <input type="hidden" name="shipping_charge" value="{{Session::get('expedition_total')}}">
+            @else
+            <input type="hidden" name="expedition" value="1">
+            <input type="hidden" name="shipping_charge" value="10">
+            @endif
+            <input type="hidden" name="order_date" value="{{date('Y-m-d')}}" data-date-format="yyyy-mm-dd">
             @if(Session::has('discount_amount_price'))
-            <input type="hidden" name="coupon_id" value="{{$coupon_id}}">
+            <input type=" hidden" name="coupon_id" value="{{$coupon_id}}">
             <input type="hidden" name="coupon_amount" value="{{Session::get('discount_amount_price')}}">
-            <input type="hidden" name="grand_total" value="{{$total_price-Session::get('discount_amount_price')}}">
+            <input type="hidden" name="grand_total" value="{{$total_price+Session::get('expedition_total')-Session::get('discount_amount_price')}}">
             @else
             <input type="hidden" name="coupon_id" value="">
             <input type="hidden" name="coupon_amount" value="">
-            <input type="hidden" name="grand_total" value="{{$total_price}}">
+            <input type="hidden" name="grand_total" value="{{$total_price+Session::get('expedition_total')}}">
             @endif
 
             <div class="col-sm-12">
@@ -89,21 +94,25 @@
                                         <table class="table table-condensed total-result">
                                             <tr>
                                                 <td>Cart Sub Total</td>
-                                                <td>$ {{$total_price}}</td>
+                                                <td>Rp {{$total_price}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Ongkir</td>
+                                                <td>Rp {{Session::get('expedition_total')}}</td>
                                             </tr>
                                             @if(Session::has('discount_amount_price'))
                                             <tr class="shipping-cost">
                                                 <td>Coupon Discount</td>
-                                                <td>$ {{Session::get('discount_amount_price')}}</td>
+                                                <td>- Rp {{Session::get('discount_amount_price')}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
-                                                <td><span>$ {{$total_price-Session::get('discount_amount_price')}}</span></td>
+                                                <td><span>Rp {{$total_price+Session::get('expedition_total')-Session::get('discount_amount_price')}}</span></td>
                                             </tr>
                                             @else
                                             <tr>
                                                 <td>Total</td>
-                                                <td><span>$ {{$total_price}}</span></td>
+                                                <td><span>Rp {{$total_price+Session::get('expedition_total')}}</span></td>
                                             </tr>
                                             @endif
                                         </table>

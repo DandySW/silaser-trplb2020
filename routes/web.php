@@ -21,7 +21,7 @@ Route::get('/get-product-attr', 'IndexController@getAttrs');
 
 /// Coupon Area ///
 Route::post('/apply-coupon', 'CouponController@applycoupon');
-Route::post('/cancel-coupon', 'CouponController@cancelcoupon');
+Route::post('/apply-expedition', 'ExpeditionController@applyexpedition');
 
 /// Simple User Login /////
 Route::get('/login_page', 'UsersController@index');

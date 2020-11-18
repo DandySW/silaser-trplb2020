@@ -7,6 +7,7 @@ use App\Orders_model;
 use App\OrderDetails_model;
 use App\Cart_model;
 use App\Coupon_model;
+use App\Products_model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,12 @@ class OrdersController extends Controller
         $cart_datas = DB::select("SELECT cart.id, cart.users_id,products.description , products.p_name, products.price, cart.quantity, products.image, products.stock FROM `cart`,`products`, `users` WHERE users.id = $auth_id and cart.products_id = products.id and cart.users_id = users.id");
 
         $session_coupon = Session::get('coupon_code');
-        $coupon_id = Coupon_model::select('id')->where('coupon_code', $session_coupon)->first();
+        $session_expedition = Session::get('expedition_total');
+
+        if ($session_coupon != NULL) {
+            $coupon_id = DB::select("SELECT id FROM `coupons` WHERE coupon_code = '$session_coupon'");
+            $coupon_id = $coupon_id[0]->id;
+        }
 
         $user_data = User::where('id', Auth::id())->first();
 
@@ -47,11 +53,17 @@ class OrdersController extends Controller
 
         foreach ($cart_datas as $cart_data) {
             $order_details = new OrderDetails_model;
+
             $order_details->orders_id = $order_id;
             $order_details->products_id = $cart_data->products_id;
             $order_details->quantity = $cart_data->quantity;
             $order_details->save();
+
+            $product = Products_model::find($cart_data->products_id);
+            $product->stock = $product->stock - $cart_data->quantity;
+            $product->save();
         }
+
 
         Cart_model::where('users_id', $request->users_id)->delete();
         return redirect('/');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cart_model;
+use App\Expedition_model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +17,14 @@ class CartController extends Controller
         $session_id = Session::get('session_id');
         $auth_id = Auth::id();
         $cart_datas = DB::select("SELECT cart.id, cart.users_id,products.description, cart.quantity, products.p_name, products.price, cart.quantity, products.image, products.stock FROM `cart`,`products`, `users` WHERE users.id = $auth_id and cart.products_id = products.id and cart.users_id = users.id");
+        $expedition_datas = Expedition_model::all();
+
+        if ($cart_datas == NULL) {
+            Session::forget('expedition_total');
+            $expedition = 0;
+        } else {
+            $expedition = 10;
+        }
 
         $total_price = 0;
         foreach ($cart_datas as $cart_data) {
@@ -24,7 +33,7 @@ class CartController extends Controller
             }
             $total_price += ($cart_data->price * $cart_data->quantity);
         }
-        return view('pelanggan.cart', compact('cart_datas', 'total_price'));
+        return view('pelanggan.cart', compact('cart_datas', 'total_price', 'expedition', 'expedition_datas'));
     }
 
     public function addToCart(Request $request)
@@ -60,6 +69,7 @@ class CartController extends Controller
     public function deleteItem($id = null)
     {
         Session::forget('discount_amount_price');
+        Session::forget('expedition_total');
         Session::forget('coupon_code');
         DB::table('cart')->where('id', $id)->delete();
         return back()->with('message', 'Produk berhasil dihapus.');
@@ -75,9 +85,6 @@ class CartController extends Controller
 
 
         foreach ($cart_datas as $cart_data) {
-            if ($quantity < 1) {
-                return back();
-            }
             $updated_quantity = $cart_data->quantity + $quantity;
             if ($cart_data->stock >= $updated_quantity) {
                 DB::table('cart')->where('id', $id)->increment('quantity', $quantity);
