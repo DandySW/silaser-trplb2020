@@ -73,11 +73,14 @@
             </div>
         </div>
         <h4>Pilih Jasa Ekspedisi</h4>
-        <select id="expedition" onchange="myFunction()">
-            <option value="1">Pos Indonesia (Express Next Day 1-2 hari)</option>
-            <option value="2">J&T Express (EZ 2-3 hari)</option>
-            <option value="3">JNE Express (CTC 2-3 hari</option>
-        </select>
+        <form action="{{url('/apply-coupon')}}" method="post" role="form">
+            @csrf
+            <select id="expedition">
+                <option value="1">Pos Indonesia (Express Next Day 1-2 hari)</option>
+                <option value="2">J&T Express (EZ 2-3 hari)</option>
+                <option value="3">JNE Express (CTC 2-3 hari</option>
+            </select>
+        </form>
 </section>
 <!--/#cart_items-->
 
@@ -123,7 +126,7 @@
                         <li>Total <span>$ {{$total_price-Session::get('discount_amount_price')}}</span></li>
                         @else
                         <li>Sub Total <span>$ {{$total_price}}</span></li>
-                        <li>Ongkir <span id="shipping_charge"></span></li>
+                        <li>Ongkir <span></span></li>
                         <li>Total <span>$ {{$total_price}}</span></li>
                         @endif
                     </ul>
@@ -134,10 +137,3 @@
     </div>
     <!--/#do_action-->
     @endsection
-
-    <script>
-        function myFunction() {
-            var x = document.getElementById("expedition").value;
-            var a = document.getElementById("shipping_charge").innerHTML = x;
-        }
-    </script>

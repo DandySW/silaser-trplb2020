@@ -15,12 +15,12 @@
             <input type="hidden" name="shipping_charge" value="0">
             <input type="hidden" name="order_date" value="{{now()}}">
             @if(Session::has('discount_amount_price'))
-            <input type="hidden" name="coupon_code" value="{{Session::get('coupon_code')}}">
+            <input type="hidden" name="coupon_id" value="{{$coupon_id}}">
             <input type="hidden" name="coupon_amount" value="{{Session::get('discount_amount_price')}}">
             <input type="hidden" name="grand_total" value="{{$total_price-Session::get('discount_amount_price')}}">
             @else
             <input type="hidden" name="coupon_id" value="">
-            <input type="hidden" name="coupon_amount" value="0">
+            <input type="hidden" name="coupon_amount" value="">
             <input type="hidden" name="grand_total" value="{{$total_price}}">
             @endif
 

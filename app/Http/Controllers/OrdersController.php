@@ -6,6 +6,7 @@ use App\User;
 use App\Orders_model;
 use App\OrderDetails_model;
 use App\Cart_model;
+use App\Coupon_model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -19,13 +20,16 @@ class OrdersController extends Controller
         $auth_id = Auth::id();
         $cart_datas = DB::select("SELECT cart.id, cart.users_id,products.description , products.p_name, products.price, cart.quantity, products.image, products.stock FROM `cart`,`products`, `users` WHERE users.id = $auth_id and cart.products_id = products.id and cart.users_id = users.id");
 
+        $session_coupon = Session::get('coupon_code');
+        $coupon_id = Coupon_model::select('id')->where('coupon_code', $session_coupon)->first();
+
         $user_data = User::where('id', Auth::id())->first();
 
         $total_price = 0;
         foreach ($cart_datas as $cart_data) {
             $total_price += $cart_data->price * $cart_data->quantity;
         }
-        return view('checkout.review_order', compact('cart_datas', 'total_price', 'user_data'));
+        return view('checkout.review_order', compact('cart_datas', 'total_price', 'user_data', 'coupon_id'));
     }
     public function order(Request $request)
     {

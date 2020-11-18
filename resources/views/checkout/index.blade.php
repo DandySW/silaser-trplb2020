@@ -26,8 +26,16 @@
                 <span class="text-danger">{{$errors->first('billing_name')}}</span>
             </div>
             <div class="form-group {{$errors->has('billing_address')?'has-error':''}}">
-                <input type="text" class="form-control" value="{{$user_login->address}}" name="billing_address" id="billing_address" placeholder="Alamat, Keluarahan, Kecamatan">
+                <input type="text" class="form-control" value="{{$user_login->address}}" name="billing_address" id="billing_address" placeholder="Alamat Lenkap">
                 <span class="text-danger">{{$errors->first('billing_address')}}</span>
+            </div>
+            <div class="form-group {{$errors->has('billing_kelurahan')?'has-error':''}}">
+                <input type="text" class="form-control" value="{{$user_login->kelurahan}}" name="billing_kelurahan" id="billing_kelurahan" placeholder="Kelurahan/Desa">
+                <span class="text-danger">{{$errors->first('billing_kelurahan')}}</span>
+            </div>
+            <div class="form-group {{$errors->has('billing_address')?'has-error':''}}">
+                <input type="text" class="form-control" value="{{$user_login->kecamatan}}" name="billing_kecamatan" id="billing_kecamatan" placeholder="Kecamatan">
+                <span class="text-danger">{{$errors->first('billing_kecamatan')}}</span>
             </div>
             <div class="form-group {{$errors->has('billing_postcode')?'has-error':''}}">
                 <input type="text" class="form-control" value="{{$user_login->postcode}}" name="billing_postcode" id="billing_postcode" placeholder="Kode Pos">

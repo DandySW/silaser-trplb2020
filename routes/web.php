@@ -21,6 +21,7 @@ Route::get('/get-product-attr', 'IndexController@getAttrs');
 
 /// Coupon Area ///
 Route::post('/apply-coupon', 'CouponController@applycoupon');
+Route::post('/cancel-coupon', 'CouponController@cancelcoupon');
 
 /// Simple User Login /////
 Route::get('/login_page', 'UsersController@index');
@@ -38,7 +39,7 @@ Route::group(['middleware' => 'FrontLogin_middleware'], function () {
     Route::get('/order-review', 'OrdersController@index');
     Route::post('/submit-order', 'OrdersController@order');
     Route::get('/payment/transfer-bank/{id}', 'OrdersController@transferbank');
-    Route::get('/payment/e-wallet/{id}', 'OrdersController@ewallet');
+    // Route::get('/payment/e-wallet/{id}', 'OrdersController@ewallet');
     // Route::get('/paypal', 'OrdersController@paypal');
 
     ///// Cart Area /////////
