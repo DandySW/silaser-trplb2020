@@ -18,7 +18,7 @@ class ProductsController extends Controller
     public function index()
     {
         $menu_active = 3;
-        $products = Products_model::all();
+        $products = Products_model::all()->sortBy('id');
         return view('admin.products.index', compact('menu_active', 'products'));
     }
 
@@ -43,10 +43,11 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'p_name' => 'required|max:50',
-            'description' => 'required',
-            'stock' => 'required|numeric',
-            'price' => 'required|numeric',
+            'p_name' => 'required|min:5|max:50',
+            'description' => 'required|min:10|max:65535',
+            'stock' => 'required|numeric|min:0',
+            'weight' => 'required|min:1|numeric',
+            'price' => 'required|numeric|min:100',
             'image' => 'required|image|mimes:png,jpg,jpeg|max:1000',
         ]);
         $formInput = $request->all();
@@ -104,10 +105,11 @@ class ProductsController extends Controller
     {
         $update_product = Products_model::findOrFail($id);
         $this->validate($request, [
-            'p_name' => 'required|min:5',
-            'description' => 'required',
-            'stock' => 'required|numeric',
-            'price' => 'required|numeric',
+            'p_name' => 'required|min:5|max:50',
+            'description' => 'required|min:10|max:65535',
+            'stock' => 'required|numeric|min:0',
+            'weight' => 'required|min:1|numeric',
+            'price' => 'required|numeric|min:100',
             'image' => 'image|mimes:png,jpg,jpeg|max:1000',
         ]);
         $formInput = $request->all();

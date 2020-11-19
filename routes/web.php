@@ -38,9 +38,8 @@ Route::group(['middleware' => 'FrontLogin_middleware'], function () {
     Route::post('/submit-checkout', 'CheckOutController@submitcheckout');
     Route::get('/order-review', 'OrdersController@index');
     Route::post('/submit-order', 'OrdersController@order');
-    Route::get('/payment/transfer-bank/{id}', 'OrdersController@transferbank');
-    // Route::get('/payment/e-wallet/{id}', 'OrdersController@ewallet');
-    // Route::get('/paypal', 'OrdersController@paypal');
+    Route::get('/cod', 'OrdersController@cod');
+    Route::get('/paypal', 'OrdersController@paypal');
 
     ///// Cart Area /////////
     Route::post('/addToCart', 'CartController@addToCart')->name('addToCart');
@@ -55,7 +54,7 @@ Route::group(['middleware' => 'FrontLogin_middleware'], function () {
 /* Admin Location */
 Auth::routes(['register' => false]);
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
-    Route::get('/', 'ProductsController@index');
+    Route::get('/', 'AdminController@index');
 
     /// Setting Area
     // Route::get('/settings', 'AdminController@settings');
@@ -83,4 +82,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     /// Coupon
     Route::resource('/coupon', 'CouponController');
     Route::get('delete-coupon/{id}', 'CouponController@destroy');
+
+    /// Orders
+    Route::get('/orders/belum-dibayar', 'OrdersController@belumdibayar');
+    Route::get('/orders/pembayaran/{id}', 'OrdersController@pembayaran');
 });

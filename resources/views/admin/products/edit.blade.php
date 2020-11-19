@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('title','Edit Produk | SILASER - Sistem Informasi Penjualan dan Layanan Servis Laptop')
 @section('content')
-<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('product.index')}}">Products</a> <a href="#" class="current">Edit Produk</a> </div>
+<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('product.index')}}">Produk</a> <a href="#" class="current">Edit Produk</a> </div>
 <div class="container-fluid">
     @if(Session::has('message'))
     <div class="alert alert-success text-center" role="alert">
@@ -10,7 +10,7 @@
     @endif
     <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-            <h5>Add New Products</h5>
+            <h5>Edit Produk</h5>
         </div>
         <div class="widget-content nopadding">
             <form action="{{route('product.update',$edit_product->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
@@ -47,6 +47,14 @@
                         <div class="input-prepend"> <span class="add-on">Rp</span>
                             <input type="number" name="price" id="price" class="" value="{{$edit_product->price}}" title="" required="required">
                             <span class="text-danger">{{$errors->first('price')}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="stock" class="control-label">Berat (Gram)</label>
+                    <div class="controls{{$errors->has('weight')?' has-error':''}}">
+                        <div class="input-prepend"> <input type="number" name="weight" id="weight" class="" value="{{$edit_product->weight}}" title="" required="required">
+                            <span class="text-danger">{{$errors->first('weight')}}</span>
                         </div>
                     </div>
                 </div>

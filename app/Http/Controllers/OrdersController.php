@@ -17,25 +17,35 @@ class OrdersController extends Controller
 {
     public function index()
     {
-        $session_id = Session::get('session_id');
-        $auth_id = Auth::id();
-        $cart_datas = DB::select("SELECT cart.id, cart.users_id,products.description , products.p_name, products.price, cart.quantity, products.image, products.stock FROM `cart`,`products`, `users` WHERE users.id = $auth_id and cart.products_id = products.id and cart.users_id = users.id");
+        $cart_data = Cart_model::where('users_id', Auth::id())->count();
+        if ($cart_data == 0) {
+            return redirect(url('/viewcart'));
+        } else {
+            $last_orders = DB::select("SELECT id FROM orders ORDER BY id DESC LIMIT 1");
+            foreach ($last_orders as $last_order) {
+                $order_id = $last_order->id + 1;
+            }
 
-        $session_coupon = Session::get('coupon_code');
-        $session_expedition = Session::get('expedition_total');
+            $session_id = Session::get('session_id');
+            $auth_id = Auth::id();
+            $cart_datas = DB::select("SELECT cart.id, cart.users_id,products.description , products.p_name, products.price, cart.quantity, products.image, products.stock FROM `cart`,`products`, `users` WHERE users.id = $auth_id and cart.products_id = products.id and cart.users_id = users.id");
 
-        if ($session_coupon != NULL) {
-            $coupon_id = DB::select("SELECT id FROM `coupons` WHERE coupon_code = '$session_coupon'");
-            $coupon_id = $coupon_id[0]->id;
+            $session_coupon = Session::get('coupon_code');
+            $session_expedition = Session::get('expedition_total');
+
+            if ($session_coupon != NULL) {
+                $coupon_id = DB::select("SELECT id FROM `coupons` WHERE coupon_code = '$session_coupon'");
+                $coupon_id = $coupon_id[0]->id;
+            }
+
+            $user_data = User::where('id', Auth::id())->first();
+
+            $total_price = 0;
+            foreach ($cart_datas as $cart_data) {
+                $total_price += $cart_data->price * $cart_data->quantity;
+            }
+            return view('checkout.review_order', compact('cart_datas', 'total_price', 'user_data', 'coupon_id', 'order_id'));
         }
-
-        $user_data = User::where('id', Auth::id())->first();
-
-        $total_price = 0;
-        foreach ($cart_datas as $cart_data) {
-            $total_price += $cart_data->price * $cart_data->quantity;
-        }
-        return view('checkout.review_order', compact('cart_datas', 'total_price', 'user_data', 'coupon_id'));
     }
     public function order(Request $request)
     {
@@ -63,9 +73,28 @@ class OrdersController extends Controller
             $product->stock = $product->stock - $cart_data->quantity;
             $product->save();
         }
-
-
         Cart_model::where('users_id', $request->users_id)->delete();
         return redirect('/');
+    }
+    public function cod()
+    {
+        $user_order = Orders_model::where('users_id', Auth::id())->first();
+        return view('payment.cod', compact('user_order'));
+    }
+    public function paypal(Request $request)
+    {
+        $who_buying = Orders_model::where('users_id', Auth::id())->first();
+        return view('payment.paypal', compact('who_buying'));
+    }
+    public function belumdibayar()
+    {
+        $menu_active = 4;
+        $orders = Orders_model::all()->sortBy('id')->where('checkout_status', 'belum dibayar');
+        return view('admin.orders.belum-dibayar', compact('menu_active', 'orders'));
+    }
+    public function pembayaran($id)
+    {
+        DB::select("UPDATE `orders` SET checkout_status = 'sudah dibayar' WHERE orders.id = $id");
+        return back()->with('message', 'Berhasil mengonfirmasi Pembayaran.');
     }
 }

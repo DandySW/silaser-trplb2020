@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category_model;
-use foo\bar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         $menu_active = 2;
-        $categories = Category_model::all();
+        $categories = Category_model::all()->sortBy('id');
         return view('admin.category.index', compact('menu_active', 'categories'));
     }
 
@@ -53,7 +53,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:30|unique:categories,name',
+            'name' => 'required|min:5|max:30|unique:categories,name'
         ]);
         $data = $request->all();
         Category_model::create($data);
@@ -94,10 +94,12 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $update_categories = Category_model::findOrFail($id);
-        $this->validate($request, [
-            'name' => 'required|max:30|unique:categories,name,' . $update_categories->id,
-        ]);
-        //dd($request->all());die();
+        $this->validate(
+            $request,
+            [
+                'name' => 'required|min:5|max:30|unique:categories,name'
+            ]
+        );
         $input_data = $request->all();
 
         $update_categories->update($input_data);

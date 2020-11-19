@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('title','Data Produk | Sistem Informasi Penjualan dan Layanan Servis Laptop ')
 @section('content')
-<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('product.index')}}" class="current">Products</a></div>
+<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Detail Pemesanan</a> <a href="{{url('admin/orders/belum-dibayar')}}" class="current">Belum Dibayar</a> </div>
 <div class="container-fluid">
     @if(Session::has('message'))
     <div class="alert alert-success text-center" role="alert">
@@ -10,7 +10,7 @@
     @endif
     <div class="widget-box">
         <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Daftar Produk</h5>
+            <h5>Belum Dibayar</h5>
         </div>
         <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
@@ -18,46 +18,48 @@
                     <tr>
                         <th>#</th>
                         <th>ID</th>
-                        <th>Gambar</th>
-                        <th>Nama Produk</th>
-                        <th>Kategori</th>
-                        <th>Harga</th>
-                        <th>Berat (Gram)</th>
-                        <th>Stok</th>
-                        <th>Image Gallery</th>
-                        <th>Action</th>
+                        <th>ID User</th>
+                        <th>ID Ekspedisi</th>
+                        <th>Ongkir</th>
+                        <th>ID Kupon</th>
+                        <th>Nilai Kupon</th>
+                        <th>Total</th>
+                        <th>Tanggal Pemesanan</th>
+                        <th>Status Pembayaran</th>
+                        <th>Bukti Pembayaran</th>
+                        <th>Konfirmasi Pembayaran</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($products as $product)
+                    @foreach($orders as $order)
                     <tr class="gradeC">
                         <td style="vertical-align: middle;text-align: center;">{{$loop->iteration}}</td>
-                        <td style="vertical-align: middle;text-align: center;">{{$product->id}}</td>
-                        <td style="text-align: center;"><img src="{{url('products/small',$product->image)}}" alt="" width="50"></td>
-                        <td style="vertical-align: middle;">{{$product->p_name}}</td>
-                        <td style="vertical-align: middle;">{{$product->category->name}}</td>
-                        <td style="vertical-align: middle;text-align: center;">{{$product->price}}</td>
-                        <td style="vertical-align: middle;text-align: center;">{{$product->weight}}</td>
-                        <td style="vertical-align: middle;text-align: center;">{{$product->stock}}</td>
-                        <td style="vertical-align: middle;text-align: center;"><a href="{{route('image-gallery.show',$product->id)}}" class="btn btn-default btn-mini">Add Images</a></td>
+                        <td style="vertical-align: middle;text-align: center;">{{$order->id}}</td>
+                        <td style="vertical-align: middle;text-align: center;">{{$order->user->name}}</td>
+                        <td style="vertical-align: middle;text-align: center;">{{$order->expedition}}</td>
+                        <td style="vertical-align: middle;">Rp {{$order->shipping_charge}}</td>
+                        <td style="vertical-align: middle;text-align: center;">{{$order->coupon_id}}</td>
+                        <td style="vertical-align: middle;text-align: center;">Rp {{$order->coupon_amount}}</td>
+                        <td style="vertical-align: middle;text-align: center;">{{$order->grand_total}}</td>
+                        <td style="vertical-align: middle;text-align: center;">{{$order->order_date}}</td>
+                        <td style="vertical-align: middle;text-align: center;">{{$order->checkout_status}}</td>
                         <td style="text-align: center; vertical-align: middle;">
-                            <a href="#myModal{{$product->id}}" data-toggle="modal" class="btn btn-info btn-mini">View</a>
-                            <a href="{{route('product.edit',$product->id)}}" class="btn btn-primary btn-mini">Edit</a>
-                            <a href="javascript:" rel="{{$product->id}}" rel1="delete-product" class="btn btn-danger btn-mini deleteRecord">Delete</a>
+                            <a href="#myModal{{$order->id}}" data-toggle="modal" class="btn btn-info btn-mini">View</a>
+                        </td>
+                        <td style="text-align: center; vertical-align: middle;">
+                            <a href="{{url('admin/orders/pembayaran',$order->id)}}" class="btn btn-warning btn-mini">Konfirmasi</a>
                         </td>
                     </tr>
-                    {{--Pop Up Model for View Product--}}
-                    <div id="myModal{{$product->id}}" class="modal hide">
+                    {{--Pop Up Model for View Struk--}}
+                    <div id="myModal{{$order->id}}" class="modal hide">
                         <div class="modal-header">
                             <button data-dismiss="modal" class="close" type="button">×</button>
-                            <h3>{{$product->p_name}}</h3>
                         </div>
                         <div class="modal-body">
-                            <div class="text-center"><img src="{{url('/products/small',$product->image)}}" width="100" alt="{{$product->no_arcode}}"></div>
-                            <p class="text-center">{{$product->description}}</p>
+                            <div class="text-center"><img src="{{url('/checkout/'.$order->struk)}}" alt="Belum ada bukti pembayaran"></div>
                         </div>
                     </div>
-                    {{--Pop Up Model for View Product--}}
+                    {{--Pop Up Model for View Struk--}}
                     @endforeach
                 </tbody>
             </table>
@@ -76,7 +78,7 @@
 <script src="{{asset('js/matrix.tables.js')}}"></script>
 <script src="{{asset('js/matrix.popover.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script>
+<!-- <script>
     $(".deleteRecord").click(function() {
         var id = $(this).attr('rel');
         var deleteFunction = $(this).attr('rel1');
@@ -97,5 +99,5 @@
             window.location.href = "/admin/" + deleteFunction + "/" + id;
         });
     });
-</script>
+</script> -->
 @endsection

@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('title','Edit Coupons Page')
 @section('content')
-<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('coupon.index')}}">Coupons</a> <a href="#" class="current">Edit Coupon</a> </div>
+<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('coupon.index')}}">Kupon</a> <a href="#" class="current">Edit Kupon</a> </div>
 <div class="container-fluid">
     @if(Session::has('message'))
     <div class="alert alert-success text-center" role="alert">
@@ -35,7 +35,7 @@
                     <label for="amount_type" class="control-label">Tipe Kupon</label>
                     <div class="controls{{$errors->has('amount_type')?' has-error':''}}">
                         <select name="amount_type" id="amount_type" class="form-control" style="width: 415px;">
-                            <option value="Persentase">Persentase</option>
+                            <option value="Persentase" selected>Persentase</option>
                         </select>
                         <span class="text-danger">{{$errors->first('amount_type')}}</span>
                     </div>

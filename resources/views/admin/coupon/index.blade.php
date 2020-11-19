@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('title','List Coupons')
 @section('content')
-<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('coupon.index')}}" class="current">Coupons</a></div>
+<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('coupon.index')}}" class="current">Kupon</a></div>
 <div class="container-fluid">
     @if(Session::has('message'))
     <div class="alert alert-success text-center" role="alert">
@@ -10,13 +10,14 @@
     @endif
     <div class="widget-box">
         <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>List Kupon</h5>
+            <h5>Daftar Kupon</h5>
         </div>
         <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
-                        <th>No</th>
+                        <th>#</th>
+                        <th>ID</th>
                         <th>Kode Kupon</th>
                         <th>jumlah</th>
                         <th>Tipe Kupon</th>
@@ -29,6 +30,7 @@
                     @foreach($coupons as $coupon)
                     <tr class="gradeC">
                         <td style="text-align: center; vertical-align: middle;">{{$loop->iteration}}</td>
+                        <td style="text-align: center; vertical-align: middle;">{{$coupon->id}}</td>
                         <td style="vertical-align: middle;">{{$coupon->coupon_code}}</td>
                         <td style="text-align: center; vertical-align: middle;">{{$coupon->amount}}</td>
                         <td style="text-align: center; vertical-align: middle;">{{$coupon->amount_type}}</td>

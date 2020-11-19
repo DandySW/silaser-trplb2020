@@ -22,11 +22,11 @@
             @if(Session::has('discount_amount_price'))
             <input type=" hidden" name="coupon_id" value="{{$coupon_id}}">
             <input type="hidden" name="coupon_amount" value="{{Session::get('discount_amount_price')}}">
-            <input type="hidden" name="grand_total" value="{{$total_price+Session::get('expedition_total')-Session::get('discount_amount_price')}}">
+            <input type="hidden" name="grand_total" value="{{$total_price+Session::get('expedition_total')-Session::get('discount_amount_price')+$order_id}}">
             @else
             <input type="hidden" name="coupon_id" value="">
             <input type="hidden" name="coupon_amount" value="">
-            <input type="hidden" name="grand_total" value="{{$total_price+Session::get('expedition_total')}}">
+            <input type="hidden" name="grand_total" value="{{$total_price+Session::get('expedition_total')+$order_id}}">
             @endif
 
             <div class="col-sm-12">
@@ -96,6 +96,7 @@
                                                 <td>Cart Sub Total</td>
                                                 <td>Rp {{$total_price}}</td>
                                             </tr>
+                                            @if(Session::has('expedition_total'))
                                             <tr>
                                                 <td>Ongkir</td>
                                                 <td>Rp {{Session::get('expedition_total')}}</td>
@@ -106,14 +107,51 @@
                                                 <td>- Rp {{Session::get('discount_amount_price')}}</td>
                                             </tr>
                                             <tr>
+                                                <td>Kode Unik</td>
+                                                <td>Rp {{$order_id}}</td>
+                                            </tr>
+                                            <tr>
                                                 <td>Total</td>
-                                                <td><span>Rp {{$total_price+Session::get('expedition_total')-Session::get('discount_amount_price')}}</span></td>
+                                                <td><span>Rp {{$total_price+Session::get('expedition_total')-Session::get('discount_amount_price')+$order_id}}</span></td>
                                             </tr>
                                             @else
                                             <tr>
-                                                <td>Total</td>
-                                                <td><span>Rp {{$total_price+Session::get('expedition_total')}}</span></td>
+                                                <td>Kode Unik</td>
+                                                <td>Rp {{$order_id}}</td>
                                             </tr>
+                                            <tr>
+                                                <td>Total</td>
+                                                <td><span>Rp {{$total_price+Session::get('expedition_total')+$order_id}}</span></td>
+                                            </tr>
+                                            @endif
+                                            @else
+                                            <tr>
+                                                <td>Ongkir</td>
+                                                <td>Rp 10</td>
+                                            </tr>
+                                            @if(Session::has('discount_amount_price'))
+                                            <tr class="shipping-cost">
+                                                <td>Coupon Discount</td>
+                                                <td>- Rp {{Session::get('discount_amount_price')}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Kode Unik</td>
+                                                <td>Rp {{$order_id}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total</td>
+                                                <td><span>Rp {{$total_price+10-Session::get('discount_amount_price')+$order_id}}</span></td>
+                                            </tr>
+                                            @else
+                                            <tr>
+                                                <td>Kode Unik</td>
+                                                <td>Rp {{$order_id}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total</td>
+                                                <td><span>Rp {{$total_price+10+$order_id}}</span></td>
+                                            </tr>
+                                            @endif
                                             @endif
                                         </table>
                                     </td>

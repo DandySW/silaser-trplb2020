@@ -49,7 +49,7 @@ class CouponController extends Controller
             $input_data['status'] = 0;
         }
         Coupon_model::create($input_data);
-        return back()->with('message', 'Kupon berhasil dibuat');
+        return redirect()->route('coupon.index')->with('message', 'Kupon berhasil dibuat');
     }
 
     /**

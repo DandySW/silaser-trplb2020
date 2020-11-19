@@ -16,7 +16,8 @@
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
-                        <th>No</th>
+                        <th>#</th>
+                        <th>ID</th>
                         <th>Nama Kategori</th>
                         <th>Aksi</th>
                     </tr>
@@ -25,6 +26,7 @@
                     @foreach($categories as $category)
                     <tr class="gradeC">
                         <td style="text-align: center" ;>{{$loop->iteration}}</td>
+                        <td style="text-align: center" ;>{{$category->id}}</td>
                         <td>{{$category->name}}</td>
                         <td style=" text-align: center;">
                             <a href="{{route('category.edit',$category->id)}}" class="btn btn-primary btn-mini">Edit</a>

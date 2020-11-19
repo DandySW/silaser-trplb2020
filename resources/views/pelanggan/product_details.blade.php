@@ -44,7 +44,7 @@
                         <input type="hidden" name="price" value="{{$detail_product->price}}" id="dynamicPriceInput">
                         <div class="product-information">
                             <!--/product-information-->
-                            <img src="{{asset('pelanggan/images/product-details/new.jpg')}}" class="newarrival" alt="" />
+                            <img src="{{asset('pelanggan/images/product-details/new.jpg')}}" class="newarrival" alt="product_image" />
                             <h2>{{$detail_product->p_name}}</h2>
                             <span>
                                 <span id="dynamic_price">Rp {{$detail_product->price}}</span>

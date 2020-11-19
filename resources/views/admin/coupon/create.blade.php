@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('title','Add Coupons Page')
 @section('content')
-<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('coupon.index')}}">Coupons</a> <a href="{{route('coupon.create')}}" class="current">Add New Coupon</a> </div>
+<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('coupon.index')}}">Kupon</a> <a href="{{route('coupon.create')}}" class="current">Tambah Kupon</a> </div>
 <div class="container-fluid">
     @if(Session::has('message'))
     <div class="alert alert-success text-center" role="alert">
@@ -10,7 +10,7 @@
     @endif
     <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-            <h5>Add New Coupon</h5>
+            <h5>Tambah Kupon</h5>
         </div>
         <div class="widget-content nopadding">
             <form action="{{route('coupon.store')}}" method="post" class="form-horizontal">
@@ -34,7 +34,7 @@
                     <label for="amount_type" class="control-label">Tipe Kupon</label>
                     <div class="controls{{$errors->has('amount_type')?' has-error':''}}">
                         <select name="amount_type" id="amount_type" class="form-control" style="width: 415px;">
-                            <option value="Persentase">Persentase</option>
+                            <option value="Persentase" selected>Persentase</option>
                         </select>
                         <span class="text-danger">{{$errors->first('amount_type')}}</span>
                     </div>
@@ -63,7 +63,7 @@
                 <div class="control-group">
                     <label for="" class="control-label"></label>
                     <div class="controls">
-                        <button type="submit" class="btn btn-success">Tambah Kupon Baru</button>
+                        <button type="submit" class="btn btn-success">Tambah Kupon</button>
                     </div>
                 </div>
             </form>

@@ -14,11 +14,11 @@
                     <li><a href="{{route('product.index')}}">Daftar Produk</a></li>
                 </ul>
             </li>
-            <li class="submenu {{$menu_active==4? ' active':''}}"> <a href="#"><i class="icon icon-th-list"></i> <span>Penjualan</span></a>
+            <li class="submenu {{$menu_active==4? ' active':''}}"> <a href="#"><i class="icon icon-th-list"></i> <span>Detail Pemesanan</span></a>
                 <ul>
-                    <li><a href="#">Daftar Pemesanan</a></li>
-                    <li><a href="#">Daftar Pengiriman</a></li>
-                    <li><a href="#">Daftar Penerimaan</a></li>
+                    <li><a href="{{url('admin/orders/belum-dibayar')}}">Belum Dibayar</a></li>
+                    <li><a href="{{url('admin/orders/sedang-proses')}}">Sedang Proses</a></li>
+                    <li><a href="{{url('admin/orders/sudah-selesai')}}">Sudah Selesai</a></li>
                 </ul>
             </li>
             <li class="submenu {{$menu_active==5? ' active':''}}"> <a href="#"><i class="icon icon-th-list"></i> <span>Kupon</span></a>

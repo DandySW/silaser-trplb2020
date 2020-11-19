@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('title','Add Products Page')
 @section('content')
-<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('product.index')}}">Products</a> <a href="{{route('product.create')}}" class="current">Add New Product</a> </div>
+<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('product.index')}}">Produk</a> <a href="{{route('product.create')}}" class="current">Tambah Produk</a> </div>
 <div class="container-fluid">
     @if(Session::has('message'))
     <div class="alert alert-success text-center" role="alert">
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label for="price" class="control-label">Price</label>
+                    <label for="price" class="control-label">Harga</label>
                     <div class="controls{{$errors->has('price')?' has-error':''}}">
                         <div class="input-prepend"> <span class="add-on">Rp</span>
                             <input type="number" name="price" id="price" class="" value="{{old('price')}}" title="" placeholder="Harga Produk" required="required">
@@ -50,10 +50,17 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label for="stock" class="control-label">Stock</label>
+                    <label for="stock" class="control-label">Stok</label>
                     <div class="controls{{$errors->has('stock')?' has-error':''}}">
                         <input type="text" name="stock" id="stock" class="form-control" value="{{old('stock')}}" placeholder="Stok" title="" required="required" style="width: 400px;">
                         <span class="text-danger">{{$errors->first('stock')}}</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="weight" class="control-label">Berat (Gram)</label>
+                    <div class="controls{{$errors->has('weight')?' has-error':''}}">
+                        <input type="text" name="weight" id="weight" class="form-control" value="{{old('weight')}}" placeholder="Berat (Gram)" title="" required="required" style="width: 400px;">
+                        <span class="text-danger">{{$errors->first('weight')}}</span>
                     </div>
                 </div>
                 <div class="control-group">
