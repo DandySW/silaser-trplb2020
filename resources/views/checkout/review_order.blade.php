@@ -11,6 +11,11 @@
         <form action="{{url('/submit-order')}}" method="post" class="form-horizontal">
             @csrf
             <input type="hidden" name="users_id" value="{{$user_data->id}}">
+            <input type="hidden" name="address" value="{{$user_data->address}}">
+            <input type="hidden" name="kelurahan" value="{{$user_data->kelurahan}}">
+            <input type="hidden" name="kecamatan" value="{{$user_data->kecamatan}}">
+            <input type="hidden" name="postcode" value="{{$user_data->postcode}}">
+            <input type="hidden" name="mobile" value="{{$user_data->mobile}}">
             @if(Session::has('expedition'))
             <input type="hidden" name="expedition" value="{{Session::get('expedition')}}">
             <input type="hidden" name="shipping_charge" value="{{Session::get('expedition_total')}}">
@@ -36,6 +41,8 @@
                             <tr>
                                 <th>Nama</th>
                                 <th>Alamat</th>
+                                <th>Kelurahan/Desa</th>
+                                <th>Kecamatan</th>
                                 <th>Kode Pos</th>
                                 <th>Email</th>
                                 <th>No. HP</th>
@@ -45,6 +52,8 @@
                             <tr>
                                 <td>{{$user_data->name}}</td>
                                 <td>{{$user_data->address}}</td>
+                                <td>{{$user_data->kelurahan}}</td>
+                                <td>{{$user_data->kecamatan}}</td>
                                 <td>{{$user_data->postcode}}</td>
                                 <td>{{$user_data->email}}</td>
                                 <td>{{$user_data->mobile}}</td>

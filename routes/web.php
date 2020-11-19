@@ -84,6 +84,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('delete-coupon/{id}', 'CouponController@destroy');
 
     /// Orders
-    Route::get('/orders/belum-dibayar', 'OrdersController@belumdibayar');
-    Route::get('/orders/pembayaran/{id}', 'OrdersController@pembayaran');
+    Route::get('/orders/belum-dibayar', 'OrderDetailsController@belumdibayar');
+    Route::get('/orders/sedang-proses', 'OrderDetailsController@sedangproses');
+    Route::get('/orders/pembayaran/{id}', 'OrderDetailsController@pembayaran');
 });

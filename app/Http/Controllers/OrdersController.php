@@ -6,7 +6,7 @@ use App\User;
 use App\Orders_model;
 use App\OrderDetails_model;
 use App\Cart_model;
-use App\Coupon_model;
+// use App\Coupon_model;
 use App\Products_model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -85,16 +85,5 @@ class OrdersController extends Controller
     {
         $who_buying = Orders_model::where('users_id', Auth::id())->first();
         return view('payment.paypal', compact('who_buying'));
-    }
-    public function belumdibayar()
-    {
-        $menu_active = 4;
-        $orders = Orders_model::all()->sortBy('id')->where('checkout_status', 'belum dibayar');
-        return view('admin.orders.belum-dibayar', compact('menu_active', 'orders'));
-    }
-    public function pembayaran($id)
-    {
-        DB::select("UPDATE `orders` SET checkout_status = 'sudah dibayar' WHERE orders.id = $id");
-        return back()->with('message', 'Berhasil mengonfirmasi Pembayaran.');
     }
 }

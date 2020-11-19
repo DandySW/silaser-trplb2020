@@ -18,7 +18,7 @@
                     <tr>
                         <th>#</th>
                         <th>ID</th>
-                        <th>ID User</th>
+                        <th>Pelanggan</th>
                         <th>ID Ekspedisi</th>
                         <th>Ongkir</th>
                         <th>ID Kupon</th>
@@ -34,13 +34,15 @@
                     @foreach($orders as $order)
                     <tr class="gradeC">
                         <td style="vertical-align: middle;text-align: center;">{{$loop->iteration}}</td>
-                        <td style="vertical-align: middle;text-align: center;">{{$order->id}}</td>
-                        <td style="vertical-align: middle;text-align: center;">{{$order->user->name}}</td>
+                        <td style="text-align: center; vertical-align: middle;">
+                            <a href="#modalDetail{{$order->id}}" data-toggle="modal" class="btn btn-default btn-mini">{{$order->id}}</a>
+                        </td>
+                        <td style="vertical-align: middle;">{{$order->name}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$order->expedition}}</td>
                         <td style="vertical-align: middle;">Rp {{$order->shipping_charge}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$order->coupon_id}}</td>
                         <td style="vertical-align: middle;text-align: center;">Rp {{$order->coupon_amount}}</td>
-                        <td style="vertical-align: middle;text-align: center;">{{$order->grand_total}}</td>
+                        <td style="vertical-align: middle;text-align: center;">Rp {{$order->grand_total}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$order->order_date}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$order->checkout_status}}</td>
                         <td style="text-align: center; vertical-align: middle;">
@@ -60,6 +62,58 @@
                         </div>
                     </div>
                     {{--Pop Up Model for View Struk--}}
+
+                    {{--Pop Up Model for Order Detail--}}
+                    <div id="modalDetail{{$order->id}}" class="modal hide">
+                        <div class="modal-header">
+                            <button data-dismiss="modal" class="close" type="button">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="text-center">
+                                <h5>Order Details: Order #{{$order->id}}</h5>
+                                ===================================================================
+                                <h6 class="text-left">Produk yang dipesan</h6>
+                                <ol>
+                                    @foreach($orderdetails as $orderdetail)
+                                    @if($orderdetail->orders_id == $order->id)
+                                    <li class="text-left">{{$orderdetail->p_name}}: {{$orderdetail->quantity}}</li>
+                                    @endif
+                                    @endforeach
+                                </ol>
+                                <br>
+                                <h6 class="text-left">Detail Pelanggan</h6>
+                                <ul>
+                                    <li class="text-left">Nama Pelanggan: {{$order->name}}</li>
+                                    <li class="text-left">Alamat: {{$order->address}}</li>
+                                    <li class="text-left">Kelurahan: {{$order->kelurahan}}</li>
+                                    <li class="text-left">Kecamatan: {{$order->kecamatan}}</li>
+                                    <li class="text-left">Kode Pos: {{$order->postcode}}</li>
+                                    <li class="text-left">Handphone: {{$order->mobile}}</li>
+                                </ul>
+                                <br>
+                                <h6 class="text-left">Jasa Ekspedisi</h6>
+                                <ul>
+                                    <li class="text-left">Nama Ekspedisi: {{$order->expedition_name}}</li>
+                                    <li class="text-left">Tipe: {{$order->type}}</li>
+                                    <li class="text-left">Estimasi: {{$order->estimation}}</li>
+                                </ul>
+                                <br>
+                                @if($order->coupon_id != 0)
+                                <h6 class="text-left">Kupon</h6>
+                                @foreach($coupons as $coupon)
+                                @if($order->coupon_id == $coupon->id)
+                                <p class="text-left">Kode Kupon: {{$coupon->coupon_code}}</p>
+                                @break
+                                @endif
+                                @endforeach
+                                @else
+                                <h6 class="text-left">Kupon</h6>
+                                <p class="text-left">Tidak ada Kupon</p>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    {{--Pop Up Model for Order Detail--}}
                     @endforeach
                 </tbody>
             </table>

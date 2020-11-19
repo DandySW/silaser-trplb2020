@@ -35,7 +35,7 @@ class CheckOutController extends Controller
         if ($check_users != NULL) {
             DB::table('users')->where('id', Auth::id())->update([
                 'address' => $input_data['billing_address'],
-                'kelurahan/desa' => $input_data['billing_kelurahan'],
+                'kelurahan' => $input_data['billing_kelurahan'],
                 'kecamatan' => $input_data['billing_kecamatan'],
                 'postcode' => $input_data['billing_postcode'],
                 'mobile' => $input_data['billing_mobile']
@@ -43,7 +43,7 @@ class CheckOutController extends Controller
         } else {
             DB::table('users')->insert([
                 'address' => $input_data['billing_address'],
-                'kelurahan/desa' => $input_data['billing_kelurahan'],
+                'kelurahan' => $input_data['billing_kelurahan'],
                 'kecamatan' => $input_data['billing_kecamatan'],
                 'postcode' => $input_data['billing_postcode'],
                 'mobile' => $input_data['billing_mobile']
