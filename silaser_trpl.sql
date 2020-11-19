@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2020 at 01:39 PM
+-- Generation Time: Nov 19, 2020 at 05:23 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -53,7 +53,7 @@ INSERT INTO `cart` (`id`, `users_id`, `products_id`, `quantity`, `session_id`, `
 
 CREATE TABLE `categories` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -72,7 +72,8 @@ INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (16, 'Link House', '2018-10-22 21:56:56', '2018-11-16 02:07:05'),
 (17, 'Man Shoes', '2018-10-22 21:58:13', '2018-11-16 01:53:44'),
 (25, 'nasi ayam', '2020-11-09 07:06:20', '2020-11-09 07:06:41'),
-(26, 'jamur tiram', '2020-11-09 07:38:44', '2020-11-09 07:38:56');
+(26, 'jamur tiram', '2020-11-09 07:38:44', '2020-11-09 07:38:56'),
+(27, 'bebek a', '2020-11-18 19:51:34', '2020-11-18 20:31:20');
 
 -- --------------------------------------------------------
 
@@ -96,7 +97,8 @@ CREATE TABLE `coupons` (
 --
 
 INSERT INTO `coupons` (`id`, `coupon_code`, `amount`, `amount_type`, `expiry_date`, `status`, `created_at`, `updated_at`) VALUES
-(6, 'Coupon001', 10, 'Persentase', '2021-12-06', 1, '2018-12-05 20:19:15', '2018-12-05 20:19:15');
+(6, 'Coupon001', 10, 'Persentase', '2021-12-06', 1, '2018-12-05 20:19:15', '2018-12-05 20:19:15'),
+(7, '50persen', 50, 'Persentase', '2020-12-31', 1, '2020-11-18 21:06:41', '2020-11-18 21:06:41');
 
 -- --------------------------------------------------------
 
@@ -164,8 +166,8 @@ CREATE TABLE `orders` (
   `users_id` int(11) NOT NULL,
   `expedition` int(11) NOT NULL,
   `shipping_charge` int(11) NOT NULL,
-  `coupon_id` int(11) DEFAULT NULL,
-  `coupon_amount` int(11) DEFAULT NULL,
+  `coupon_id` int(11) DEFAULT 0,
+  `coupon_amount` int(11) DEFAULT 0,
   `grand_total` int(11) NOT NULL,
   `order_date` date NOT NULL,
   `checkout_status` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'belum dibayar',
@@ -175,6 +177,11 @@ CREATE TABLE `orders` (
   `shipping_date` date DEFAULT NULL,
   `receipt_status` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT 'belum diterima',
   `receipt_date` date DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kelurahan` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kecamatan` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `postcode` char(5) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mobile` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -183,24 +190,19 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `users_id`, `expedition`, `shipping_charge`, `coupon_id`, `coupon_amount`, `grand_total`, `order_date`, `checkout_status`, `struk`, `resi`, `shipping_status`, `shipping_date`, `receipt_status`, `receipt_date`, `created_at`, `updated_at`) VALUES
-(7, 1, 0, 0, 0, 0, 0, '0000-00-00', 'belum dibayar', '', NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '2018-12-06 18:20:18', '2018-12-06 18:20:18'),
-(6, 4, 0, 0, 0, 0, 0, '0000-00-00', 'belum dibayar', '', NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '2018-12-06 01:45:09', '2018-12-06 01:45:09'),
-(8, 4, 0, 0, NULL, 0, 12, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '2020-11-17 12:24:02', '2020-11-17 12:24:02'),
-(9, 4, 0, 0, NULL, 0, 12, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '2020-11-17 12:24:53', '2020-11-17 12:24:53'),
-(10, 4, 0, 0, NULL, 0, 12, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '2020-11-17 12:27:24', '2020-11-17 12:27:24'),
-(11, 4, 0, 0, NULL, 0, 12, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '2020-11-17 12:27:39', '2020-11-17 12:27:39'),
-(12, 4, 0, 0, NULL, 0, 12, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '2020-11-17 12:27:50', '2020-11-17 12:27:50'),
-(13, 4, 0, 0, NULL, 0, 12, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '2020-11-17 12:30:13', '2020-11-17 12:30:13'),
-(14, 4, 0, 0, NULL, 0, 12, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '2020-11-17 12:43:05', '2020-11-17 12:43:05'),
-(15, 4, 0, 0, NULL, 0, 12, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '2020-11-17 12:46:28', '2020-11-17 12:46:28'),
-(16, 4, 0, 0, NULL, 0, 17, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '2020-11-17 12:56:22', '2020-11-17 12:56:22'),
-(17, 4, 0, 0, NULL, 0, 12, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '2020-11-17 13:00:18', '2020-11-17 13:00:18'),
-(18, 4, 0, 0, NULL, 0, 29, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '2020-11-17 13:02:49', '2020-11-17 13:02:49'),
-(19, 4, 0, 0, NULL, 0, 29, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '2020-11-17 13:03:24', '2020-11-17 13:03:24'),
-(20, 1, 1, 0, 6, 1, 15, '2020-11-18', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '2020-11-18 11:39:35', '2020-11-18 11:39:35'),
-(21, 1, 1, 10, NULL, NULL, 30, '2020-11-18', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '2020-11-18 11:49:23', '2020-11-18 11:49:23'),
-(22, 1, 1, 10, NULL, NULL, 30, '2020-11-18', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '2020-11-18 11:59:08', '2020-11-18 11:59:08');
+INSERT INTO `orders` (`id`, `users_id`, `expedition`, `shipping_charge`, `coupon_id`, `coupon_amount`, `grand_total`, `order_date`, `checkout_status`, `struk`, `resi`, `shipping_status`, `shipping_date`, `receipt_status`, `receipt_date`, `address`, `kelurahan`, `kecamatan`, `postcode`, `mobile`, `created_at`, `updated_at`) VALUES
+(23, 1, 2, 7, 0, NULL, 42, '2020-11-19', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-19 09:36:33', '2020-11-19 09:36:33'),
+(15, 4, 2, 0, 0, 0, 12, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-17 12:46:28', '2020-11-17 12:46:28'),
+(16, 4, 1, 0, 0, 0, 17, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-17 12:56:22', '2020-11-17 12:56:22'),
+(17, 4, 3, 0, 0, 0, 12, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-17 13:00:18', '2020-11-17 13:00:18'),
+(18, 4, 2, 0, 0, 0, 29, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-17 13:02:49', '2020-11-17 13:02:49'),
+(19, 4, 2, 0, 7, 0, 29, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-17 13:03:24', '2020-11-17 13:03:24'),
+(20, 1, 3, 0, 6, 1, 15, '2020-11-18', 'belum dibayar', 'Screenshot (92).png', NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-18 11:39:35', '2020-11-18 11:39:35'),
+(21, 1, 1, 10, 0, NULL, 30, '2020-11-18', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-18 11:49:23', '2020-11-18 11:49:23'),
+(22, 1, 1, 10, 0, NULL, 30, '2020-11-18', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-18 11:59:08', '2020-11-18 11:59:08'),
+(24, 1, 2, 7, 0, NULL, 43, '2020-11-19', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', '2020-11-19 09:58:12', '2020-11-19 09:58:12'),
+(25, 1, 2, 7, 6, NULL, 43, '2020-11-19', 'sudah dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', '2020-11-19 09:58:12', '2020-11-19 15:24:33'),
+(26, 1, 2, 7, 0, NULL, 43, '2020-11-19', 'sudah dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', '2020-11-19 09:59:43', '2020-11-19 15:24:24');
 
 -- --------------------------------------------------------
 
@@ -231,7 +233,8 @@ INSERT INTO `order_details` (`id`, `orders_id`, `products_id`, `quantity`, `crea
 (7, 19, 31, 1, '2020-11-17 13:03:24', '2020-11-17 13:03:24'),
 (8, 20, 33, 1, '2020-11-18 11:39:35', '2020-11-18 11:39:35'),
 (9, 21, 31, 2, '2020-11-18 11:49:23', '2020-11-18 11:49:23'),
-(10, 22, 31, 2, '2020-11-18 11:59:08', '2020-11-18 11:59:08');
+(10, 22, 31, 2, '2020-11-18 11:59:08', '2020-11-18 11:59:08'),
+(11, 26, 32, 1, '2020-11-19 09:59:43', '2020-11-19 09:59:43');
 
 -- --------------------------------------------------------
 
@@ -269,11 +272,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `categories_id`, `p_name`, `description`, `stock`, `price`, `weight`, `image`, `created_at`, `updated_at`) VALUES
-(39, 14, 'wdwdwd', 's', 0, 3000, 50, '1604937712-wdwdwd.png', '2020-11-09 09:01:52', '2020-11-09 09:02:07'),
+(39, 14, 'wdwdwd', 'ddddddddddsasd', 0, 3000, 50, '1604937712-wdwdwd.png', '2020-11-09 09:01:52', '2020-11-18 20:13:52'),
 (31, 10, 'House', 'House For Sale', 10, 10, 50, '1544064430-house.jpg', '2018-12-05 19:47:10', '2020-11-18 11:59:08'),
-(32, 11, 'Vionic Shoes Brand', 'Women Shoes', 12, 12, 50, '1544064607-vionic-shoes-brand.jpg', '2018-12-05 19:50:07', '2018-12-05 19:50:07'),
+(32, 11, 'Vionic Shoes Brand', 'Women Shoes', 11, 12, 50, '1544064607-vionic-shoes-brand.jpg', '2018-12-05 19:50:07', '2020-11-19 09:59:43'),
 (33, 17, 'Cole Haan', 'Men\'s Original Grand Wingtip Oxfords', 12, 5, 50, '1544064903-cole-haan.jpg', '2018-12-05 19:55:03', '2018-12-05 19:55:03'),
-(34, 13, 'Lenovo ThinkPad', 'Lenovo Thinkpad From China', 12, 2, 50, '1544065331-lenovo-thinkpad.jpg', '2018-12-05 20:02:12', '2018-12-05 20:02:12');
+(34, 13, 'Lenovo ThinkPad', 'Lenovo Thinkpad From China', 12, 2, 50, '1544065331-lenovo-thinkpad.jpg', '2018-12-05 20:02:12', '2018-12-05 20:02:12'),
+(41, 27, 'bebek', 'adsdaaddaasadddas', 11, 1111111, 11, '1605732280-bebek.png', '2020-11-18 20:44:41', '2020-11-18 20:44:41');
 
 -- --------------------------------------------------------
 
@@ -334,7 +338,7 @@ CREATE TABLE `users` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `kelurahan/desa` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kelurahan` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kecamatan` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `postcode` char(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `mobile` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -348,8 +352,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `address`, `kelurahan/desa`, `kecamatan`, `postcode`, `mobile`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'WeShare', 'demo@gmail.com', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', 'Perumahan Gunung Batu B28', '', '', '22222', '082234795673', 1, 'g9FDncw1mlsF26gHBONowNLpFz21BP83QusDfF4aM4TKhrGZSW6H44Z1deqW', '2018-10-15 02:32:54', '2018-12-05 01:39:52'),
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `address`, `kelurahan`, `kecamatan`, `postcode`, `mobile`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'WeShare', 'demo@gmail.com', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', 1, 'Y3PF1WJQcXi6ogVaO85bqoqxoGEU3tD3KJQNXyGhnWF7iryk9TJPVLjHq4SD', '2018-10-15 02:32:54', '2018-12-05 01:39:52'),
 (4, 'Dandy Satrio Wibowo', 'dandy@a.com', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', 'Perumahan Gunung Batu B28', '', '', '22222', '1234567890123', 1, 'bbfpMp0yb2YrKlTAkeTdFQzyuxSLTHps02ZTt9pmd9KQRMGS4wuZHk1cpvPg', '2018-12-06 01:40:27', '2018-12-06 01:40:27'),
 (5, 'tes', 'tes@a.in', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', '', '', '', '', '', NULL, 'IxQbHz5QyGjCvhN6a8aOhTAhPW93u8xcjtDWlkWmxkkqHxwZo0jcF7SFfuk6', NULL, NULL),
 (6, 'riki tiki', 'rikitiki@da.com', '$2y$10$WbWM5R5Zmw0J939pmnHGTefqMV9pkK07lNULgzZsiSYOqQ4KyOGoC', 'Perumahan Gunung Batu B28', '', '', '22222', '082234795673', NULL, '4cJpiWcMYG1B2SRg0zuEimG4KkAnHs6B6SELC6CKUYpuboMyDSIHJI3TBVTp', '2020-11-17 14:16:25', '2020-11-17 14:16:25');
@@ -446,19 +450,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `expeditions`
@@ -476,19 +480,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `tblgallery`
