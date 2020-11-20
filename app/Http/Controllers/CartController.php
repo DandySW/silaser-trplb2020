@@ -23,7 +23,7 @@ class CartController extends Controller
             Session::forget('expedition_total');
             $expedition = 0;
         } else {
-            $expedition = 10;
+            $expedition = 10000;
         }
 
         $total_price = 0;

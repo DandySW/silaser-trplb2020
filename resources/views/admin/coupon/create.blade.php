@@ -18,7 +18,7 @@
                 <div class="control-group">
                     <label for="coupon_code" class="control-label">Kode Kupon</label>
                     <div class="controls{{$errors->has('coupon_code')?' has-error':''}}">
-                        <input type="text" name="coupon_code" id="coupon_code" class="form-control" value="{{old('coupon_code')}}" title="" required="required" minlength="5" maxlength="15" style="width: 400px;">
+                        <input type="text" name="coupon_code" id="coupon_code" class="form-control" value="{{old('coupon_code')}}" title="" required="required" style="width: 400px;">
                         <span class="text-danger">{{$errors->first('coupon_code')}}</span>
                     </div>
                 </div>

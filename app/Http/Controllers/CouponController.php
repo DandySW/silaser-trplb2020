@@ -123,7 +123,7 @@ class CouponController extends Controller
         if ($check_coupon == 0) {
             return back()->with('message_coupon', 'Kupon tidak ditemukan');
         } else if ($check_coupon == 1) {
-            $check_status = Coupon_model::where('status', 1)->first();
+            $check_status = Coupon_model::where('coupon_code', $coupon_code)->where('status', 1)->first();
             if ($check_status->status == 0) {
                 return back()->with('message_coupon', 'Kupon sedang tidak aktif');
             } else {

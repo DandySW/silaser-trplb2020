@@ -20,13 +20,12 @@
                         <th>ID</th>
                         <th>Pelanggan</th>
                         <th>Tanggal Pemesanan</th>
-                        <th>Struk</th>
+                        <th>Bukti Pembayaran</th>
                         <th>No. Resi</th>
                         <th>Status Pengiriman</th>
                         <th>Tanggal Pengiriman</th>
                         <th>Status Penerimaan</th>
-                        <th>Tanggal Penerimaan</th>
-                        <th>Aksi</th>
+                        <th>Pengiriman</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,19 +38,20 @@
                         <td style="vertical-align: middle;">{{$order->name}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$order->order_date}}</td>
                         <td style="text-align: center; vertical-align: middle;">
-                            <a href="#myModal{{$order->id}}" data-toggle="modal" class="btn btn-info btn-mini">View</a>
+                            <a href="#modalStruk{{$order->id}}" data-toggle="modal" class="btn btn-info btn-mini">View</a>
                         </td>
-                        <td style="vertical-align: middle;text-align: center;">{{$order->resi}}</td>
+                        <td style="text-align: center; vertical-align: middle;">
+                            <a href="#modalResi{{$order->id}}" data-toggle="modal" class="btn btn-info btn-mini">View</a>
+                        </td>
                         <td style="vertical-align: middle;text-align: center;">{{$order->shipping_status}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$order->shipping_date}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$order->receipt_status}}</td>
-                        <td style="vertical-align: middle;text-align: center;">{{$order->receipt_date}}</td>
                         <td style="text-align: center; vertical-align: middle;">
-                            <a href="{{url('admin/orders/pembayaran',$order->id)}}" class="btn btn-warning btn-mini">Konfirmasi</a>
+                            <a href="{{url('admin/orders/create-pengiriman/'.$order->id)}}" class="btn btn-warning btn-mini">Sudah Dikirim</a>
                         </td>
                     </tr>
                     {{--Pop Up Model for View Struk--}}
-                    <div id="myModal{{$order->id}}" class="modal hide">
+                    <div id="modalStruk{{$order->id}}" class="modal hide">
                         <div class="modal-header">
                             <button data-dismiss="modal" class="close" type="button">×</button>
                         </div>
@@ -60,6 +60,56 @@
                         </div>
                     </div>
                     {{--Pop Up Model for View Struk--}}
+
+                    {{--Pop Up Model for View Resi--}}
+                    <div id="modalResi{{$order->id}}" class="modal hide">
+                        <div class="modal-header">
+                            <button data-dismiss="modal" class="close" type="button">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="text-center">
+                                <p><b>No Resi: </b>{{$order->resi}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {{--Pop Up Model for View Resi--}}
+
+                    <!-- {{--Pop Up Model for View Pengiriman--}}
+                    <div id="modalPengiriman{{$order->id}}" class="modal hide">
+                        <div class="modal-header">
+                            <button data-dismiss="modal" class="close" type="button">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="text-center">
+                                <h5>Order Details: Order #{{$order->id}}</h5>
+                                ===================================================================
+                                <form action="{{route('pengiriman',$order->id)}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="shipping_status" value="sudah dikirim">
+                                    <div class="control-group">
+                                        <label for="expiry_date" class="control-label">Tanggal Kadaluarsa</label>
+                                        <div class="controls{{$errors->has('expiry_date')?' has-error':''}}">
+                                            <div class="input-prepend">
+                                                <div data-date="12-02-2012" class="input-append date datepicker">
+                                                    <input type="text" name="expiry_date" id="expiry_date" value="{{old('expiry_date')}}" data-date-format="yyyy-mm-dd" class="span11" style="width: 375px;" placeholder="yyyy-mm-dd">
+                                                    <span class="add-on"><i class="icon-th"></i></span>
+                                                </div>
+                                            </div>
+                                            <span class="text-danger">{{$errors->first('expiry_date')}}</span>
+                                        </div>
+                                    </div>
+
+
+                                    <label class="control-label">No Resi:
+                                        <input type="text" name="resi" placeholder="No Resi" required>
+                                        <span class="text-danger" style="color: red;">{{$errors->first('resi')}}</span>
+                                    </label>
+                                    <button type="submit" class="btn btn-warning">Konfirmasi Pengiriman</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {{--Pop Up Model for View Pengiriman--}} -->
 
                     {{--Pop Up Model for Order Detail--}}
                     <div id="modalDetail{{$order->id}}" class="modal hide">
@@ -123,6 +173,7 @@
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/jquery.ui.custom.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/bootstrap-datepicker.js')}}"></script>
 <script src="{{asset('js/jquery.uniform.js')}}"></script>
 <script src="{{asset('js/select2.min.js')}}"></script>
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
@@ -130,26 +181,4 @@
 <script src="{{asset('js/matrix.tables.js')}}"></script>
 <script src="{{asset('js/matrix.popover.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<!-- <script>
-    $(".deleteRecord").click(function() {
-        var id = $(this).attr('rel');
-        var deleteFunction = $(this).attr('rel1');
-        swal({
-            title: 'Apakah kamu yakin akan menghapus produk?',
-            text: "Tindakan tidak dapat dikembalikan",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#da4f49',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Oke',
-            cancelButtonText: 'Batal',
-            confirmButtonClass: 'btn btn-success',
-            cancelButtonClass: 'btn btn-danger',
-            buttonsStyling: false,
-            reverseButtons: true
-        }, function() {
-            window.location.href = "/admin/" + deleteFunction + "/" + id;
-        });
-    });
-</script> -->
 @endsection

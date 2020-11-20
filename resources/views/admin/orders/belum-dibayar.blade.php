@@ -27,7 +27,7 @@
                         <th>Tanggal Pemesanan</th>
                         <th>Status Pembayaran</th>
                         <th>Bukti Pembayaran</th>
-                        <th>Konfirmasi Pembayaran</th>
+                        <th>Pembayaran</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,14 +46,14 @@
                         <td style="vertical-align: middle;text-align: center;">{{$order->order_date}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$order->checkout_status}}</td>
                         <td style="text-align: center; vertical-align: middle;">
-                            <a href="#myModal{{$order->id}}" data-toggle="modal" class="btn btn-info btn-mini">View</a>
+                            <a href="#modalStruk{{$order->id}}" data-toggle="modal" class="btn btn-info btn-mini">View</a>
                         </td>
                         <td style="text-align: center; vertical-align: middle;">
-                            <a href="{{url('admin/orders/pembayaran',$order->id)}}" class="btn btn-warning btn-mini">Konfirmasi</a>
+                            <a href="{{route('pembayaran',$order->id)}}" class="btn btn-warning btn-mini">Sudah Dibayar</a>
                         </td>
                     </tr>
                     {{--Pop Up Model for View Struk--}}
-                    <div id="myModal{{$order->id}}" class="modal hide">
+                    <div id="modalStruk{{$order->id}}" class="modal hide">
                         <div class="modal-header">
                             <button data-dismiss="modal" class="close" type="button">×</button>
                         </div>
@@ -132,26 +132,4 @@
 <script src="{{asset('js/matrix.tables.js')}}"></script>
 <script src="{{asset('js/matrix.popover.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<!-- <script>
-    $(".deleteRecord").click(function() {
-        var id = $(this).attr('rel');
-        var deleteFunction = $(this).attr('rel1');
-        swal({
-            title: 'Apakah kamu yakin akan menghapus produk?',
-            text: "Tindakan tidak dapat dikembalikan",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#da4f49',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Oke',
-            cancelButtonText: 'Batal',
-            confirmButtonClass: 'btn btn-success',
-            cancelButtonClass: 'btn btn-danger',
-            buttonsStyling: false,
-            reverseButtons: true
-        }, function() {
-            window.location.href = "/admin/" + deleteFunction + "/" + id;
-        });
-    });
-</script> -->
 @endsection

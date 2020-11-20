@@ -25,7 +25,7 @@
             @endif
             <input type="hidden" name="order_date" value="{{date('Y-m-d')}}" data-date-format="yyyy-mm-dd">
             @if(Session::has('discount_amount_price'))
-            <input type=" hidden" name="coupon_id" value="{{$coupon_id}}">
+            <input type="hidden" name="coupon_id" value="{{$coupon_id}}">
             <input type="hidden" name="coupon_amount" value="{{Session::get('discount_amount_price')}}">
             <input type="hidden" name="grand_total" value="{{$total_price+Session::get('expedition_total')-Session::get('discount_amount_price')+$order_id}}">
             @else
@@ -93,7 +93,7 @@
                                         <p>{{$cart_data->quantity}}</p>
                                     </td>
                                     <td class="cart_total">
-                                        <p class="cart_total_price">$ {{$cart_data->price*$cart_data->quantity}}</p>
+                                        <p class="cart_total_price">Rp {{$cart_data->price*$cart_data->quantity}}</p>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -116,7 +116,7 @@
                                                 <td>- Rp {{Session::get('discount_amount_price')}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Kode Unik</td>
+                                                <td>Kode Unik Pembayaran</td>
                                                 <td>Rp {{$order_id}}</td>
                                             </tr>
                                             <tr>
@@ -136,7 +136,7 @@
                                             @else
                                             <tr>
                                                 <td>Ongkir</td>
-                                                <td>Rp 10</td>
+                                                <td>Rp 10000</td>
                                             </tr>
                                             @if(Session::has('discount_amount_price'))
                                             <tr class="shipping-cost">

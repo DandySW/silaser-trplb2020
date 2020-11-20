@@ -84,7 +84,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('delete-coupon/{id}', 'CouponController@destroy');
 
     /// Orders
-    Route::get('/orders/belum-dibayar', 'OrderDetailsController@belumdibayar');
-    Route::get('/orders/sedang-proses', 'OrderDetailsController@sedangproses');
-    Route::get('/orders/pembayaran/{id}', 'OrderDetailsController@pembayaran');
+    Route::get('/orders/belum-dibayar', 'OrdersAdminController@belumdibayar');
+    Route::get('/orders/pembayaran/{id}', 'OrdersAdminController@pembayaran')->name('pembayaran');
+
+    Route::get('/orders/sedang-proses', 'OrdersAdminController@sedangproses');
+    Route::get('/orders/create-pengiriman/{id}', 'OrdersAdminController@createpengiriman');
+    Route::put('/orders/pengiriman/{id}', 'OrdersAdminController@pengiriman')->name('pengiriman');
+
+    Route::get('/orders/sudah-selesai', 'OrdersAdminController@sudahselesai');
 });

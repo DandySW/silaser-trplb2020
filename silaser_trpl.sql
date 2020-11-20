@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2020 at 05:23 PM
+-- Generation Time: Nov 20, 2020 at 05:15 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -170,12 +170,12 @@ CREATE TABLE `orders` (
   `coupon_amount` int(11) DEFAULT 0,
   `grand_total` int(11) NOT NULL,
   `order_date` date NOT NULL,
-  `checkout_status` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'belum dibayar',
+  `checkout_status` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'belum dibayar',
   `struk` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `resi` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `shipping_status` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT 'belum dikirim',
+  `resi` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_status` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT 'belum dikirim',
   `shipping_date` date DEFAULT NULL,
-  `receipt_status` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT 'belum diterima',
+  `receipt_status` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT 'belum diterima',
   `receipt_date` date DEFAULT NULL,
   `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `kelurahan` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -192,17 +192,17 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `users_id`, `expedition`, `shipping_charge`, `coupon_id`, `coupon_amount`, `grand_total`, `order_date`, `checkout_status`, `struk`, `resi`, `shipping_status`, `shipping_date`, `receipt_status`, `receipt_date`, `address`, `kelurahan`, `kecamatan`, `postcode`, `mobile`, `created_at`, `updated_at`) VALUES
 (23, 1, 2, 7, 0, NULL, 42, '2020-11-19', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-19 09:36:33', '2020-11-19 09:36:33'),
-(15, 4, 2, 0, 0, 0, 12, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-17 12:46:28', '2020-11-17 12:46:28'),
+(15, 4, 2, 0, 0, 0, 12, '2020-11-17', 'sudah dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-17 12:46:28', '2020-11-20 11:36:33'),
 (16, 4, 1, 0, 0, 0, 17, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-17 12:56:22', '2020-11-17 12:56:22'),
 (17, 4, 3, 0, 0, 0, 12, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-17 13:00:18', '2020-11-17 13:00:18'),
 (18, 4, 2, 0, 0, 0, 29, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-17 13:02:49', '2020-11-17 13:02:49'),
 (19, 4, 2, 0, 7, 0, 29, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-17 13:03:24', '2020-11-17 13:03:24'),
-(20, 1, 3, 0, 6, 1, 15, '2020-11-18', 'belum dibayar', 'Screenshot (92).png', NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-18 11:39:35', '2020-11-18 11:39:35'),
+(20, 1, 3, 0, 6, 1, 15, '2020-11-18', 'sudah dibayar', 'Screenshot (92).png', '1234567890', 'sudah dikirim', '2020-11-19', 'belum diterima', NULL, '', '', '', '', '', '2020-11-18 11:39:35', '2020-11-20 11:35:00'),
 (21, 1, 1, 10, 0, NULL, 30, '2020-11-18', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-18 11:49:23', '2020-11-18 11:49:23'),
 (22, 1, 1, 10, 0, NULL, 30, '2020-11-18', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-18 11:59:08', '2020-11-18 11:59:08'),
-(24, 1, 2, 7, 0, NULL, 43, '2020-11-19', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', '2020-11-19 09:58:12', '2020-11-19 09:58:12'),
+(24, 1, 2, 7, 0, NULL, 43, '2020-11-19', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'sudah diterima', NULL, 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', '2020-11-19 09:58:12', '2020-11-19 09:58:12'),
 (25, 1, 2, 7, 6, NULL, 43, '2020-11-19', 'sudah dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', '2020-11-19 09:58:12', '2020-11-19 15:24:33'),
-(26, 1, 2, 7, 0, NULL, 43, '2020-11-19', 'sudah dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', '2020-11-19 09:59:43', '2020-11-19 15:24:24');
+(26, 1, 2, 7, 0, NULL, 43, '2020-11-19', 'sudah dibayar', NULL, '0987654321', 'sudah dikirim', '2020-11-20', 'belum diterima', NULL, 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', '2020-11-19 09:59:43', '2020-11-20 11:37:13');
 
 -- --------------------------------------------------------
 
