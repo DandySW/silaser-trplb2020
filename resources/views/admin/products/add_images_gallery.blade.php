@@ -20,7 +20,7 @@
                             <div class="user-thumb"> <img width="40" height="40" alt="User" src="{{url('products/small',$product->image)}}"> </div>
                             <div class="article-post">
                                 <span class="user-info">Stok: <b>{{$product->stock}}</b></span>
-                                <p>Harga: <b>Rp {{$product->price}}</b></p>
+                                <p>Harga: <b>Rp {{@rupiah($product->price)}}</b></p>
                             </div>
                         </li>
                         <li>

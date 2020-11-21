@@ -39,10 +39,10 @@
                         </td>
                         <td style="vertical-align: middle;">{{$order->name}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$order->expedition}}</td>
-                        <td style="vertical-align: middle;">Rp {{$order->shipping_charge}}</td>
+                        <td style="vertical-align: middle;">Rp {{@rupiah($order->shipping_charge)}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$order->coupon_id}}</td>
-                        <td style="vertical-align: middle;text-align: center;">Rp {{$order->coupon_amount}}</td>
-                        <td style="vertical-align: middle;text-align: center;">Rp {{$order->grand_total}}</td>
+                        <td style="vertical-align: middle;text-align: center;">Rp {{@rupiah($order->coupon_amount)}}</td>
+                        <td style="vertical-align: middle;text-align: center;">Rp {{@rupiah($order->grand_total)}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$order->order_date}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$order->checkout_status}}</td>
                         <td style="text-align: center; vertical-align: middle;">

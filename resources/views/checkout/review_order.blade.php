@@ -87,13 +87,13 @@
                                         <?= '<p>' . (substr($cart_data->description, 0, 30)) . '...' . '</p>' ?>
                                     </td>
                                     <td class="cart_price">
-                                        <p>Rp {{$cart_data->price}}</p>
+                                        <p>Rp {{@rupiah($cart_data->price)}}</p>
                                     </td>
                                     <td class="cart_price">
                                         <p>{{$cart_data->quantity}}</p>
                                     </td>
                                     <td class="cart_total">
-                                        <p class="cart_total_price">Rp {{$cart_data->price*$cart_data->quantity}}</p>
+                                        <p class="cart_total_price">Rp {{@rupiah($cart_data->price*$cart_data->quantity)}}</p>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -103,62 +103,62 @@
                                         <table class="table table-condensed total-result">
                                             <tr>
                                                 <td>Cart Sub Total</td>
-                                                <td>Rp {{$total_price}}</td>
+                                                <td>Rp {{@rupiah($total_price)}}</td>
                                             </tr>
                                             @if(Session::has('expedition_total'))
                                             <tr>
                                                 <td>Ongkir</td>
-                                                <td>Rp {{Session::get('expedition_total')}}</td>
+                                                <td>Rp {{@rupiah(Session::get('expedition_total'))}}</td>
                                             </tr>
                                             @if(Session::has('discount_amount_price'))
                                             <tr class="shipping-cost">
                                                 <td>Coupon Discount</td>
-                                                <td>- Rp {{Session::get('discount_amount_price')}}</td>
+                                                <td>- Rp {{@rupiah(Session::get('discount_amount_price'))}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Kode Unik Pembayaran</td>
-                                                <td>Rp {{$order_id}}</td>
+                                                <td>Rp {{@rupiah($order_id)}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
-                                                <td><span>Rp {{$total_price+Session::get('expedition_total')-Session::get('discount_amount_price')+$order_id}}</span></td>
+                                                <td><span>Rp {{@rupiah($total_price+Session::get('expedition_total')-Session::get('discount_amount_price')+$order_id)}}</span></td>
                                             </tr>
                                             @else
                                             <tr>
                                                 <td>Kode Unik</td>
-                                                <td>Rp {{$order_id}}</td>
+                                                <td>Rp {{@rupiah($order_id)}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
-                                                <td><span>Rp {{$total_price+Session::get('expedition_total')+$order_id}}</span></td>
+                                                <td><span>Rp {{@rupiah($total_price+Session::get('expedition_total')+$order_id)}}</span></td>
                                             </tr>
                                             @endif
                                             @else
                                             <tr>
                                                 <td>Ongkir</td>
-                                                <td>Rp 10000</td>
+                                                <td>Rp 10.000</td>
                                             </tr>
                                             @if(Session::has('discount_amount_price'))
                                             <tr class="shipping-cost">
                                                 <td>Coupon Discount</td>
-                                                <td>- Rp {{Session::get('discount_amount_price')}}</td>
+                                                <td>- Rp {{@rupiah(Session::get('discount_amount_price'))}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Kode Unik</td>
-                                                <td>Rp {{$order_id}}</td>
+                                                <td>Rp {{@rupiah($order_id)}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
-                                                <td><span>Rp {{$total_price+10-Session::get('discount_amount_price')+$order_id}}</span></td>
+                                                <td><span>Rp {{@rupiah($total_price+10-Session::get('discount_amount_price')+$order_id)}}</span></td>
                                             </tr>
                                             @else
                                             <tr>
                                                 <td>Kode Unik</td>
-                                                <td>Rp {{$order_id}}</td>
+                                                <td>Rp {{@rupiah($order_id)}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
-                                                <td><span>Rp {{$total_price+10+$order_id}}</span></td>
+                                                <td><span>Rp {{@rupiah($total_price+10+$order_id)}}</span></td>
                                             </tr>
                                             @endif
                                             @endif

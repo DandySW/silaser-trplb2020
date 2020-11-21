@@ -33,7 +33,7 @@
                             <?= '<p>' . (substr($cart_data->description, 0, 30)) . '...' . '</p>' ?>
                         </td>
                         <td class="cart_price">
-                            <p>Rp {{$cart_data->price}}</p>
+                            <p>Rp {{@rupiah($cart_data->price)}}</p>
                         </td>
                         <td class="cart_quantity">
                             <div class="cart_quantity_button">
@@ -53,7 +53,7 @@
                             </div>
                         </td>
                         <td class="cart_total">
-                            <p class="cart_total_price">Rp {{$cart_data->price*$cart_data->quantity}}</p>
+                            <p class="cart_total_price">Rp {{@rupiah($cart_data->price*$cart_data->quantity)}}</p>
                         </td>
                         <td class="cart_delete">
                             <a class="cart_quantity_delete" href="{{url('/cart/deleteItem',$cart_data->id)}}"><i class="fa fa-times"></i></a>
@@ -78,7 +78,7 @@
             <select id="expedition" name="expedition">
                 <option selected>Pilih Jasa Pengiriman</option>
                 @foreach($expedition_datas as $data)
-                <option value="{{$data->id}}">{{$data->expedition_name}} ({{$data->type.'-'.$data->estimation}}): Rp {{$data->base_charge}}</option>
+                <option value="{{$data->id}}">{{$data->expedition_name}} ({{$data->type.'-'.$data->estimation}}): Rp {{@rupiah($data->base_charge)}}</option>
                 @endforeach
             </select>
             <button type="submit" class="btn btn-primary">Apply</button>
@@ -124,25 +124,25 @@
                     <ul>
                         @if(Session::has('expedition_total'))
                         @if(Session::has('discount_amount_price'))
-                        <li>Sub Total <span>Rp {{$total_price}}</span></li>
-                        <li>Ongkir <span>Rp {{Session::get('expedition_total')}}</span></li>
-                        <li>Coupon Discount (Code : {{Session::get('coupon_code')}}) <span>- Rp {{Session::get('discount_amount_price')}}</span></li>
+                        <li>Sub Total <span>Rp {{@rupiah($total_price)}}</span></li>
+                        <li>Ongkir <span>Rp {{@rupiah(Session::get('expedition_total'))}}</span></li>
+                        <li>Coupon Discount (Code : {{Session::get('coupon_code')}}) <span>- Rp {{@rupiah(Session::get('discount_amount_price'))}}</span></li>
                         <li>Total Seluruhnya <span>$ {{$total_price+Session::get('expedition_total')-Session::get('discount_amount_price')}}</span></li>
                         @else
-                        <li>Sub Total <span>Rp {{$total_price}}</span></li>
-                        <li>Ongkir <span>Rp {{Session::get('expedition_total')}}</span></li>
-                        <li>Total Seluruhnya<span>Rp {{$total_price+Session::get('expedition_total')}}</span></li>
+                        <li>Sub Total <span>Rp {{@rupiah($total_price)}}</span></li>
+                        <li>Ongkir <span>Rp {{@rupiah(Session::get('expedition_total'))}}</span></li>
+                        <li>Total Seluruhnya<span>Rp {{@rupiah($total_price+Session::get('expedition_total'))}}</span></li>
                         @endif
                         @else
                         @if(Session::has('discount_amount_price'))
-                        <li>Sub Total <span>Rp {{$total_price}}</span></li>
-                        <li>Ongkir <span>Rp {{$expedition}}</span></li>
-                        <li>Coupon Discount (Code : {{Session::get('coupon_code')}}) <span>- Rp {{Session::get('discount_amount_price')}}</span></li>
-                        <li>Total Seluruhnya<span>Rp {{$total_price+$expedition-Session::get('discount_amount_price')}}</span></li>
+                        <li>Sub Total <span>Rp {{@rupiah($total_price)}}</span></li>
+                        <li>Ongkir <span>Rp {{@rupiah($expedition)}}</span></li>
+                        <li>Coupon Discount (Code : {{Session::get('coupon_code')}}) <span>- Rp {{@rupiah(Session::get('discount_amount_price'))}}</span></li>
+                        <li>Total Seluruhnya<span>Rp {{@rupiah($total_price+$expedition-Session::get('discount_amount_price'))}}</span></li>
                         @else
-                        <li>Sub Total <span>Rp {{$total_price}}</span></li>
-                        <li>Ongkir <span>Rp {{$expedition}}</span></li>
-                        <li>Total Seluruhnya<span>Rp {{$total_price+$expedition}}</span></li>
+                        <li>Sub Total <span>Rp {{@rupiah($total_price)}}</span></li>
+                        <li>Ongkir <span>Rp {{@rupiah($expedition)}}</span></li>
+                        <li>Total Seluruhnya<span>Rp {{@rupiah($total_price+$expedition)}}</span></li>
                         @endif
                         @endif
                     </ul>

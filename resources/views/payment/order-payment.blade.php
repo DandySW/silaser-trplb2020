@@ -16,7 +16,7 @@
             <b> {{$detail->p_name}} ({{$detail->quantity}}) </b>;
             @endif
             @endforeach</li>
-        <li class="list-group-item">Total: <b>Rp {{$user_order->grand_total}}</b></li>
+        <li class="list-group-item">Total: <b>Rp {{@rupiah($user_order->grand_total)}}</b></li>
     </ul>
 </div>
 @endsection

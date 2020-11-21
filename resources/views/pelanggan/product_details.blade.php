@@ -47,7 +47,7 @@
                             <img src="{{asset('pelanggan/images/product-details/new.jpg')}}" class="newarrival" alt="product_image" />
                             <h2>{{$detail_product->p_name}}</h2>
                             <span>
-                                <span id="dynamic_price">Rp {{$detail_product->price}}</span>
+                                <span id="dynamic_price">Rp {{@rupiah($detail_product->price)}}</span>
                                 @if($detail_product->stock>0)
                                 <label>Jumlah:</label>
                                 <input type="text" name="quantity" value="1" id="inputStock" />
