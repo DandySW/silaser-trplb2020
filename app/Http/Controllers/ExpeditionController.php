@@ -10,82 +10,6 @@ use Illuminate\Support\Facades\Session;
 
 class ExpeditionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
     public function applyexpedition(Request $request)
     {
         $this->validate($request, [
@@ -99,7 +23,9 @@ class ExpeditionController extends Controller
         $auth_id = Auth::id();
 
         $expedition = $input_data['expedition'];
-        $expedition_charge = DB::select("SELECT base_charge FROM `expeditions` WHERE id = $expedition");
+        $expedition_charge = Expedition_model::select('base_charge')->where('id', $expedition)->get();
+        // dd($expedition_charge);
+        // $expedition_charge = DB::select("SELECT base_charge FROM `expeditions` WHERE id = $expedition");
 
         $products = DB::select("SELECT sum(cart.quantity*products.weight) as quantityweight FROM `cart`,`products` WHERE cart.products_id = products.id and cart.users_id = $auth_id");
         foreach ($expedition_charge as $charge) {

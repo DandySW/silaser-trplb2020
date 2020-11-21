@@ -67,6 +67,7 @@
                                     <li><a href="#">Sudah Selesai</a></li>
                                 </ul>
                             </li>
+                            <li><a href="{{url('/payment')}}">Cara Pembayaran</a></li>
                             <li><a href="#" target="_blank">Jasa Konsultasi</a></li>
                         </ul>
                     </div>

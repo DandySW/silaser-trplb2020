@@ -19,7 +19,7 @@ class OrdersController extends Controller
     {
         $cart_data = Cart_model::where('users_id', Auth::id())->count();
         if ($cart_data == 0) {
-            return redirect(url('/viewcart'));
+            return redirect(url('/viewcart'))->with('message', 'Keranjang anda kosong.');
         } else {
             $last_orders = DB::select("SELECT id FROM orders ORDER BY id DESC LIMIT 1");
             foreach ($last_orders as $last_order) {
@@ -58,7 +58,6 @@ class OrdersController extends Controller
             $order_id = $last_order->id;
         }
 
-
         $cart_datas = DB::select("SELECT products_id, quantity FROM `cart` WHERE cart.users_id = $request->users_id");
 
         foreach ($cart_datas as $cart_data) {
@@ -69,21 +68,29 @@ class OrdersController extends Controller
             $order_details->quantity = $cart_data->quantity;
             $order_details->save();
 
-            $product = Products_model::find($cart_data->products_id);
+            $product = Products_model::findOrFail($cart_data->products_id);
             $product->stock = $product->stock - $cart_data->quantity;
             $product->save();
         }
         Cart_model::where('users_id', $request->users_id)->delete();
-        return redirect('/');
+        return redirect(url('/order-payment', $order_id));
     }
-    public function cod()
+    public function payment($id)
     {
-        $user_order = Orders_model::where('users_id', Auth::id())->first();
-        return view('payment.cod', compact('user_order'));
-    }
-    public function paypal(Request $request)
-    {
-        $who_buying = Orders_model::where('users_id', Auth::id())->first();
-        return view('payment.paypal', compact('who_buying'));
+        $user_order = Orders_model::findOrFail($id);
+        if ($user_order != NULL) {
+            if ($user_order->checkout_status == 'belum dibayar') {
+                $user = User::select('name')->where('id', Auth::id())->first();
+                // dd($user);
+                $order_detail = DB::select("SELECT order_details.orders_id, products.p_name, order_details.quantity
+                FROM `orders`, `order_details`, `products`
+                WHERE orders.id = order_details.orders_id and order_details.products_id = products.id");
+                return view('payment.order-payment', compact('user_order', 'order_detail', 'user'));
+            } else {
+                return redirect('orders/belum-dibayar');
+            }
+        } else {
+            return redirect('orders/belum-dibayar');
+        }
     }
 }

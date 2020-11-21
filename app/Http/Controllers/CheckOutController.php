@@ -14,7 +14,7 @@ class CheckOutController extends Controller
     {
         $cart_data = Cart_model::where('users_id', Auth::id())->count();
         if ($cart_data == 0) {
-            return redirect(url('/viewcart'));
+            return redirect(url('/viewcart'))->with('message', 'Keranjang anda kosong.');
         } else {
             $user_login = User::where('id', Auth::id())->first();
             return view('checkout.index', compact('user_login'));

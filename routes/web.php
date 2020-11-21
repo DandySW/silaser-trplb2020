@@ -15,13 +15,7 @@ Route::get('/', 'IndexController@index');
 Route::get('/list-products', 'IndexController@shop');
 Route::get('/cat/{id}', 'IndexController@listByCat')->name('cats');
 Route::get('/product-detail/{id}', 'IndexController@detailpro');
-
-////// get Attribute ////////////
-Route::get('/get-product-attr', 'IndexController@getAttrs');
-
-/// Coupon Area ///
-Route::post('/apply-coupon', 'CouponController@applycoupon');
-Route::post('/apply-expedition', 'ExpeditionController@applyexpedition');
+Route::get('/payment', 'IndexController@payment');
 
 /// Simple User Login /////
 Route::get('/login_page', 'UsersController@index');
@@ -38,14 +32,17 @@ Route::group(['middleware' => 'FrontLogin_middleware'], function () {
     Route::post('/submit-checkout', 'CheckOutController@submitcheckout');
     Route::get('/order-review', 'OrdersController@index');
     Route::post('/submit-order', 'OrdersController@order');
-    Route::get('/cod', 'OrdersController@cod');
-    Route::get('/paypal', 'OrdersController@paypal');
+    Route::get('/order-payment/{id}', 'OrdersController@payment');
 
     ///// Cart Area /////////
     Route::post('/addToCart', 'CartController@addToCart')->name('addToCart');
     Route::get('/viewcart', 'CartController@index');
     Route::get('/cart/deleteItem/{id}', 'CartController@deleteItem');
     Route::get('/cart/update-quantity/{id}/{quantity}', 'CartController@updateQuantity');
+
+    /// Coupon Area ///
+    Route::post('/apply-coupon', 'CouponController@applycoupon');
+    Route::post('/apply-expedition', 'ExpeditionController@applyexpedition');
 });
 
 
