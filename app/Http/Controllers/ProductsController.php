@@ -54,7 +54,7 @@ class ProductsController extends Controller
         if ($request->file('image')) {
             $image = $request->file('image');
             if ($image->isValid()) {
-                $fileName = time() . '-' . str_slug($formInput['p_name'], "-") . '.' . $image->getClientOriginalExtension();
+                $fileName = str_slug($formInput['p_name'], "-") . '.' . $image->getClientOriginalExtension();
                 $large_image_path = public_path('products/large/' . $fileName);
                 $medium_image_path = public_path('products/medium/' . $fileName);
                 $small_image_path = public_path('products/small/' . $fileName);
@@ -77,6 +77,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
+        //
     }
 
     /**
@@ -117,7 +118,7 @@ class ProductsController extends Controller
             if ($request->file('image')) {
                 $image = $request->file('image');
                 if ($image->isValid()) {
-                    $fileName = time() . '-' . str_slug($formInput['p_name'], "-") . '.' . $image->getClientOriginalExtension();
+                    $fileName = str_slug($formInput['p_name'], "-") . '.' . $image->getClientOriginalExtension();
                     $large_image_path = public_path('products/large/' . $fileName);
                     $medium_image_path = public_path('products/medium/' . $fileName);
                     $small_image_path = public_path('products/small/' . $fileName);

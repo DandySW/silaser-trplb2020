@@ -43,6 +43,10 @@ Route::group(['middleware' => 'FrontLogin_middleware'], function () {
     /// Coupon Area ///
     Route::post('/apply-coupon', 'CouponController@applycoupon');
     Route::post('/apply-expedition', 'ExpeditionController@applyexpedition');
+
+    /// Detail Order ///
+    Route::get('/orders/belum-dibayar', 'OrdersPelangganController@belumdibayar');
+    Route::put('/orders/belum-dibayar/upload/{id}', 'OrdersPelangganController@uploadpembayaran')->name('uploadpembayaran');
 });
 
 

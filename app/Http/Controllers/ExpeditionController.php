@@ -24,8 +24,6 @@ class ExpeditionController extends Controller
 
         $expedition = $input_data['expedition'];
         $expedition_charge = Expedition_model::select('base_charge')->where('id', $expedition)->get();
-        // dd($expedition_charge);
-        // $expedition_charge = DB::select("SELECT base_charge FROM `expeditions` WHERE id = $expedition");
 
         $products = DB::select("SELECT sum(cart.quantity*products.weight) as quantityweight FROM `cart`,`products` WHERE cart.products_id = products.id and cart.users_id = $auth_id");
         foreach ($expedition_charge as $charge) {

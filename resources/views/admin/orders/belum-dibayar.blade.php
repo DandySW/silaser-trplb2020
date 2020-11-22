@@ -58,7 +58,7 @@
                             <button data-dismiss="modal" class="close" type="button">×</button>
                         </div>
                         <div class="modal-body">
-                            <div class="text-center"><img src="{{url('/checkout/'.$order->struk)}}" alt="Belum ada bukti pembayaran"></div>
+                            <div class="text-center"><img src="{{url('/checkout',$order->struk)}}" alt="Belum ada bukti pembayaran"></div>
                         </div>
                     </div>
                     {{--Pop Up Model for View Struk--}}

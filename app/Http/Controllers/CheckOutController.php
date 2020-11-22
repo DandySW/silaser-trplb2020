@@ -24,7 +24,7 @@ class CheckOutController extends Controller
     {
         $this->validate($request, [
             'billing_name' => 'required',
-            'billing_address' => 'required|min:10|max:50',
+            'billing_address' => 'required|min:10|max:255',
             'billing_kelurahan' => 'required|min:5|max:30',
             'billing_kecamatan' => 'required|min:5|max:30',
             'billing_postcode' => 'required|numeric|digits:5',

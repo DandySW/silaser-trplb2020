@@ -62,7 +62,7 @@
                             <li><a href="{{url('/')}}" class="active">Home</a></li>
                             <li class="dropdown"><a href="#">Detail Pemesanan<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a href="#">Belum Dibayar</a></li>
+                                    <li><a href="{{url('/orders/belum-dibayar')}}">Belum Dibayar</a></li>
                                     <li><a href="#">Sedang Proses</a></li>
                                     <li><a href="#">Sudah Selesai</a></li>
                                 </ul>

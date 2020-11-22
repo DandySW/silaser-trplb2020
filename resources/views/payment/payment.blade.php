@@ -4,6 +4,7 @@
 @endsection
 @section('content')
 <div class="container">
+
     @yield('order user')
 
     <div class="row" style="margin-left: 60px;">

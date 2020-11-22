@@ -70,7 +70,7 @@
                     <label class="control-label">Upload Gambar</label>
                     <div class="controls">
                         <input type="file" name="image" id="image" />
-                        <span class="text-danger">{{$errors->first('gambar')}}</span>
+                        <span class="text-danger">{{$errors->first('image')}}</span>
                         @if($edit_product->image!='')
                         &nbsp;&nbsp;&nbsp;
                         <a href="javascript:" rel="{{$edit_product->id}}" rel1="delete-image" class="btn btn-danger btn-mini deleteRecord">Delete Old Gambar</a>
