@@ -6,8 +6,7 @@
     <div class="container">
         <div class="row">
             @foreach ($orders as $order)
-                <div class="card"
-                    style="border-style: solid; border-width: thin; border-color: #FE980F; margin-bottom: 20px;">
+                <div class="card" style="border-style: solid; border-width: thin; border-color: #FE980F; margin-bottom: 20px;">
                     <div style="margin-left: 10px;">
                         <h5 class="card-header">ID Pemesanan: #{{ $order->id }} ({{ $order->order_date }})</h5>
                         <div class="card-body">
@@ -16,13 +15,10 @@
                                     @if ($orderdetail->orders_id == $order->id)
                                         <div class="col-sm-2">
                                             <div class="card" style="width: 18rem;">
-                                                <img src="/products/small/{{ $orderdetail->image }}"
-                                                    style="width: 150px; height: 150px;">
+                                                <img src="/products/small/{{ $orderdetail->image }}" style="width: 150px; height: 150px;">
                                                 <div class="card-body">
                                                     <h5 class="card-title">{{ $orderdetail->p_name }}</h5>
-                                                    <p class="card-text">Harga: Rp {{ @rupiah($orderdetail->price) }}
-                                                        <br>Jumlah: {{ $orderdetail->quantity }}
-                                                    </p>
+                                                    <p class="card-text">Harga: Rp {{ @rupiah($orderdetail->price) }} <br>Jumlah: {{ $orderdetail->quantity }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -31,42 +27,11 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#modalDetailOrder{{ $order->id }}" class="btn btn-primary" data-toggle="modal">Detail
-                        Pemesanan</a>
-                    <a href="#modalStruk{{ $order->id }}" class="btn btn-primary" data-toggle="modal">Bukti Pembayaran</a>
+                    <a href="#modalDetailOrder{{ $order->id }}" class="btn btn-primary" data-toggle="modal">Detail Pemesanan</a>
                 </div>
-
-                {{-- Modal Struk --}}
-                <div class="modal fade" id="modalStruk{{ $order->id }}" tabindex="-1" aria-labelledby="modalStrukLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="modalStrukLabel">Upload Bukti Pembayaran</h4>Tunggu hingga admin
-                                memverifikasi bukti pembayaran
-                            </div>
-                            <div class="modal-body">
-                                <img src="{{ url('/checkout', $order->struk) }}" alt="Belum ada bukti pembayaran">
-                                <form action="{{ route('uploadpembayaran', $order->id) }}" method="POST"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    {{ method_field('PUT') }}
-                                    <input type="file" class="form-control" name="struk" id="struk"
-                                        accept="image/png, image/jpeg, image/jpg" required>
-                                    <span class="text-danger">{{ $errors->first('struk') }}</span>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Simpan Bukti Pembayaran</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{-- End Modal Struk --}}
 
                 {{-- Modal Detail Order --}}
-                <div class="modal fade" id="modalDetailOrder{{ $order->id }}" tabindex="-1"
-                    aria-labelledby="modalDetailOrderLabel" aria-hidden="true">
+                <div class="modal fade" id="modalDetailOrder{{ $order->id }}" tabindex="-1" aria-labelledby="modalDetailOrderLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -74,10 +39,7 @@
                             </div>
                             <div class="modal-body">
                                 <h5><i class="fa fa-map-marker"></i> Alamat Pengiriman</h5>
-                                <p style="text-align: justify">
-                                    {{ $order->name }}<br>{{ $order->mobile }}<br>{{ $order->address }}<br>{{ $order->kelurahan }},
-                                    {{ $order->kecamatan }} {{ $order->postcode }}
-                                </p>
+                                <p style="text-align: justify">{{ $order->name }}<br>{{ $order->mobile }}<br>{{ $order->address }}<br>{{ $order->kelurahan }}, {{ $order->kecamatan }} {{ $order->postcode }}</p>
                                 <br>
                                 <h5><i class="fa fa-truck"></i> Jasa Ekspedisi</h5>
                                 <p>{{ $order->expedition_name }}<br>{{ $order->type }} {{ $order->estimation }}</p>
@@ -87,9 +49,7 @@
                                     <tbody>
                                         <tr>
                                             <td>Sub Total:</td>
-                                            <td>Rp
-                                                {{ @rupiah($order->grand_total - $order->id + $order->coupon_amount - $order->shipping_charge) }}
-                                            </td>
+                                            <td>Rp {{ @rupiah($order->grand_total - $order->id + $order->coupon_amount - $order->shipping_charge) }}</td>
                                         </tr>
                                         <tr>
                                             <td>Ongkir:</td>

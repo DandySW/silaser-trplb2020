@@ -47,6 +47,11 @@ Route::group(['middleware' => 'FrontLogin_middleware'], function () {
     /// Detail Order ///
     Route::get('/orders/belum-dibayar', 'OrdersPelangganController@belumdibayar');
     Route::put('/orders/belum-dibayar/upload/{id}', 'OrdersPelangganController@uploadpembayaran')->name('uploadpembayaran');
+
+    Route::get('/orders/sedang-proses', 'OrdersPelangganController@sedangproses');
+
+    Route::get('/orders/sudah-selesai', 'OrdersPelangganController@sudahselesai');
+    Route::put('/orders/sudah-selesai/konfirmasi/{id}', 'OrdersPelangganController@konfirmasipenerimaan')->name('konfirmasipenerimaan');
 });
 
 

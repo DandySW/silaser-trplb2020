@@ -6,8 +6,7 @@
     <div class="container">
         <div class="row">
             @foreach ($orders as $order)
-                <div class="card"
-                    style="border-style: solid; border-width: thin; border-color: #FE980F; margin-bottom: 20px;">
+                <div class="card" style="border-style: solid; border-width: thin; border-color: #FE980F; margin-bottom: 20px;">
                     <div style="margin-left: 10px;">
                         <h5 class="card-header">ID Pemesanan: #{{ $order->id }} ({{ $order->order_date }})</h5>
                         <div class="card-body">
@@ -16,8 +15,7 @@
                                     @if ($orderdetail->orders_id == $order->id)
                                         <div class="col-sm-2">
                                             <div class="card" style="width: 18rem;">
-                                                <img src="/products/small/{{ $orderdetail->image }}"
-                                                    style="width: 150px; height: 150px;">
+                                                <img src="/products/small/{{ $orderdetail->image }}" style="width: 150px; height: 150px;">
                                                 <div class="card-body">
                                                     <h5 class="card-title">{{ $orderdetail->p_name }}</h5>
                                                     <p class="card-text">Harga: Rp {{ @rupiah($orderdetail->price) }}
@@ -31,46 +29,41 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#modalDetailOrder{{ $order->id }}" class="btn btn-primary" data-toggle="modal">Detail
-                        Pemesanan</a>
-                    <a href="#modalStruk{{ $order->id }}" class="btn btn-primary" data-toggle="modal">Bukti Pembayaran</a>
-                </div>
+                    <a href="#modalDetailOrder{{ $order->id }}" class="btn btn-primary" data-toggle="modal">Detail Pemesanan</a>
+                    <a href="#modalKonfirmasiPenerimaan{{ $order->id }}" class="btn btn-primary" data-toggle="modal">Konfirmasi Penerimaan Produk</a>
 
-                {{-- Modal Struk --}}
-                <div class="modal fade" id="modalStruk{{ $order->id }}" tabindex="-1" aria-labelledby="modalStrukLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="modalStrukLabel">Upload Bukti Pembayaran</h4>Tunggu hingga admin
-                                memverifikasi bukti pembayaran
-                            </div>
-                            <div class="modal-body">
-                                <img src="{{ url('/checkout', $order->struk) }}" alt="Belum ada bukti pembayaran">
-                                <form action="{{ route('uploadpembayaran', $order->id) }}" method="POST"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    {{ method_field('PUT') }}
-                                    <input type="file" class="form-control" name="struk" id="struk"
-                                        accept="image/png, image/jpeg, image/jpg" required>
-                                    <span class="text-danger">{{ $errors->first('struk') }}</span>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Simpan Bukti Pembayaran</button>
-                                    </div>
+                    {{-- Modal Konfirmasi Penerimaan --}}
+                    <div class="modal fade" id="modalKonfirmasiPenerimaan{{ $order->id }}" tabindex="-1" aria-labelledby="modalKonfirmasiPenerimaanLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="modalKonfirmasiPenerimaanLabel">Konfirmasi Penerimaan Produk
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{ route('konfirmasipenerimaan', $order->id) }}" method="POST">
+                                        @csrf
+                                        {{ method_field('PUT') }}
+                                        <input type="hidden" name="receipt_status" value="sudah diterima">
+                                        <input type="hidden" name="receipt_date" value="{{ date('Y-m-d') }}" data-date-format="yyyy-mm-dd">
+                                        <button type="submit" class="btn btn-primary" style="align-self: center">Konfirmasi Penerimaan Produk</button>
+                                </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                {{-- End Modal Struk --}}
+                {{-- End Modal Konfirmasi Penerimaan --}}
 
                 {{-- Modal Detail Order --}}
-                <div class="modal fade" id="modalDetailOrder{{ $order->id }}" tabindex="-1"
-                    aria-labelledby="modalDetailOrderLabel" aria-hidden="true">
+                <div class="modal fade" id="modalDetailOrder{{ $order->id }}" tabindex="-1" aria-labelledby="modalDetailOrderLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="modalStrukLabel">Detail Pemesanan #{{ $order->id }}</h4>
+                                <h4 class="modal-title" id="modalStrukLabel">Detail Pemesanan #{{ $order->id }} |
+                                    @if ($order->shipping_status == 'belum dikirim')Dalam
+                                    Pengemasan @else Sedang Dikirim @endif
+                                </h4>
                             </div>
                             <div class="modal-body">
                                 <h5><i class="fa fa-map-marker"></i> Alamat Pengiriman</h5>
@@ -81,6 +74,9 @@
                                 <br>
                                 <h5><i class="fa fa-truck"></i> Jasa Ekspedisi</h5>
                                 <p>{{ $order->expedition_name }}<br>{{ $order->type }} {{ $order->estimation }}</p>
+                                @if ($order->resi != null)
+                                    <p><b>No Resi:</b> {{ $order->resi }}</p>
+                                @endif
                                 <br>
                                 <h5><i class="fa fa-money"></i> Informasi Pembayaran</h5>
                                 <table class="table table-borderless">
