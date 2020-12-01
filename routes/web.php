@@ -52,6 +52,11 @@ Route::group(['middleware' => 'FrontLogin_middleware'], function () {
 
     Route::get('/orders/sudah-selesai', 'OrdersPelangganController@sudahselesai');
     Route::put('/orders/sudah-selesai/konfirmasi/{id}', 'OrdersPelangganController@konfirmasipenerimaan')->name('konfirmasipenerimaan');
+
+    // Chat
+    Route::get('/chat-consultant', 'MessageController@index');
+    Route::get('/chat/{id}', 'MessageController@getMessage')->name('message');
+    Route::post('chat', 'MessageController@sendMessage');
 });
 
 
