@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2020 at 12:01 AM
+-- Generation Time: Dec 02, 2020 at 04:21 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -241,7 +241,7 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `created_at`, 
 (92, 26, 22, 'Et consequatur excepturi officia.', 0, '2020-11-23 17:48:03', '2020-11-23 17:48:03'),
 (93, 19, 23, 'Laborum quasi doloremque modi voluptate et consequatur aut.', 0, '2020-11-23 17:48:03', '2020-11-23 17:48:03'),
 (94, 16, 3, 'Qui harum nisi ut voluptatibus.', 0, '2020-11-23 17:48:03', '2020-11-23 17:48:03'),
-(95, 4, 1, 'Consequatur rerum cumque optio fugiat non optio.', 1, '2020-11-23 17:48:03', '2020-12-01 22:49:03'),
+(95, 4, 1, 'Consequatur rerum cumque optio fugiat non optio.', 1, '2020-11-23 17:48:03', '2020-12-02 08:29:19'),
 (96, 2, 17, 'Voluptas eum eos id ab.', 0, '2020-11-23 17:48:03', '2020-11-23 17:48:03'),
 (97, 24, 1, 'Et quis soluta sunt autem.', 1, '2020-11-23 17:48:03', '2020-11-23 18:14:04'),
 (98, 30, 14, 'Dignissimos aperiam a et corporis vel qui sint.', 0, '2020-11-23 17:48:03', '2020-11-23 17:48:03'),
@@ -312,7 +312,7 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `created_at`, 
 (163, 23, 10, 'Similique atque unde tempore quam impedit repellendus.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (164, 13, 7, 'Iure eos quia veritatis dolor.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (165, 23, 8, 'Exercitationem at voluptatem qui et placeat enim.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
-(166, 1, 4, 'Debitis voluptatem ab qui distinctio qui beatae nemo.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
+(166, 1, 4, 'Debitis voluptatem ab qui distinctio qui beatae nemo.', 1, '2020-11-23 17:48:04', '2020-12-02 11:30:01'),
 (167, 20, 19, 'Similique illo non ipsum ad.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (168, 2, 11, 'Quo ut consequatur in vel cumque.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (169, 2, 26, 'Quaerat velit quos laudantium sed voluptatum iusto.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
@@ -383,7 +383,7 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `created_at`, 
 (234, 10, 1, 'Veritatis possimus sint omnis facere sint.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (235, 16, 10, 'Ipsum porro impedit impedit et.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (236, 18, 22, 'Eligendi vitae et qui soluta.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
-(237, 4, 7, 'Maxime ducimus nihil minima vel accusantium aut porro.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
+(237, 4, 7, 'Maxime ducimus nihil minima vel accusantium aut porro.', 1, '2020-11-23 17:48:04', '2020-12-02 14:23:14'),
 (238, 18, 20, 'Quo quasi quos assumenda vitae fuga aut commodi.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (239, 8, 13, 'Cum natus possimus distinctio quae voluptas.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (240, 3, 18, 'Eum quaerat illo qui ad.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
@@ -479,7 +479,7 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `created_at`, 
 (330, 3, 18, 'Ut quae natus dolores.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (331, 25, 22, 'Deserunt praesentium debitis odio consequatur.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (332, 9, 12, 'Maxime consectetur explicabo hic modi.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
-(333, 5, 7, 'Tenetur nihil voluptate et laudantium.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
+(333, 5, 7, 'Tenetur nihil voluptate et laudantium.', 1, '2020-11-23 17:48:04', '2020-12-02 11:58:43'),
 (334, 8, 26, 'Laboriosam non similique voluptatibus corrupti laudantium ducimus quis voluptatibus.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (335, 3, 14, 'Saepe beatae at vitae.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (336, 24, 2, 'Ut non cum minus qui.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
@@ -525,7 +525,7 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `created_at`, 
 (376, 7, 5, 'Voluptatem labore officiis iste quaerat.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (377, 2, 3, 'Totam ut placeat dolorem repudiandae qui dolorem vitae.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (378, 16, 17, 'Maxime ea similique est velit accusamus corporis non.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
-(379, 7, 4, 'Quis voluptas alias odio accusantium eos dolores non.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
+(379, 7, 4, 'Quis voluptas alias odio accusantium eos dolores non.', 1, '2020-11-23 17:48:04', '2020-12-02 14:23:15'),
 (380, 27, 25, 'Repellendus cum consequatur maxime quis rerum amet.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (381, 1, 24, 'Doloremque aut autem maxime quia quo ea.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (382, 3, 14, 'Ut molestiae id at quo neque.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
@@ -565,7 +565,7 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `created_at`, 
 (416, 4, 11, 'Beatae similique quos distinctio et.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (417, 27, 23, 'Neque exercitationem voluptas debitis corrupti neque tempora possimus assumenda.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (418, 26, 13, 'Nulla dolor est reiciendis qui.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
-(419, 4, 1, 'Velit eligendi minima est minima aut.', 1, '2020-11-23 17:48:04', '2020-12-01 22:49:03'),
+(419, 4, 1, 'Velit eligendi minima est minima aut.', 1, '2020-11-23 17:48:04', '2020-12-02 08:29:19'),
 (420, 9, 3, 'Recusandae eveniet vero rerum est esse aut.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (421, 24, 2, 'Adipisci iure quas at in error sit.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (422, 23, 6, 'Ut eaque omnis quisquam voluptas cupiditate dolor.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
@@ -632,7 +632,7 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `created_at`, 
 (482, 2, 15, 'Non et voluptas maiores aperiam et deleniti numquam.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (483, 20, 2, 'Aut minus reiciendis ut incidunt quo dolore.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (484, 28, 8, 'Aut aut ut ut ut quasi ipsam eius.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
-(485, 1, 4, 'Occaecati est corrupti ea officiis omnis.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
+(485, 1, 4, 'Occaecati est corrupti ea officiis omnis.', 1, '2020-11-23 17:48:04', '2020-12-02 11:30:01'),
 (486, 17, 27, 'Autem eius et voluptas molestiae.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (487, 8, 21, 'Ratione excepturi nostrum est totam molestias quos odit.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (488, 1, 27, 'Qui reiciendis facere voluptatibus temporibus aut voluptas ea.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
@@ -660,7 +660,10 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `created_at`, 
 (510, 5, 1, 'hai', 1, '2020-12-01 22:58:23', '2020-12-01 22:59:00'),
 (511, 5, 1, 'asdss', 1, '2020-12-01 22:58:32', '2020-12-01 22:59:00'),
 (512, 5, 1, 'halo admin', 1, '2020-12-01 22:58:52', '2020-12-01 22:59:00'),
-(513, 1, 5, 'halo user', 1, '2020-12-01 22:59:00', '2020-12-01 22:59:00');
+(513, 1, 5, 'halo user', 1, '2020-12-01 22:59:00', '2020-12-01 22:59:00'),
+(514, 1, 7, 'hai konsultan', 0, '2020-12-02 08:29:29', '2020-12-02 08:29:29'),
+(515, 7, 4, 'tes', 1, '2020-12-02 14:23:05', '2020-12-02 14:23:15'),
+(516, 4, 7, 'halo', 1, '2020-12-02 14:23:14', '2020-12-02 14:23:14');
 
 -- --------------------------------------------------------
 
@@ -858,6 +861,28 @@ INSERT INTO `products` (`id`, `categories_id`, `p_name`, `description`, `stock`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `status`
+--
+
+CREATE TABLE `status` (
+  `id` int(11) NOT NULL,
+  `status` varchar(10) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `status`
+--
+
+INSERT INTO `status` (`id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'admin', '2020-12-02 09:15:40', NULL),
+(2, 'konsultan', '2020-12-02 09:16:06', NULL),
+(3, 'pelanggan', '2020-12-02 09:16:06', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tblgallery`
 --
 
@@ -918,7 +943,7 @@ CREATE TABLE `users` (
   `kecamatan` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `postcode` char(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `mobile` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -929,11 +954,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `address`, `kelurahan`, `kecamatan`, `postcode`, `mobile`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'WeShare', 'demo@gmail.com', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', 1, 'XUK2TQphihuNhtQHQlVRb2LYG1XriYr7Gc5pewbMK8vYUhZs5r8VTeLCl9dc', '2018-10-15 02:32:54', '2018-12-05 01:39:52'),
-(4, 'Dandy Satrio Wibowo', 'dandy@a.com', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', 1, 'YBh5twfaJgjnzMFblCR9Jx5BP2AnglZMUnxwqY3SY9ClBM3JosgpzyJfM8Q5', '2018-12-06 01:40:27', '2018-12-06 01:40:27'),
-(5, 'tes', 'tes@a.in', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', '', '', '', '', '', NULL, 'QAGFO17uQHeE9HZoKE8kqsPAuprU9B9OZFEuaacmgFNlZWULwlM0wkN48GLA', NULL, NULL),
-(6, 'riki tiki', 'rikitiki@da.com', '$2y$10$WbWM5R5Zmw0J939pmnHGTefqMV9pkK07lNULgzZsiSYOqQ4KyOGoC', 'Perumahan Gunung Batu B28', '', '', '22222', '082234795673', NULL, 'J1lQGCiFBnZ0f3FovhLSwlV4RLZPRBH12ckSsdlgUeexgzxrQq2I6Bns7Kv4', '2020-11-17 14:16:25', '2020-11-17 14:16:25'),
-(7, 'fajar alam', 'kosultan@tes.com', '$2y$10$HJHCD3p68gblk0msB625Eelg09T0/3M97SYbpMjFqHnvQq/YDkfha', NULL, NULL, NULL, NULL, NULL, 2, NULL, '2020-11-24 03:49:19', NULL);
+(1, 'WeShare', 'demo@gmail.com', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', 1, '0ORSzgInJd1lvmLHQKh4zoaChu1lMG4C8AWp8rFSXwvH21lBs5epwiQ0LSW3', '2018-10-15 02:32:54', '2018-12-05 01:39:52'),
+(4, 'Dandy Satrio Wibowo', 'dandy@a.com', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', 3, 'eMPSEshXGYpnNuLAZxwnnYna2FtP6M6EWVyyubKTUGJNvikUCclvJP9o50pU', '2018-12-06 01:40:27', '2018-12-06 01:40:27'),
+(5, 'tes', 'tes@a.in', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', '', '', '', '', '', 3, 'QAGFO17uQHeE9HZoKE8kqsPAuprU9B9OZFEuaacmgFNlZWULwlM0wkN48GLA', NULL, NULL),
+(6, 'riki tiki', 'rikitiki@da.com', '$2y$10$WbWM5R5Zmw0J939pmnHGTefqMV9pkK07lNULgzZsiSYOqQ4KyOGoC', 'Perumahan Gunung Batu B28', '', '', '22222', '082234795673', 3, 'J1lQGCiFBnZ0f3FovhLSwlV4RLZPRBH12ckSsdlgUeexgzxrQq2I6Bns7Kv4', '2020-11-17 14:16:25', '2020-11-17 14:16:25'),
+(7, 'fajar alam', 'konsultan@tes.com', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', NULL, NULL, NULL, NULL, NULL, 2, 'SMHqp41bZh9fq0YPixlUFgbW9eQV5PORm5QuxBvbwJTpb1Umh7V6K6UQ5i0T', '2020-11-24 03:49:19', NULL);
 
 --
 -- Indexes for dumped tables
@@ -1012,6 +1037,12 @@ ALTER TABLE `products`
   ADD KEY `categories_id_2` (`categories_id`);
 
 --
+-- Indexes for table `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tblgallery`
 --
 ALTER TABLE `tblgallery`
@@ -1033,7 +1064,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1057,7 +1088,7 @@ ALTER TABLE `expeditions`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=514;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=517;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1082,6 +1113,12 @@ ALTER TABLE `order_details`
 --
 ALTER TABLE `products`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
+-- AUTO_INCREMENT for table `status`
+--
+ALTER TABLE `status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tblgallery`
