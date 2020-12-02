@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Message_model;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -30,10 +31,13 @@ class MessageController extends Controller
         // select all users except logged in user
         // $users = User::where('id', '!=', Auth::id())->get();
 
+        $status = User::select('status')->where('id', Auth::id())->first();
+        $status = $status['status'];
+
         // count how many message are unread from the selected user
         $users = DB::select("select users.id, users.name, users.email, count(is_read) as unread 
         from users LEFT  JOIN  messages ON users.id = messages.from and is_read = 0 and messages.to = " . Auth::id() . "
-        where users.id != " . Auth::id() . " 
+        where users.id != " . Auth::id() . " and users.status != $status and users.status != 1
         group by users.id, users.name, users.email");
 
         return view('messages.sidebar', compact('users'));

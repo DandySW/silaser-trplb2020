@@ -13,7 +13,7 @@
         <div class="col-sm-4 col-sm-offset-1">
             <div class="login-form">
                 <!--login form-->
-                <h2>Login to your account</h2>
+                <h2>Login dengan akun yang sudah ada</h2>
                 <form action="{{url('/user_login')}}" method="post" class="form-horizontal">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <input type="email" placeholder="Email" name="email" />
@@ -33,7 +33,7 @@
         <div class="col-sm-4">
             <div class="signup-form">
                 <!--sign up form-->
-                <h2>New User Signup!</h2>
+                <h2>Daftar sebagai pelanggan baru</h2>
                 <form action="{{url('/register_user')}}" method="post" class="form-horizontal">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
 
@@ -46,8 +46,11 @@
                     <input type="password" placeholder="Password" name="password" value="{{old('password')}}" />
                     <span class="text-danger">{{$errors->first('password')}}</span>
 
-                    <input type="password" placeholder="Confirm Password" name="password_confirmation" value="{{old('password_confirmation')}}" />
+                    <input type="password" placeholder="Confirm Password" name="password_confirmation"
+                        value="{{old('password_confirmation')}}" />
                     <span class="text-danger">{{$errors->first('password_confirmation')}}</span>
+
+                    <input type="hidden" name="status" value="3">
 
                     <button type="submit" class="btn btn-default">Signup</button>
                 </form>

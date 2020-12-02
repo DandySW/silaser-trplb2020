@@ -33,7 +33,16 @@ class UsersController extends Controller
         $input_data = $request->all();
         if (Auth::attempt(['email' => $input_data['email'], 'password' => $input_data['password']])) {
             Session::put('frontSession', $input_data['email']);
-            return redirect('/');
+            $status = User::select('status')->where('id', Auth::id())->first();
+            $status = $status['status'];
+
+            if ($status == 1) {
+                return redirect('/admin');
+            } else if ($status == 2) {
+                return redirect('/konsultan');
+            } else {
+                return redirect('/');
+            }
         } else {
             return back()->with('message', 'Account is not Valid!');
         }
@@ -42,7 +51,7 @@ class UsersController extends Controller
     {
         Auth::logout();
         Session::forget('frontSession');
-        return redirect('/');
+        return redirect('/login');
     }
     public function account()
     {

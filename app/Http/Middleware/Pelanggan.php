@@ -19,6 +19,6 @@ class Pelanggan
         if (Auth::check() && Auth::user()->isPelanggan()) {
             return $next($request);
         }
-        return redirect(url('/'));
+        return redirect(url('/404'));
     }
 }

@@ -19,6 +19,6 @@ class Konsultan
         if (Auth::check() && Auth::user()->isKonsultan()) {
             return $next($request);
         }
-        return redirect(url('/'));
+        return redirect(url('/404'));
     }
 }

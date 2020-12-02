@@ -11,6 +11,9 @@
 |
 */
 /* FrontEnd Location */
+
+use App\Http\Controllers\KonsultanController;
+
 Route::get('/', 'IndexController@index');
 Route::get('/list-products', 'IndexController@shop');
 Route::get('/cat/{id}', 'IndexController@listByCat')->name('cats');
@@ -18,7 +21,7 @@ Route::get('/product-detail/{id}', 'IndexController@detailpro');
 Route::get('/payment', 'IndexController@payment');
 
 /// Simple User Login /////
-Route::get('/login_page', 'UsersController@index');
+// Route::get('/login_page', 'UsersController@index');
 Route::post('/register_user', 'UsersController@register');
 Route::post('/user_login', 'UsersController@login');
 Route::get('/logout', 'UsersController@logout');
@@ -28,7 +31,7 @@ Route::group(['middleware' => 'konsultan'], function () {
 });
 
 ////// User Authentications ///////////
-Route::group(['middleware' => 'FrontLogin_middleware'], function () {
+Route::group(['middleware' => ['FrontLogin_middleware', 'pelanggan']], function () {
     Route::get('/myaccount', 'UsersController@account');
     Route::put('/update-profile/{id}', 'UsersController@updateprofile');
     Route::put('/update-password/{id}', 'UsersController@updatepassword');
@@ -60,9 +63,6 @@ Route::group(['middleware' => 'FrontLogin_middleware'], function () {
     // Chat
     Route::get('/chat-consultant', 'MessageController@index');
     Route::get('/chat/{id}', 'MessageController@getMessage')->name('message');
-    Route::post('chat', 'MessageController@sendMessage');    // Chat
-    Route::get('/chat-consultant', 'MessageController@index');
-    Route::get('/chat/{id}', 'MessageController@getMessage')->name('message');
     Route::post('chat', 'MessageController@sendMessage');
 });
 
@@ -71,7 +71,7 @@ Route::group(['middleware' => 'FrontLogin_middleware'], function () {
 
 /* Admin Location */
 Auth::routes(['register' => false]);
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['FrontLogin_middleware', 'admin']], function () {
     Route::get('/', 'AdminController@index');
 
     /// Setting Area
@@ -110,4 +110,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::put('/orders/pengiriman/{id}', 'OrdersAdminController@pengiriman')->name('pengiriman');
 
     Route::get('/orders/sudah-selesai', 'OrdersAdminController@sudahselesai');
+});
+
+// ==============================================================================================
+
+/* Konsultan Location */
+Route::group(['prefix' => 'konsultan', 'middleware' => ['FrontLogin_middleware', 'konsultan']], function () {
+    Route::get('/', 'KonsultanController@index');
+
+    //Chat
+    Route::get('/chat', 'MessageController@index');
+    Route::get('/chat/{id}', 'MessageController@getMessage')->name('message');
+    Route::post('chat', 'MessageController@sendMessage');
 });

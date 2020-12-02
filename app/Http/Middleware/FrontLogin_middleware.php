@@ -16,8 +16,8 @@ class FrontLogin_middleware
      */
     public function handle($request, Closure $next)
     {
-        if(empty(Session::has('frontSession'))){
-            return redirect('/login_page');
+        if (empty(Session::has('frontSession'))) {
+            return redirect('/login');
         }
         return $next($request);
     }
