@@ -14,8 +14,10 @@
                 <div class="col-sm-6">
                     <div class="social-icons pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="https://github.com/DandySW/silaser-trplb2020"><i class="fa fa-github"></i></a></li>
-                            <li><a href="https://trello.com/b/ksICDmw2/ppl-d-kelas-a"><i class="fa fa-trello"></i></a></li>
+                            <li><a href="https://github.com/DandySW/silaser-trplb2020"><i class="fa fa-github"></i></a>
+                            </li>
+                            <li><a href="https://trello.com/b/ksICDmw2/ppl-d-kelas-a"><i class="fa fa-trello"></i></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -38,11 +40,11 @@
                         <ul class="nav navbar-nav">
                             <li><a href="{{ url('/viewcart') }}"><i class="fa fa-shopping-cart"></i> Keranjang</a></li>
                             @if (Auth::check())
-                                <li><a href="{{ url('/myaccount') }}"><i class="fa fa-user"></i> Akun Saya</a></li>
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-lock"></i> Logout </a>
-                                </li>
+                            <li><a href="{{ url('/myaccount') }}"><i class="fa fa-user"></i> Akun Saya</a></li>
+                            <li><a href="{{ url('/logout') }}"><i class="fa fa-lock"></i> Logout </a>
+                            </li>
                             @else
-                                <li><a href="{{ url('/login_page') }}"><i class="fa fa-lock"></i> Login</a></li>
+                            <li><a href="{{ url('/login_page') }}"><i class="fa fa-lock"></i> Login</a></li>
                             @endif
                         </ul>
                     </div>
@@ -68,7 +70,7 @@
                                 </ul>
                             </li>
                             <li><a href="{{ url('/payment') }}">Cara Pembayaran</a></li>
-                            <li><a href="#" target="_blank">Jasa Konsultasi</a></li>
+                            <li><a href="{{ url('/chat-consultant') }}">Jasa Konsultasi</a></li>
                         </ul>
                     </div>
                 </div>

@@ -23,6 +23,10 @@ Route::post('/register_user', 'UsersController@register');
 Route::post('/user_login', 'UsersController@login');
 Route::get('/logout', 'UsersController@logout');
 
+Route::group(['middleware' => 'konsultan'], function () {
+    //
+});
+
 ////// User Authentications ///////////
 Route::group(['middleware' => 'FrontLogin_middleware'], function () {
     Route::get('/myaccount', 'UsersController@account');
@@ -56,6 +60,9 @@ Route::group(['middleware' => 'FrontLogin_middleware'], function () {
     // Chat
     Route::get('/chat-consultant', 'MessageController@index');
     Route::get('/chat/{id}', 'MessageController@getMessage')->name('message');
+    Route::post('chat', 'MessageController@sendMessage');    // Chat
+    Route::get('/chat-consultant', 'MessageController@index');
+    Route::get('/chat/{id}', 'MessageController@getMessage')->name('message');
     Route::post('chat', 'MessageController@sendMessage');
 });
 
@@ -68,9 +75,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/', 'AdminController@index');
 
     /// Setting Area
-    // Route::get('/settings', 'AdminController@settings');
-    // Route::get('/check-pwd', 'AdminController@chkPassword');
-    // Route::post('/update-pwd', 'AdminController@updatAdminPwd');
+    Route::get('/settings', 'AdminController@settings');
+    Route::get('/check-pwd', 'AdminController@chkPassword');
+    Route::post('/update-pwd', 'AdminController@updatAdminPwd');
 
     /// Category Area
     Route::resource('/category', 'CategoryController');

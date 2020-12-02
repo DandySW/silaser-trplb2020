@@ -58,7 +58,7 @@ class CartController extends Controller
                 return back()->with('message', 'Produk sudah ada di dalam keranjang. Cek kembali keranjang anda.');
             } else {
                 Cart_model::create($inputToCart);
-                return back()->with('message', 'Produk ditambahkan ke dalam kaeranjang.');
+                return back()->with('message', 'Produk ditambahkan ke dalam keranjang.');
             }
         } else {
             return back()->with('message', 'Maaf stok sedang kosong');

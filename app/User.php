@@ -31,4 +31,12 @@ class User extends Authenticatable
     {
         return ($this->status == 1);
     }
+    public function isKonsultan()
+    {
+        return ($this->status == 2);
+    }
+    public function isPelanggan()
+    {
+        return ($this->status == 3);
+    }
 }

@@ -15,7 +15,7 @@
 
                         <div class="media">
                             <div class="media-left">
-                                <img src="https://picsum.photos/150" alt="" class="media-object">
+                                <img src="https://loremflickr.com/150/150" alt="user" class="media-object">
                             </div>
 
                             <div class="media-body">

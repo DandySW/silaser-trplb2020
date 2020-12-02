@@ -6,6 +6,7 @@ use App\Category_model;
 use App\ImageGallery_model;
 use App\Products_model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
