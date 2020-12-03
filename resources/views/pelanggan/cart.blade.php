@@ -26,7 +26,8 @@
                     @foreach($cart_datas as $cart_data)
                     <tr>
                         <td class="cart_product">
-                            <a href=""><img src="{{url('products/small',$cart_data->image)}}" alt="" style="width: 100px;"></a>
+                            <a href=""><img src="{{url('products/small',$cart_data->image)}}" alt=""
+                                    style="width: 100px;"></a>
                         </td>
                         <td class="cart_description">
                             <h4><a href="">{{$cart_data->p_name}}</a></h4>
@@ -38,15 +39,18 @@
                         <td class="cart_quantity">
                             <div class="cart_quantity_button">
                                 @if($cart_data->quantity<$cart_data->stock)
-                                    <a class="cart_quantity_up" href="{{url('/cart/update-quantity/'.$cart_data->id.'/1')}}"> + </a>
+                                    <a class="cart_quantity_up"
+                                        href="{{url('/cart/update-quantity/'.$cart_data->id.'/1')}}"> + </a>
                                     @else
                                     <a class="cart_quantity_up"></a>
                                     @endif
 
-                                    <input class="cart_quantity_input" type="text" name="quantity" value="{{$cart_data->quantity}}" autocomplete="off" disabled size="2">
+                                    <input class="cart_quantity_input" type="text" name="quantity"
+                                        value="{{$cart_data->quantity}}" autocomplete="off" disabled size="2">
 
                                     @if($cart_data->quantity>1)
-                                    <a class="cart_quantity_down" href="{{url('/cart/update-quantity/'.$cart_data->id.'/-1')}}"> - </a>
+                                    <a class="cart_quantity_down"
+                                        href="{{url('/cart/update-quantity/'.$cart_data->id.'/-1')}}"> - </a>
                                     @else
                                     <a class="cart_quantity_up"></a>
                                     @endif
@@ -56,7 +60,8 @@
                             <p class="cart_total_price">Rp {{@rupiah($cart_data->price*$cart_data->quantity)}}</p>
                         </td>
                         <td class="cart_delete">
-                            <a class="cart_quantity_delete" href="{{url('/cart/deleteItem',$cart_data->id)}}"><i class="fa fa-times"></i></a>
+                            <a class="cart_quantity_delete" href="{{url('/cart/deleteItem',$cart_data->id)}}"><i
+                                    class="fa fa-times"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -78,7 +83,8 @@
             <select id="expedition" name="expedition">
                 <option selected>Pilih Jasa Pengiriman</option>
                 @foreach($expedition_datas as $data)
-                <option value="{{$data->id}}">{{$data->expedition_name}} ({{$data->type.'-'.$data->estimation}}): Rp {{@rupiah($data->base_charge)}}</option>
+                <option value="{{$data->id}}">{{$data->expedition_name}} ({{$data->type.'-'.$data->estimation}}): Rp
+                    {{@rupiah($data->base_charge)}}</option>
                 @endforeach
             </select>
             <button type="submit" class="btn btn-primary">Apply</button>
@@ -90,7 +96,8 @@
     <div class="container">
         <div class="heading">
             <h3>What would you like to do next?</h3>
-            <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+            <p>Choose if you have a discount code or reward points you want to use or would like to estimate your
+                delivery cost.</p>
         </div>
         <div class="row">
             <div class="col-sm-6">
@@ -106,7 +113,8 @@
                         <div class="form-group">
                             <label for="coupon_code">Kode Kupon</label>
                             <div class="controls {{$errors->has('coupon_code')?'has-error':''}}">
-                                <input type="text" class="form-control" name="coupon_code" id="coupon_code" placeholder="Masukkan Kode Kupon">
+                                <input type="text" class="form-control" name="coupon_code" id="coupon_code"
+                                    placeholder="Masukkan Kode Kupon">
                                 <span class="text-danger">{{$errors->first('coupon_code')}}</span>
                             </div>
                             <button type="submit" class="btn btn-primary">Apply</button>
@@ -126,19 +134,25 @@
                         @if(Session::has('discount_amount_price'))
                         <li>Sub Total <span>Rp {{@rupiah($total_price)}}</span></li>
                         <li>Ongkir <span>Rp {{@rupiah(Session::get('expedition_total'))}}</span></li>
-                        <li>Coupon Discount (Code : {{Session::get('coupon_code')}}) <span>- Rp {{@rupiah(Session::get('discount_amount_price'))}}</span></li>
-                        <li>Total Seluruhnya <span>$ {{$total_price+Session::get('expedition_total')-Session::get('discount_amount_price')}}</span></li>
+                        <li>Coupon Discount (Code : {{Session::get('coupon_code')}}) <span>- Rp
+                                {{@rupiah(Session::get('discount_amount_price'))}}</span></li>
+                        <li>Total Seluruhnya <span>Rp
+                                {{@rupiah($total_price+Session::get('expedition_total')-Session::get('discount_amount_price'))}}</span>
+                        </li>
                         @else
                         <li>Sub Total <span>Rp {{@rupiah($total_price)}}</span></li>
                         <li>Ongkir <span>Rp {{@rupiah(Session::get('expedition_total'))}}</span></li>
-                        <li>Total Seluruhnya<span>Rp {{@rupiah($total_price+Session::get('expedition_total'))}}</span></li>
+                        <li>Total Seluruhnya<span>Rp {{@rupiah($total_price+Session::get('expedition_total'))}}</span>
+                        </li>
                         @endif
                         @else
                         @if(Session::has('discount_amount_price'))
                         <li>Sub Total <span>Rp {{@rupiah($total_price)}}</span></li>
                         <li>Ongkir <span>Rp {{@rupiah($expedition)}}</span></li>
-                        <li>Coupon Discount (Code : {{Session::get('coupon_code')}}) <span>- Rp {{@rupiah(Session::get('discount_amount_price'))}}</span></li>
-                        <li>Total Seluruhnya<span>Rp {{@rupiah($total_price+$expedition-Session::get('discount_amount_price'))}}</span></li>
+                        <li>Coupon Discount (Code : {{Session::get('coupon_code')}}) <span>- Rp
+                                {{@rupiah(Session::get('discount_amount_price'))}}</span></li>
+                        <li>Total Seluruhnya<span>Rp
+                                {{@rupiah($total_price+$expedition-Session::get('discount_amount_price'))}}</span></li>
                         @else
                         <li>Sub Total <span>Rp {{@rupiah($total_price)}}</span></li>
                         <li>Ongkir <span>Rp {{@rupiah($expedition)}}</span></li>
@@ -146,7 +160,8 @@
                         @endif
                         @endif
                     </ul>
-                    <div style="margin-left: 20px;"><a class="btn btn-default check_out" href="{{url('/check-out')}}">Check Out</a></div>
+                    <div style="margin-left: 20px;"><a class="btn btn-default check_out"
+                            href="{{url('/check-out')}}">Check Out</a></div>
                 </div>
             </div>
         </div>

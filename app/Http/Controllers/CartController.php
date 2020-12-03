@@ -53,7 +53,7 @@ class CartController extends Controller
             $inputToCart['users_id'] = $auth_id;
             $count_duplicateItems = Cart_model::where([
                 'products_id' => $inputToCart['products_id']
-            ])->where('users_id', 'auth_id')->count();
+            ])->where('users_id', $auth_id)->count();
             if ($count_duplicateItems > 0) {
                 return back()->with('message', 'Produk sudah ada di dalam keranjang. Cek kembali keranjang anda.');
             } else {

@@ -51,7 +51,7 @@ class UsersController extends Controller
     {
         Auth::logout();
         Session::forget('frontSession');
-        return redirect('/login');
+        return redirect('/login_page');
     }
     public function account()
     {

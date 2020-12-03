@@ -1,7 +1,7 @@
 <footer id="footer">
     <!--Footer-->
 
-    <div class="footer-widget">
+    {{-- <div class="footer-widget">
         <div class="container">
             <div class="row">
                 <div class="col-sm-2">
@@ -65,7 +65,7 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="footer-top">
         <div class="container">
@@ -87,7 +87,7 @@
                                     <i class="fa fa-play-circle-o"></i>
                                 </div>
                             </a>
-                            <p>Circle of Hands</p>
+                            <p>Afir</p>
                             <h2>24 DEC 2014</h2>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                                     <i class="fa fa-play-circle-o"></i>
                                 </div>
                             </a>
-                            <p>Wahyu Enda</p>
+                            <p>Wahyu Endah</p>
                             <h2>24 DEC 2014</h2>
                         </div>
                     </div>
