@@ -32,6 +32,13 @@
                     <li><a href="{{route('coupon.index')}}">Daftar Kupon</a></li>
                 </ul>
             </li>
+            <li class="submenu {{$menu_active==6? ' active':''}}"> <a href="#"><i class="icon icon-th-list"></i>
+                    <span>Konsultan</span></a>
+                <ul>
+                    <li><a href="{{url('/admin/konsultan/create')}}">Tambah Konsultan</a></li>
+                    <li><a href="{{url('/admin/konsultan')}}">Daftar Konsultan</a></li>
+                </ul>
+            </li>
     </ul>
 </div>
 <!--sidebar-menu-->

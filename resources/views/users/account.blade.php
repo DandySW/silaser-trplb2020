@@ -17,38 +17,41 @@
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     {{method_field('PUT')}}
                     <legend>Account Profile</legend>
-                    <div class="form-group {{$errors->has('name')?'has-error':''}}">
-                        <input type="text" class="form-control" name="name" id="name" value="{{$user_login->name}}" placeholder="Name">
-                        <span class="text-danger">{{$errors->first('name')}}</span>
-                    </div>
-                    <div class="form-group {{$errors->has('address')?'has-error':''}}">
-                        <input type="text" class="form-control" value="{{$user_login->address}}" name="address" id="address" placeholder="Address">
-                        <span class="text-danger">{{$errors->first('address')}}</span>
-                    </div>
-                    <div class="form-group {{$errors->has('city')?'has-error':''}}">
-                        <input type="text" class="form-control" name="city" value="{{$user_login->city}}" id="city" placeholder="City">
-                        <span class="text-danger">{{$errors->first('city')}}</span>
-                    </div>
-                    <div class="form-group {{$errors->has('state')?'has-error':''}}">
-                        <input type="text" class="form-control" name="state" value="{{$user_login->state}}" id="state" placeholder="State">
-                        <span class="text-danger">{{$errors->first('state')}}</span>
+                    <div class="form-group">
+                        <input type="text" value="{{$user_login->email}}" disabled>
                     </div>
                     <div class="form-group">
-                        <select name="country" id="country" class="form-control">
-                            @foreach($countries as $country)
-                            <option value="{{$country->country_name}}" {{$user_login->country==$country->country_name?' selected':''}}>{{$country->country_name}}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" value="{{$user_login->name}}" disabled>
                     </div>
-                    <div class="form-group {{$errors->has('pincode')?'has-error':''}}">
-                        <input type="text" class="form-control" name="pincode" value="{{$user_login->pincode}}" id="pincode" placeholder="Pincode">
-                        <span class="text-danger">{{$errors->first('pincode')}}</span>
+                    <div class="form-group {{$errors->has('address')?'has-error':''}}">
+                        <input type="text" class="form-control" value="{{$user_login->address}}" name="address"
+                            id="address" placeholder="Address">
+                        <span class="text-danger">{{$errors->first('address')}}</span>
+                    </div>
+                    <div class="form-group {{$errors->has('kelurahan')?'has-error':''}}">
+                        <input type="text" class="form-control" name="kelurahan" value="{{$user_login->kelurahan}}"
+                            id="kelurahan" placeholder="kelurahan">
+                        <span class="text-danger">{{$errors->first('kelurahan')}}</span>
+                    </div>
+                    <div class="form-group {{$errors->has('kecamatan')?'has-error':''}}">
+                        <input type="text" class="form-control" name="kecamatan" value="{{$user_login->kecamatan}}"
+                            id="kecamatan" placeholder="kecamatan">
+                        <span class="text-danger">{{$errors->first('kecamatan')}}</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" value="Jember" disabled>
+                    </div>
+                    <div class="form-group {{$errors->has('postcode')?'has-error':''}}">
+                        <input type="text" class="form-control" name="postcode" value="{{$user_login->postcode}}"
+                            id="postcode" placeholder="postcode">
+                        <span class="text-danger">{{$errors->first('postcode')}}</span>
                     </div>
                     <div class="form-group {{$errors->has('mobile')?'has-error':''}}">
-                        <input type="text" class="form-control" name="mobile" value="{{$user_login->mobile}}" id="mobile" placeholder="Mobile">
+                        <input type="text" class="form-control" name="mobile" value="{{$user_login->mobile}}"
+                            id="mobile" placeholder="Mobile">
                         <span class="text-danger">{{$errors->first('mobile')}}</span>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="float: right;">Update Profile</button>
+                    <button type="submit" class="btn btn-primary" style="float: right;">Edit Profile</button>
                 </form>
             </div>
             <!--/login form-->
@@ -64,20 +67,23 @@
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     {{method_field('PUT')}}
                     <div class="form-group {{$errors->has('password')?'has-error':''}}">
-                        <input type="password" class="form-control" name="password" id="password" placeholder="Old Password">
+                        <input type="password" class="form-control" name="password" id="password"
+                            placeholder="Old Password">
                         @if(Session::has('oldpassword'))
                         <span class="text-danger">{{Session::get('oldpassword')}}</span>
                         @endif
                     </div>
                     <div class="form-group {{$errors->has('newPassword')?'has-error':''}}">
-                        <input type="password" class="form-control" name="newPassword" id="newPassword" placeholder="New Password">
+                        <input type="password" class="form-control" name="newPassword" id="newPassword"
+                            placeholder="New Password">
                         <span class="text-danger">{{$errors->first('newPassword')}}</span>
                     </div>
                     <div class="form-group {{$errors->has('newPassword_confirmation')?'has-error':''}}">
-                        <input type="password" class="form-control" name="newPassword_confirmation" id="newPassword_confirmation" placeholder="Confirm Password">
+                        <input type="password" class="form-control" name="newPassword_confirmation"
+                            id="newPassword_confirmation" placeholder="Confirm Password">
                         <span class="text-danger">{{$errors->first('newPassword_confirmation')}}</span>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="float: right;">Update Password</button>
+                    <button type="submit" class="btn btn-primary" style="float: right;">Edit Password</button>
                 </form>
             </div>
             <!--/sign up form-->

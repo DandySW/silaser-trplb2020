@@ -1,9 +1,11 @@
-@extends('backEnd.layouts.master')
-@section('title','Pengaturan Akun |')
+@extends('konsultan.layouts.master')
+@section('title','Pengaturan Akun')
 @section('content')
 <!--breadcrumbs-->
 <div id="content-header">
-    <div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Setting</a> </div>
+    <div id="breadcrumb"> <a href="{{url('/konsultan')}}" title="Go to Home" class="tip-bottom"><i
+                class="icon-home"></i>
+            Home</a> <a href="#" class="current">Setting</a> </div>
 </div>
 <!--End-breadcrumbs-->
 <div class="container-fluid">
@@ -14,12 +16,25 @@
                     @if(Session::has('message'))
                     <h5 class="text-danger" style="color: #0e90d2;">{{Session::get('message')}}</h5>
                     @else
-                    <h5>Security validation</h5>
+                    <h5>Edit Akun</h5>
                     @endif
                 </div>
                 <div class="widget-content nopadding">
-                    <form class="form-horizontal" method="post" action="{{url('/admin/update-pwd')}}" name="password_validate" id="password_validate" novalidate="novalidate">
+                    <form class="form-horizontal" method="post" action="{{url('/konsultan/update-pwd')}}"
+                        name="password_validate" id="password_validate" novalidate="novalidate">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <div class="control-group">
+                            <label class="control-label">Nama</label>
+                            <div class="controls">
+                                <input type="text" value="{{ $user->name }}" disabled />
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Email</label>
+                            <div class="controls">
+                                <input type="text" value="{{ $user->email }}" disabled />
+                            </div>
+                        </div>
                         <div class="control-group">
                             <label class="control-label">Current Password</label>
                             <div class="controls">

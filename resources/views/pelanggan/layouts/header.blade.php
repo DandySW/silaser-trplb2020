@@ -40,7 +40,7 @@
                         <ul class="nav navbar-nav">
                             <li><a href="{{ url('/viewcart') }}"><i class="fa fa-shopping-cart"></i> Keranjang</a></li>
                             @if (Auth::check())
-                            <li><a href="{{ url('/myaccount') }}"><i class="fa fa-user"></i> Akun Saya</a></li>
+                            <li><a href="{{ url('/myaccount') }}"><i class="fa fa-user"></i> Edit Profil</a></li>
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-lock"></i> Logout </a>
                             </li>
                             @else

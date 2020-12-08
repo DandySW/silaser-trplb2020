@@ -12,12 +12,14 @@ class AdminController extends Controller
     public function index()
     {
         $menu_active = 1;
-        return view('admin.index', compact('menu_active'));
+        $user =  Auth::user();
+        return view('admin.index', compact('menu_active', 'user'));
     }
     public function settings()
     {
-        $menu_active = 0;
-        return view('admin.setting', compact('menu_active'));
+        $menu_active = 1;
+        $user =  Auth::user();
+        return view('admin.setting', compact('menu_active', 'user'));
     }
     public function chkPassword(Request $request)
     {
@@ -42,9 +44,9 @@ class AdminController extends Controller
         if (Hash::check($current_password, $check_password->password)) {
             $password = bcrypt($data['pwd_new']);
             User::where('email', $email_login)->update(['password' => $password]);
-            return redirect('/admin/settings')->with('message', 'Password Update Successfully');
+            return redirect('/admin/edit-profile')->with('message', 'Well Done! profil anda berhasil diubah');
         } else {
-            return redirect('/admin/settings')->with('message', 'InCorrect Current Password');
+            return redirect('/admin/edit-profile')->with('message', 'Field is not valid');
         }
     }
 

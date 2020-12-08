@@ -19,7 +19,7 @@ class UsersController extends Controller
     public function register(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:users,name',
             'email' => 'required|string|email|unique:users,email',
             'password' => 'required|min:6|confirmed',
         ]);
@@ -51,33 +51,31 @@ class UsersController extends Controller
     {
         Auth::logout();
         Session::forget('frontSession');
-        return redirect('/login_page');
+        return redirect('/login');
     }
     public function account()
     {
-        $countries = DB::table('countries')->get();
         $user_login = User::where('id', Auth::id())->first();
-        return view('users.account', compact('countries', 'user_login'));
+        return view('users.account', compact('user_login'));
     }
     public function updateprofile(Request $request, $id)
     {
         $this->validate($request, [
-            'address' => 'required',
-            'city' => 'required',
-            'state' => 'required',
-            'mobile' => 'required',
+            'address' => 'required|min:10|max:255',
+            'kelurahan' => 'required|min:5|max:30',
+            'kecamatan' => 'required|min:5|max:30',
+            'postcode' => 'required|numeric|digits:5',
+            'mobile' => 'required|min:12|max:15',
         ]);
         $input_data = $request->all();
         DB::table('users')->where('id', $id)->update([
-            'name' => $input_data['name'],
             'address' => $input_data['address'],
-            'city' => $input_data['city'],
-            'state' => $input_data['state'],
-            'country' => $input_data['country'],
-            'pincode' => $input_data['pincode'],
+            'kelurahan' => $input_data['kelurahan'],
+            'kecamatan' => $input_data['kecamatan'],
+            'postcode' => $input_data['postcode'],
             'mobile' => $input_data['mobile']
         ]);
-        return back()->with('message', 'Update Profile already!');
+        return back()->with('message', 'Well Done! profil anda berhasil diubah');
     }
     public function updatepassword(Request $request, $id)
     {
@@ -85,7 +83,7 @@ class UsersController extends Controller
         $input_data = $request->all();
         if (Hash::check($input_data['password'], $oldPassword->password)) {
             $this->validate($request, [
-                'newPassword' => 'required|min:6|max:12|confirmed'
+                'newPassword' => 'required|min:6|confirmed',
             ]);
             $new_pass = Hash::make($input_data['newPassword']);
             User::where('id', $id)->update(['password' => $new_pass]);

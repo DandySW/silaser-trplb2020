@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
-class FrontLogin_middleware
+class Pelanggan
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,9 @@ class FrontLogin_middleware
      */
     public function handle($request, Closure $next)
     {
-        if (empty(Session::has('frontSession'))) {
-            return redirect('/login');
+        if (Auth::check() && Auth::user()->isPelanggan()) {
+            return $next($request);
         }
-        return $next($request);
+        return redirect(url('/404'));
     }
 }
