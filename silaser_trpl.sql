@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2020 at 04:21 PM
+-- Generation Time: Dec 08, 2020 at 07:00 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -42,9 +42,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `users_id`, `products_id`, `quantity`, `session_id`, `created_at`, `updated_at`) VALUES
-(60, 6, 34, 2, 'xUyTOgFKZ9SVUjGtWoJP0UJioDVpcqfLajXQyfJh', '2020-11-18 07:10:47', '2020-11-18 07:10:47'),
-(94, 4, 33, 1, 'HQrTtlwIwgzuK61uak2hUBbeTzZSu7yI8vMuXPGK', '2020-11-30 15:33:25', '2020-11-30 15:33:25'),
-(93, 4, 32, 1, 'HQrTtlwIwgzuK61uak2hUBbeTzZSu7yI8vMuXPGK', '2020-11-30 15:28:24', '2020-11-30 15:28:24');
+(126, 4, 43, 1, '38Urf4hVcVSCex0J2fEGOFuTj6LJQGHtHREajwqV', '2020-12-07 07:36:51', '2020-12-07 07:36:51'),
+(121, 1, 44, 1, 'X8bv4FiAxtnPdUwupbgCbcljzjkeY97WJDAnfEwo', '2020-12-03 03:06:05', '2020-12-03 03:06:05');
 
 -- --------------------------------------------------------
 
@@ -64,17 +63,11 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(12, 'Car', '2018-10-22 21:32:33', '2018-11-16 02:00:00'),
-(10, 'House', '2018-10-22 21:31:29', '2018-11-16 02:05:53'),
-(11, 'Shoes', '2018-10-22 21:32:14', '2018-11-16 02:07:15'),
-(13, 'Computer', '2018-10-22 21:33:26', '2018-11-16 02:05:43'),
-(14, 'Cloths', '2018-10-22 21:34:31', '2018-11-16 02:05:18'),
-(15, 'Toyota', '2018-10-22 21:35:08', '2018-11-16 01:54:49'),
-(16, 'Link House', '2018-10-22 21:56:56', '2018-11-16 02:07:05'),
-(17, 'Man Shoes', '2018-10-22 21:58:13', '2018-11-16 01:53:44'),
-(25, 'nasi ayam', '2020-11-09 07:06:20', '2020-11-09 07:06:41'),
-(26, 'jamur tiram', '2020-11-09 07:38:44', '2020-11-09 07:38:56'),
-(27, 'bebek a', '2020-11-18 19:51:34', '2020-11-18 20:31:20');
+(12, 'HDD/SSD', '2018-10-22 21:32:33', '2018-11-16 02:00:00'),
+(10, 'Processor', '2018-10-22 21:31:29', '2018-11-16 02:05:53'),
+(11, 'RAM', '2018-10-22 21:32:14', '2018-11-16 02:07:15'),
+(13, 'VGA', '2018-10-22 21:33:26', '2018-11-16 02:05:43'),
+(14, 'Motherboard', '2018-10-22 21:34:31', '2018-11-16 02:05:18');
 
 -- --------------------------------------------------------
 
@@ -383,7 +376,7 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `created_at`, 
 (234, 10, 1, 'Veritatis possimus sint omnis facere sint.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (235, 16, 10, 'Ipsum porro impedit impedit et.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (236, 18, 22, 'Eligendi vitae et qui soluta.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
-(237, 4, 7, 'Maxime ducimus nihil minima vel accusantium aut porro.', 1, '2020-11-23 17:48:04', '2020-12-02 14:23:14'),
+(237, 4, 7, 'Maxime ducimus nihil minima vel accusantium aut porro.', 1, '2020-11-23 17:48:04', '2020-12-03 05:09:18'),
 (238, 18, 20, 'Quo quasi quos assumenda vitae fuga aut commodi.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (239, 8, 13, 'Cum natus possimus distinctio quae voluptas.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (240, 3, 18, 'Eum quaerat illo qui ad.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
@@ -525,7 +518,7 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `created_at`, 
 (376, 7, 5, 'Voluptatem labore officiis iste quaerat.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (377, 2, 3, 'Totam ut placeat dolorem repudiandae qui dolorem vitae.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (378, 16, 17, 'Maxime ea similique est velit accusamus corporis non.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
-(379, 7, 4, 'Quis voluptas alias odio accusantium eos dolores non.', 1, '2020-11-23 17:48:04', '2020-12-02 14:23:15'),
+(379, 7, 4, 'Quis voluptas alias odio accusantium eos dolores non.', 1, '2020-11-23 17:48:04', '2020-12-03 05:09:18'),
 (380, 27, 25, 'Repellendus cum consequatur maxime quis rerum amet.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (381, 1, 24, 'Doloremque aut autem maxime quia quo ea.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (382, 3, 14, 'Ut molestiae id at quo neque.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
@@ -662,8 +655,12 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `created_at`, 
 (512, 5, 1, 'halo admin', 1, '2020-12-01 22:58:52', '2020-12-01 22:59:00'),
 (513, 1, 5, 'halo user', 1, '2020-12-01 22:59:00', '2020-12-01 22:59:00'),
 (514, 1, 7, 'hai konsultan', 0, '2020-12-02 08:29:29', '2020-12-02 08:29:29'),
-(515, 7, 4, 'tes', 1, '2020-12-02 14:23:05', '2020-12-02 14:23:15'),
-(516, 4, 7, 'halo', 1, '2020-12-02 14:23:14', '2020-12-02 14:23:14');
+(515, 7, 4, 'tes', 1, '2020-12-02 14:23:05', '2020-12-03 05:09:18'),
+(516, 4, 7, 'halo', 1, '2020-12-02 14:23:14', '2020-12-03 05:09:18'),
+(517, 7, 4, 's', 1, '2020-12-03 02:43:13', '2020-12-03 05:09:18'),
+(518, 4, 7, 'tes', 1, '2020-12-03 02:43:21', '2020-12-03 05:09:18'),
+(519, 4, 7, 'tes', 1, '2020-12-03 05:09:06', '2020-12-03 05:09:18'),
+(520, 7, 4, 'iya', 1, '2020-12-03 05:09:17', '2020-12-03 05:09:18');
 
 -- --------------------------------------------------------
 
@@ -731,14 +728,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `users_id`, `expedition`, `shipping_charge`, `coupon_id`, `coupon_amount`, `grand_total`, `order_date`, `checkout_status`, `struk`, `resi`, `shipping_status`, `shipping_date`, `receipt_status`, `receipt_date`, `address`, `kelurahan`, `kecamatan`, `postcode`, `mobile`, `created_at`, `updated_at`) VALUES
-(23, 1, 2, 7, 0, 0, 42, '2020-11-19', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-19 09:36:33', '2020-11-19 09:36:33'),
 (15, 4, 2, 0, 0, 0, 12, '2020-11-17', 'sudah dibayar', NULL, NULL, 'belum dikirim', NULL, 'sudah diterima', '2020-11-22', '', '', '', '', '', '2020-11-17 12:46:28', '2020-11-22 12:23:05'),
-(16, 4, 1, 0, 0, 0, 17, '2020-11-17', 'sudah dibayar', 'struk_order-16.jpg', NULL, 'belum dikirim', NULL, 'sudah diterima', '2020-11-22', 'perumahan gunung batu b-28', 'sumbersari', 'sumber sari', '68121', '082234795673', '2020-11-17 12:56:22', '2020-11-22 12:26:01'),
-(17, 4, 3, 0, 0, 0, 12, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-17 13:00:18', '2020-11-17 13:00:18'),
-(19, 4, 2, 0, 7, 0, 29, '2020-11-17', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-17 13:03:24', '2020-11-17 13:03:24'),
-(20, 1, 3, 0, 6, 1, 15, '2020-11-18', 'sudah dibayar', 'Screenshot (92).png', '1234567890', 'sudah dikirim', '2020-11-19', 'belum diterima', NULL, '', '', '', '', '', '2020-11-18 11:39:35', '2020-11-20 11:35:00'),
-(21, 1, 1, 10, 0, 0, 30, '2020-11-18', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-18 11:49:23', '2020-11-18 11:49:23'),
-(22, 1, 1, 10, 0, 0, 30, '2020-11-18', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, '', '', '', '', '', '2020-11-18 11:59:08', '2020-11-18 11:59:08'),
 (24, 1, 2, 7, 0, 0, 43, '2020-11-19', 'belum dibayar', NULL, NULL, 'belum dikirim', '2020-11-17', 'sudah diterima', NULL, 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', '2020-11-19 09:58:12', '2020-11-19 09:58:12'),
 (25, 1, 2, 7, 6, 0, 43, '2020-11-19', 'sudah dibayar', NULL, '9340184082', 'sudah dikirim', '2020-11-20', 'belum diterima', NULL, 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', '2020-11-19 09:58:12', '2020-11-23 05:39:48'),
 (26, 1, 2, 7, 0, 0, 43, '2020-11-19', 'belum dibayar', NULL, '0987654321', 'sudah dikirim', '2020-11-20', 'belum diterima', NULL, 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', '2020-11-19 09:59:43', '2020-11-20 11:37:13'),
@@ -766,7 +756,26 @@ INSERT INTO `orders` (`id`, `users_id`, `expedition`, `shipping_charge`, `coupon
 (48, 4, 2, 7000, 7, 500, 7547, '2020-11-23', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-11-23 04:40:13', '2020-11-23 04:40:13'),
 (49, 4, 2, 7000, 7, 500, 7547, '2020-11-23', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-11-23 04:40:22', '2020-11-23 04:40:22'),
 (50, 4, 2, 7000, 7, 500, 7547, '2020-11-23', 'sudah dibayar', 'struk_order-50.png', NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-11-23 04:42:58', '2020-11-23 06:15:34'),
-(51, 1, 1, 30000, NULL, NULL, 36051, '2020-12-01', 'sudah dibayar', 'struk_order-51.jpg', '182410107601', 'sudah dikirim', '2018-04-03', 'sudah diterima', '2020-12-01', 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', '2020-12-01 07:55:38', '2020-12-01 07:58:55');
+(51, 1, 1, 30000, NULL, NULL, 36051, '2020-12-01', 'sudah dibayar', 'struk_order-51.jpg', '182410107601', 'sudah dikirim', '2018-04-03', 'sudah diterima', '2020-12-01', 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', '2020-12-01 07:55:38', '2020-12-01 07:58:55'),
+(52, 4, 2, 7000, 7, 205000, 212052, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:07:13', '2020-12-03 02:07:13'),
+(53, 4, 2, 7000, 7, 205000, 212053, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:10:25', '2020-12-03 02:10:25'),
+(54, 4, 2, 7000, NULL, NULL, 2107054, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:14:59', '2020-12-03 02:14:59'),
+(55, 4, 2, 7000, NULL, NULL, 2107055, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:15:31', '2020-12-03 02:15:31'),
+(56, 1, 1, 10000, NULL, NULL, 970056, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', '2020-12-03 02:31:10', '2020-12-03 02:31:10'),
+(57, 4, 2, 7000, 6, 54000, 493057, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:37:04', '2020-12-03 02:37:04'),
+(58, 4, 2, 7000, 6, 54000, 493058, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:38:35', '2020-12-03 02:38:35'),
+(59, 4, 2, 7000, 6, 54000, 493059, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:38:52', '2020-12-03 02:38:52'),
+(60, 4, 3, 6000, 6, 96000, 870060, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:39:18', '2020-12-03 02:39:18'),
+(61, 1, 3, 6000, 6, 96000, 870061, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', '2020-12-03 02:40:45', '2020-12-03 02:40:45'),
+(62, 4, 3, 6000, 6, 96000, 870062, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:41:17', '2020-12-03 02:41:17'),
+(63, 4, 3, 6000, 6, 96000, 870062, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:42:22', '2020-12-03 02:42:22'),
+(64, 4, 3, 6000, 6, 96000, 870064, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:42:32', '2020-12-03 02:42:32'),
+(65, 4, 3, 6000, NULL, NULL, 966065, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:49:07', '2020-12-03 02:49:07'),
+(66, 4, 2, 7000, NULL, NULL, 967066, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:54:44', '2020-12-03 02:54:44'),
+(67, 4, 1, 10000, NULL, NULL, 970067, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 03:12:27', '2020-12-03 03:12:27'),
+(68, 5, 2, 7000, NULL, NULL, 547068, '2020-12-03', 'sudah dibayar', 'struk_order-68.png', '9340875082', 'sudah dikirim', '2020-11-20', 'sudah diterima', '2020-12-03', 'Jalan Mawar', 'qwqwwqwqew', 'qwwqeqwqwqw', '23412', '456332345689', '2020-12-03 03:15:15', '2020-12-03 03:21:50'),
+(69, 4, 3, 6000, NULL, NULL, 1236069, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 05:10:54', '2020-12-03 05:10:54'),
+(70, 4, 1, 10000, NULL, NULL, 540070, '2020-12-05', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-05 16:42:15', '2020-12-05 16:42:15');
 
 -- --------------------------------------------------------
 
@@ -812,7 +821,26 @@ INSERT INTO `order_details` (`id`, `orders_id`, `products_id`, `quantity`, `crea
 (22, 45, 33, 1, '2020-11-23 01:44:31', '2020-11-23 01:44:31'),
 (23, 46, 31, 1, '2020-11-23 04:15:30', '2020-11-23 04:15:30'),
 (24, 47, 41, 1, '2020-11-23 04:39:55', '2020-11-23 04:39:55'),
-(25, 51, 34, 3, '2020-12-01 07:55:38', '2020-12-01 07:55:38');
+(25, 51, 34, 3, '2020-12-01 07:55:38', '2020-12-01 07:55:38'),
+(26, 52, 33, 1, '2020-12-03 02:07:13', '2020-12-03 02:07:13'),
+(27, 53, 33, 1, '2020-12-03 02:10:25', '2020-12-03 02:10:25'),
+(28, 54, 33, 1, '2020-12-03 02:14:59', '2020-12-03 02:14:59'),
+(29, 55, 33, 1, '2020-12-03 02:15:31', '2020-12-03 02:15:31'),
+(30, 56, 43, 1, '2020-12-03 02:31:10', '2020-12-03 02:31:10'),
+(31, 57, 33, 1, '2020-12-03 02:37:04', '2020-12-03 02:37:04'),
+(32, 58, 33, 1, '2020-12-03 02:38:35', '2020-12-03 02:38:35'),
+(33, 59, 33, 1, '2020-12-03 02:38:52', '2020-12-03 02:38:52'),
+(34, 60, 33, 1, '2020-12-03 02:39:18', '2020-12-03 02:39:18'),
+(35, 61, 43, 1, '2020-12-03 02:40:45', '2020-12-03 02:40:45'),
+(36, 62, 33, 1, '2020-12-03 02:41:17', '2020-12-03 02:41:17'),
+(37, 63, 33, 1, '2020-12-03 02:42:22', '2020-12-03 02:42:22'),
+(38, 64, 33, 1, '2020-12-03 02:42:32', '2020-12-03 02:42:32'),
+(39, 65, 33, 1, '2020-12-03 02:49:07', '2020-12-03 02:49:07'),
+(40, 66, 33, 1, '2020-12-03 02:54:44', '2020-12-03 02:54:44'),
+(41, 67, 43, 1, '2020-12-03 03:12:27', '2020-12-03 03:12:27'),
+(42, 68, 46, 1, '2020-12-03 03:15:15', '2020-12-03 03:15:15'),
+(43, 69, 45, 3, '2020-12-03 05:10:54', '2020-12-03 05:10:54'),
+(44, 70, 46, 1, '2020-12-05 16:42:15', '2020-12-05 16:42:15');
 
 -- --------------------------------------------------------
 
@@ -850,13 +878,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `categories_id`, `p_name`, `description`, `stock`, `price`, `weight`, `image`, `created_at`, `updated_at`) VALUES
-(39, 14, 'wdwdwd', 'ddddddddddsasd', 0, 3000, 50, '1604937712-wdwdwd.png', '2020-11-09 09:01:52', '2020-11-18 20:13:52'),
-(31, 10, 'House', 'House For Sale', 4, 10000, 50, '1544064430-house.jpg', '2018-12-05 19:47:10', '2020-11-23 04:15:30'),
-(32, 11, 'Vionic Shoes Brand', 'Women Shoes', 8, 12000, 50, '1544064607-vionic-shoes-brand.jpg', '2018-12-05 19:50:07', '2020-11-23 01:21:33'),
-(33, 17, 'Cole Haan', 'Men\'s Original Grand Wingtip Oxfords', 10, 5000, 50, '1544064903-cole-haan.jpg', '2018-12-05 19:55:03', '2020-11-23 01:44:31'),
-(34, 13, 'Lenovo ThinkPad', 'Lenovo Thinkpad From China', 9, 2000, 1000, '1544065331-lenovo-thinkpad.jpg', '2018-12-05 20:02:12', '2020-12-01 07:55:38'),
-(41, 27, 'bebek', 'adsdaaddaasadddas', 9, 1000, 11, '1605732280-bebek.png', '2020-11-18 20:44:41', '2020-11-23 04:39:55'),
-(42, 11, 'cap badak', 'yang asli yang ada badaknya. cap kaki 3', 64, 10000, 150, 'cap-badak.png', '2020-11-23 18:25:23', '2020-11-23 18:25:23');
+(43, 10, 'Intel Pentium Gold G6400 4.0Ghz', '<b></b>SKU Product&nbsp;: 166283<br><br>Est. Weight&nbsp;&nbsp;&nbsp;: 0.3 Kg<br><br>Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Processor<br><br>Subcategory :&nbsp;Intel Pentium Socket LGA 1200<br><br>Brand&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Intel<br><br>Tags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;-', 7, 960000, 300, 'intel-pentium-gold-g6400-40ghz.jpg', '2020-12-02 23:36:16', '2020-12-03 03:12:27'),
+(44, 10, 'AMD Ryzen 3 3100 3.6Ghz Up To 3.9Ghz', 'SKU Product&nbsp;: 165826<br><br>Est. Weight&nbsp;&nbsp;&nbsp;: 0.3 Kg<br><br>Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Processor<br><br>Subcategory :&nbsp;AMD Socket AM4<br><br>Brand&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;AMD<br><br>Tags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;-', 10, 2100000, 300, 'amd-ryzen-3-3100-36ghz-up-to-39ghz.jpg', '2020-12-02 23:40:05', '2020-12-02 23:40:05'),
+(45, 12, 'KLEVV SSD NEO N400 240GB', 'SKU Product&nbsp;: 162329<br><br>Est. Weight&nbsp;&nbsp;&nbsp;: N/A Kg<br><br>Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;SSD<br><br>Subcategory :&nbsp;Internal SSD (SOLID STATE DISK)<br><br>Brand&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;KLEVV<br><br>Tags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;-', 0, 410000, 100, 'klevv-ssd-neo-n400-240gb.jpg', '2020-12-02 23:42:44', '2020-12-03 05:10:54'),
+(46, 11, 'V-GeN Platinum SO-DIMM DDR4 8GB PC17000', 'SKU Product&nbsp;: 123093<br><br>Est. Weight&nbsp;&nbsp;&nbsp;: 0.05 Kg<br><br>Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;<a target=\"_blank\" rel=\"nofollow\" href=\"https://www.enterkomputer.com/category/11/memory-ram\">Ram</a><br><br>Subcategory :&nbsp;Notebook<br><br>Brand&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;V-GEN<br><br>Tags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;-', 2, 540000, 50, 'v-gen-platinum-so-dimm-ddr4-8gb-pc17000.jpg', '2020-12-02 23:49:49', '2020-12-05 16:42:15');
 
 -- --------------------------------------------------------
 
@@ -954,11 +979,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `address`, `kelurahan`, `kecamatan`, `postcode`, `mobile`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'WeShare', 'demo@gmail.com', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', 1, '0ORSzgInJd1lvmLHQKh4zoaChu1lMG4C8AWp8rFSXwvH21lBs5epwiQ0LSW3', '2018-10-15 02:32:54', '2018-12-05 01:39:52'),
-(4, 'Dandy Satrio Wibowo', 'dandy@a.com', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', 3, 'eMPSEshXGYpnNuLAZxwnnYna2FtP6M6EWVyyubKTUGJNvikUCclvJP9o50pU', '2018-12-06 01:40:27', '2018-12-06 01:40:27'),
-(5, 'tes', 'tes@a.in', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', '', '', '', '', '', 3, 'QAGFO17uQHeE9HZoKE8kqsPAuprU9B9OZFEuaacmgFNlZWULwlM0wkN48GLA', NULL, NULL),
+(1, 'WeShare', 'demo@gmail.com', '$2y$10$ktiMqsnbFw9c0re24BHC0ee5f/SuTibMTNezUkU2yeD3zvGbpjAgq', NULL, NULL, NULL, NULL, NULL, 1, '4IyP2cbX1UW7WWtjFHcaahJxT0q6p9J1NVgOQfjJN1pfxwvZkk2U4wFn7FWO', '2018-10-15 02:32:54', '2020-12-07 15:22:13'),
+(8, 'bagus aja', 'bagus@mail.com', '$2y$10$aARnscb2WX0r44Z.bZm1g.LZD6QmWQljqbCli2WSGPn9VQNQgV1j.', NULL, NULL, NULL, NULL, NULL, 2, NULL, '2020-12-07 16:55:58', '2020-12-07 16:55:58'),
+(4, 'Dandy Satrio', 'dandy@a.com', '$2y$10$UTIUgIs1TPHftODY2gRBUO8217VK1dxamjIkscIQAg7aCXJKSfNO2', 'Jalan Mawar Merah Gang 3 no 15', 'Kebonsari', 'Sumbersari', '68111', '082234795673', 3, 'Yeb3f7ASy11rmhffGoDz3tq0stjtd0AXPzokpHAtp36p2XAF461Z8ybXgpdp', '2018-12-06 01:40:27', '2020-12-07 08:07:40'),
+(5, 'tes', 'tes@a.in', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', 'Jalan Mawar', 'qwqwwqwqew', 'qwwqeqwqwqw', '23412', '456332345689', 3, 'mEPkQFLL4Uk4widTgLXaXMxwgZ37enBzX6daoOfV1xNSYmdvofj0ICx5pL9U', NULL, NULL),
 (6, 'riki tiki', 'rikitiki@da.com', '$2y$10$WbWM5R5Zmw0J939pmnHGTefqMV9pkK07lNULgzZsiSYOqQ4KyOGoC', 'Perumahan Gunung Batu B28', '', '', '22222', '082234795673', 3, 'J1lQGCiFBnZ0f3FovhLSwlV4RLZPRBH12ckSsdlgUeexgzxrQq2I6Bns7Kv4', '2020-11-17 14:16:25', '2020-11-17 14:16:25'),
-(7, 'fajar alam', 'konsultan@tes.com', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', NULL, NULL, NULL, NULL, NULL, 2, 'SMHqp41bZh9fq0YPixlUFgbW9eQV5PORm5QuxBvbwJTpb1Umh7V6K6UQ5i0T', '2020-11-24 03:49:19', NULL);
+(7, 'fajar alam', 'konsultan@tes.com', '$2y$10$eYlug0sILf5KxjYbzCJXAufyKYOhphfowA7b9/8AOilYGRMJs8Hd2', NULL, NULL, NULL, NULL, NULL, 2, 'zL8FFanekrZauu5JWOJZsKFuv8w96xv1uXXh0ZrDchI6UN0Lv0N1PbQmQd62', '2020-11-24 03:49:19', '2020-12-07 15:52:36');
 
 --
 -- Indexes for dumped tables
@@ -1064,7 +1090,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1088,7 +1114,7 @@ ALTER TABLE `expeditions`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=517;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=521;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1100,19 +1126,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `status`
@@ -1130,7 +1156,7 @@ ALTER TABLE `tblgallery`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
