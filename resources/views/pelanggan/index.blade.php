@@ -17,10 +17,13 @@
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">
-                                    <a href="{{url('/product-detail',$product->id)}}"><img src="{{url('products/small/',$product->image)}}" alt="" /></a>
-                                    <h2>Rp {{@rupiah($product->price)}}</h2>
+                                    <a href="{{url('/product-detail',$product->id)}}"><img
+                                            src="{{url('products/small/',$product->image)}}" alt="" /></a>
+                                    <h2>{{ ($product->p_name)}}</h2>
+                                    <h4>Rp {{@rupiah($product->price)}}</h4>
                                     <p>{{$product->name}}</p>
-                                    <a href="{{url('/product-detail',$product->id)}}" class="btn btn-default add-to-cart">Detail Produk</a>
+                                    <a href="{{url('/product-detail',$product->id)}}"
+                                        class="btn btn-default add-to-cart">Detail Produk</a>
                                 </div>
                             </div>
                         </div>

@@ -19,7 +19,7 @@ Route::get('/product-detail/{id}', 'IndexController@detailpro');
 Route::get('/payment', 'IndexController@payment');
 
 /// Simple User Login /////
-// Route::get('/login_page', 'UsersController@index');
+// Route::get('/login', 'UsersController@index');
 Route::post('/register_user', 'UsersController@register');
 Route::post('/user_login', 'UsersController@login');
 Route::get('/logout', 'UsersController@logout');
@@ -73,9 +73,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/edit-profile', 'AdminController@settings');
     Route::get('/check-pwd', 'AdminController@chkPassword');
     Route::post('/update-pwd', 'AdminController@updatAdminPwd');
+    Route::post('/updateprofile/{id}', 'AdminController@updateprofile');
 
     /// Category Area
-    Route::resource('/category', 'CategoryController');
+    Route::resource('category', 'CategoryController');
     Route::get('delete-category/{id}', 'CategoryController@destroy');
     Route::get('/check_category_name', 'CategoryController@checkCateName');
 
@@ -109,7 +110,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     /// Konsultan
     Route::get('/konsultan', 'KonsultanController@admin');
     Route::get('/konsultan/create', 'KonsultanController@create');
-    Route::post('/konsultan/create', 'KonsultanController@store');
+    Route::post('/konsultan', 'KonsultanController@store');
 });
 
 // ==============================================================================================
@@ -120,6 +121,7 @@ Route::group(['prefix' => 'konsultan', 'middleware' => ['FrontLogin_middleware',
     Route::get('/edit-profile', 'KonsultanController@settings');
     Route::get('/check-pwd', 'KonsultanController@chkPassword');
     Route::post('/update-pwd', 'KonsultanController@updatKonsPwd');
+    Route::post('/updateprofile/{id}', 'KonsultanController@updateprofile');
 
     //Chat
     Route::get('/chat', 'MessageController@index');

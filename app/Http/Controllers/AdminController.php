@@ -21,6 +21,25 @@ class AdminController extends Controller
         $user =  Auth::user();
         return view('admin.setting', compact('menu_active', 'user'));
     }
+    public function updateprofile(Request $request, $id)
+    {
+        $this->validate($request, [
+            'address' => 'required|min:10|max:65535',
+            'kelurahan' => 'required|min:5|max:30',
+            'kecamatan' => 'required|min:5|max:30',
+            'postcode' => 'required|numeric|digits:5',
+            'mobile' => 'required|min:12|max:15',
+        ]);
+        $input_data = $request->all();
+        User::where('id', $id)->update([
+            'address' => $input_data['address'],
+            'kelurahan' => $input_data['kelurahan'],
+            'kecamatan' => $input_data['kecamatan'],
+            'postcode' => $input_data['postcode'],
+            'mobile' => $input_data['mobile']
+        ]);
+        return redirect('/admin')->with('message', 'Well Done! profil anda berhasil diubah');
+    }
     public function chkPassword(Request $request)
     {
         $data = $request->all();
@@ -44,7 +63,7 @@ class AdminController extends Controller
         if (Hash::check($current_password, $check_password->password)) {
             $password = bcrypt($data['pwd_new']);
             User::where('email', $email_login)->update(['password' => $password]);
-            return redirect('/admin/edit-profile')->with('message', 'Well Done! profil anda berhasil diubah');
+            return redirect('/admin')->with('message', 'Well Done! profil anda berhasil diubah');
         } else {
             return redirect('/admin/edit-profile')->with('message', 'Field is not valid');
         }

@@ -36,9 +36,15 @@ class OrdersPelangganController extends Controller
     public function uploadpembayaran(Request $request, $id)
     {
         $update_order = Orders_model::findOrFail($id);
-        $this->validate($request, [
-            'struk' => 'required|image|mimes:png,jpg,jpeg|max:1000',
-        ]);
+        $this->validate(
+            $request,
+            [
+                'struk' => 'required|image|mimes:png,jpg,jpeg|max:5000',
+            ],
+            [
+                'struk.max' => 'Ukuran maksimal 5MB'
+            ]
+        );
         $formInput = $request->all();
         if ($request->file('struk')) {
             $struk = $request->file('struk');
@@ -66,7 +72,7 @@ class OrdersPelangganController extends Controller
         }
 
         $update_order->update($formInput);
-        return back();
+        return back()->with('message', 'Well Done! bukti pembayaran berhasil ditambahkan');
     }
 
     // orders/sedang-proses -> Menampilkan semua yang sedang proses
@@ -108,7 +114,7 @@ class OrdersPelangganController extends Controller
         }
 
         $update_order->update($input_data);
-        return back()->with('message', 'Berhasil mengonfirmasi penerimaan produk');
+        return back()->with('message', 'Status penerimaan berhasil diubah');
     }
     public function sudahselesai()
     {

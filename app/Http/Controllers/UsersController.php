@@ -18,11 +18,24 @@ class UsersController extends Controller
     }
     public function register(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|string|max:255|unique:users,name',
-            'email' => 'required|string|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
-        ]);
+        $this->validate(
+            $request,
+
+            [
+                'name' => 'required|string|max:255|unique:users,name',
+                'email' => 'required|string|email|unique:users,email',
+                'password' => 'required|min:6|confirmed',
+            ],
+            [
+                'name.required' => 'Field is Required',
+                'email.required' => 'Field is Required',
+                'password.required' => 'Field is Required',
+                'name.unique' => 'Account  is Not Valid',
+                'email.unique' => 'Account  is Not Valid',
+                'password.confirmed' => 'Account  is Not Valid',
+            ]
+
+        );
         $input_data = $request->all();
         $input_data['password'] = Hash::make($input_data['password']);
         User::create($input_data);
@@ -61,7 +74,7 @@ class UsersController extends Controller
     public function updateprofile(Request $request, $id)
     {
         $this->validate($request, [
-            'address' => 'required|min:10|max:255',
+            'address' => 'required|min:10|max:65535',
             'kelurahan' => 'required|min:5|max:30',
             'kecamatan' => 'required|min:5|max:30',
             'postcode' => 'required|numeric|digits:5',

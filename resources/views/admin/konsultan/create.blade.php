@@ -12,7 +12,7 @@
                     <h5>Tambah Konsultan</h5>
                 </div>
                 <div class="widget-content nopadding">
-                    <form class="form-horizontal" method="post" action="{{url('admin/konsultan/create')}}"
+                    <form class="form-horizontal" method="post" action="{{url('admin/konsultan')}}"
                         name="basic_validate" id="basic_validate" novalidate="novalidate">
                         @csrf
                         <div class="control-group{{$errors->has('name')?' has-error':''}}">

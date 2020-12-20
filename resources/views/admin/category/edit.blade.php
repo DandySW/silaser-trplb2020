@@ -1,7 +1,9 @@
 @extends('admin.layouts.master')
 @section('title','Edit Kategori | SILASER - Sistem Informasi Penjualan dan Layanan Servis Laptop')
 @section('content')
-<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('category.index')}}">Daftar Kategori</a> <a href="#" class="current">Edit Kategori</a> </div>
+<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+        Home</a> <a href="{{route('category.index')}}">Daftar Kategori</a> <a href="#" class="current">Edit Kategori</a>
+</div>
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
@@ -10,7 +12,8 @@
                     <h5>Edit Kateogri</h5>
                 </div>
                 <div class="widget-content nopadding">
-                    <form class="form-horizontal" method="post" action="{{route('category.update',$categories->id)}}" name="basic_validate" id="basic_validate" novalidate="novalidate">
+                    <form class="form-horizontal" method="post" action="{{route('category.update',$categories->id)}}"
+                        name="basic_validate" id="basic_validate" novalidate="novalidate">
                         @csrf
                         {{method_field("PUT")}}
                         <div>
@@ -28,8 +31,9 @@
                         </div>
                         <label for="control-label"></label>
                         <div class="controls">
-                            <a href="{{url('/admin/category')}}"><button type="button" class="btn btn-info">Batal</button></a>
-                            <input type="submit" value="Update" class="btn btn-success">
+                            <a href="{{url('/admin/category')}}"><button type="button"
+                                    class="btn btn-info">Batal</button></a>
+                            <input type="submit" value="Edit" class="btn btn-success">
                         </div>
                 </div>
                 <div class="control-group">

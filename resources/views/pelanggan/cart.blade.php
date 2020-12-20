@@ -29,9 +29,9 @@
                             <a href=""><img src="{{url('products/small',$cart_data->image)}}" alt=""
                                     style="width: 100px;"></a>
                         </td>
-                        <td class="cart_description">
-                            <h4><a href="">{{$cart_data->p_name}}</a></h4>
-                            <?= '<p>' . (substr($cart_data->description, 0, 30)) . '...' . '</p>' ?>
+                        <td class="cart_description" style="text-align: center">
+                            <h4><a href="#">{{$cart_data->p_name}}</a></h4>
+                            <?= '<p>' . (substr($cart_data->description, 0, 50)) . '...' . '</p>' ?>
                         </td>
                         <td class="cart_price">
                             <p>Rp {{@rupiah($cart_data->price)}}</p>
@@ -70,25 +70,25 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                @if(Session::has('message_coupon'))
+                {{-- @if(Session::has('message_expedition'))
                 <div class="alert alert-danger text-center" role="alert">
-                    {{Session::get('message_coupon')}}
-                </div>
-                @endif
+                    {{Session::get('message_expedition')}}
             </div>
+            @endif --}}
         </div>
-        <h4>Pilih Jasa Ekspedisi</h4>
-        <form action="{{url('/apply-expedition')}}" method="post" role="form">
-            @csrf
-            <select id="expedition" name="expedition">
-                <option selected>Pilih Jasa Pengiriman</option>
-                @foreach($expedition_datas as $data)
-                <option value="{{$data->id}}">{{$data->expedition_name}} ({{$data->type.'-'.$data->estimation}}): Rp
-                    {{@rupiah($data->base_charge)}}</option>
-                @endforeach
-            </select>
-            <button type="submit" class="btn btn-primary">Apply</button>
-        </form>
+    </div>
+    <h4>Pilih Jasa Ekspedisi</h4>
+    <form action="{{url('/apply-expedition')}}" method="post" role="form">
+        @csrf
+        <select id="expedition" name="expedition">
+            <option selected>Pilih Jasa Pengiriman</option>
+            @foreach($expedition_datas as $data)
+            <option value="{{$data->id}}">{{$data->expedition_name}} ({{$data->type.'-'.$data->estimation}}): Rp
+                {{@rupiah($data->base_charge)}}</option>
+            @endforeach
+        </select>
+        <button type="submit" class="btn btn-primary">Apply Expedition</button>
+    </form>
 </section>
 <!--/#cart_items-->
 
@@ -117,7 +117,7 @@
                                     placeholder="Masukkan Kode Kupon">
                                 <span class="text-danger">{{$errors->first('coupon_code')}}</span>
                             </div>
-                            <button type="submit" class="btn btn-primary">Apply</button>
+                            <button type="submit" class="btn btn-primary">Apply Coupon</button>
                         </div>
                     </form>
                 </div>

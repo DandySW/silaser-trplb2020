@@ -6,8 +6,8 @@
 <!--top-Header-menu-->
 <div id="user-nav" class="navbar navbar-inverse">
     <ul class="nav">
-        <li class=""><a title="" href="{{url('/konsultan/settings')}}"><i class="icon icon-cog"></i> <span
-                    class="text">Settings</span></a></li>
+        {{-- <li class=""><a title="" href="{{url('/konsultan/settings')}}"><i class="icon icon-cog"></i> <span
+            class="text">Settings</span></a></li> --}}
         <li class="">
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

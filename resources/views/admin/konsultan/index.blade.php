@@ -21,6 +21,11 @@
                         <th>ID</th>
                         <th>Nama</th>
                         <th>Email</th>
+                        <th>Alamat</th>
+                        <th>Kelurahan</th>
+                        <th>Kecamatan</th>
+                        <th>Kode Pos</th>
+                        <th>No. Handphone</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,14 +33,31 @@
                     <tr class="gradeC">
                         <td style="text-align: center" ;>{{$loop->iteration}}</td>
                         <td style="text-align: center" ;>{{$user->id}}</td>
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->email}}</td>
+                        <td style="text-align: center" ;>{{$user->name}}</td>
+                        <td style="text-align: center" ;>{{$user->email}}</td>
+                        <td style="text-align: center; vertical-align: middle;">
+                            <a href="#myModal{{ $user->id }}" data-toggle="modal" class="btn btn-info btn-mini">View</a>
+                        </td>
+                        <td style="text-align: center" ;>{{$user->kelurahan}}</td>
+                        <td style="text-align: center" ;>{{$user->kecamatan}}</td>
+                        <td style="text-align: center" ;>{{$user->postcode}}</td>
+                        <td style="text-align: center" ;>{{$user->mobile}}</td>
                     </tr>
-                    @endforeach
-                </tbody>
-            </table>
+
+                    {{--Pop Up Model for View Product--}}
+                    <div id="myModal{{ $user->id }}" class="modal hide">
+                        <div class="modal-header">
+                            <button data-dismiss="modal" class="close" type="button">×</button>
+                            <h3 style="text-align: center">{{ $user->address }}</h3>
+                        </div>
+                    </div>
         </div>
+        {{--Pop Up Model for View Product--}}
+        @endforeach
+        </tbody>
+        </table>
     </div>
+</div>
 </div>
 @endsection
 @section('jsblock')

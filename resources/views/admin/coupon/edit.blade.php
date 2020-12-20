@@ -1,7 +1,8 @@
 @extends('admin.layouts.master')
 @section('title','Edit Coupons Page')
 @section('content')
-<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('coupon.index')}}">Kupon</a> <a href="#" class="current">Edit Kupon</a> </div>
+<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+        Home</a> <a href="{{route('coupon.index')}}">Kupon</a> <a href="#" class="current">Edit Kupon</a> </div>
 <div class="container-fluid">
     @if(Session::has('message'))
     <div class="alert alert-success text-center" role="alert">
@@ -19,14 +20,17 @@
                 <div class="control-group">
                     <label for="coupon_code" class="control-label">Kode Kupon</label>
                     <div class="controls{{$errors->has('coupon_code')?' has-error':''}}">
-                        <input type="text" name="coupon_code" id="coupon_code" class="form-control" value="{{$edit_coupons->coupon_code}}" title="" required="required" minlength="5" maxlength="15" style="width: 400px;">
+                        <input type="text" name="coupon_code" id="coupon_code" class="form-control"
+                            value="{{$edit_coupons->coupon_code}}" title="" minlength="5" maxlength="15"
+                            style="width: 400px;">
                         <span class="text-danger">{{$errors->first('coupon_code')}}</span>
                     </div>
                 </div>
                 <div class="control-group">
                     <label for="amount" class="control-label">Jumlah</label>
                     <div class="controls{{$errors->has('amount')?' has-error':''}}">
-                        <input type="number" min="0" name="amount" id="amount" class="form-control" value="{{$edit_coupons->amount}}" title="" required="required" style="width: 400px;">
+                        <input type="number" min="0" name="amount" id="amount" class="form-control"
+                            value="{{$edit_coupons->amount}}" title="" style="width: 400px;">
                         <span class="text-danger">{{$errors->first('amount')}}</span>
                     </div>
                 </div>
@@ -46,7 +50,9 @@
                     <div class="controls{{$errors->has('expiry_date')?' has-error':''}}">
                         <div class="input-prepend">
                             <div data-date="12-02-2012" class="input-append date datepicker">
-                                <input type="text" name="expiry_date" id="expiry_date" value="{{$edit_coupons->expiry_date}}" data-date-format="yyyy-mm-dd" class="span11" style="width: 375px;" placeholder="yyyy-mm-dd">
+                                <input type="text" name="expiry_date" id="expiry_date"
+                                    value="{{$edit_coupons->expiry_date}}" data-date-format="yyyy-mm-dd" class="span11"
+                                    style="width: 375px;" placeholder="yyyy-mm-dd">
                                 <span class="add-on"><i class="icon-th"></i></span>
                             </div>
                         </div>
@@ -57,14 +63,15 @@
                 <div class="control-group{{$errors->has('status')?' has-error':''}}">
                     <label class="control-label">Akitf :</label>
                     <div class="controls">
-                        <input type="checkbox" name="status" id="status" value="1" {{$edit_coupons->status==1?'checked':''}}>
+                        <input type="checkbox" name="status" id="status" value="1"
+                            {{$edit_coupons->status==1?'checked':''}}>
                         <span class="text-danger">{{$errors->first('status')}}</span>
                     </div>
                 </div>
                 <div class="control-group">
                     <label for="" class="control-label"></label>
                     <div class="controls">
-                        <button type="submit" class="btn btn-success">Update Kupon</button>
+                        <button type="submit" class="btn btn-success">Edit</button>
                     </div>
                 </div>
             </form>

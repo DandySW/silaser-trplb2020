@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2020 at 07:00 AM
+-- Generation Time: Dec 20, 2020 at 10:50 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -42,7 +42,6 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `users_id`, `products_id`, `quantity`, `session_id`, `created_at`, `updated_at`) VALUES
-(126, 4, 43, 1, '38Urf4hVcVSCex0J2fEGOFuTj6LJQGHtHREajwqV', '2020-12-07 07:36:51', '2020-12-07 07:36:51'),
 (121, 1, 44, 1, 'X8bv4FiAxtnPdUwupbgCbcljzjkeY97WJDAnfEwo', '2020-12-03 03:06:05', '2020-12-03 03:06:05');
 
 -- --------------------------------------------------------
@@ -92,7 +91,8 @@ CREATE TABLE `coupons` (
 
 INSERT INTO `coupons` (`id`, `coupon_code`, `amount`, `amount_type`, `expiry_date`, `status`, `created_at`, `updated_at`) VALUES
 (6, 'Coupon001', 10, 'Persentase', '2021-12-06', 1, '2018-12-05 20:19:15', '2018-12-05 20:19:15'),
-(7, '50persen', 50, 'Persentase', '2020-12-31', 1, '2020-11-18 21:06:41', '2020-11-18 21:06:41');
+(7, '50persen', 50, 'Persentase', '2020-12-31', 1, '2020-11-18 21:06:41', '2020-11-18 21:06:41'),
+(11, 'newmember', 34, 'Persentase', '2020-12-31', 1, '2020-12-20 17:04:16', '2020-12-20 17:21:49');
 
 -- --------------------------------------------------------
 
@@ -755,7 +755,7 @@ INSERT INTO `orders` (`id`, `users_id`, `expedition`, `shipping_charge`, `coupon
 (47, 4, 2, 7000, 7, 500, 7547, '2020-11-23', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-11-23 04:39:55', '2020-11-23 04:39:55'),
 (48, 4, 2, 7000, 7, 500, 7547, '2020-11-23', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-11-23 04:40:13', '2020-11-23 04:40:13'),
 (49, 4, 2, 7000, 7, 500, 7547, '2020-11-23', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-11-23 04:40:22', '2020-11-23 04:40:22'),
-(50, 4, 2, 7000, 7, 500, 7547, '2020-11-23', 'sudah dibayar', 'struk_order-50.png', NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-11-23 04:42:58', '2020-11-23 06:15:34'),
+(50, 4, 2, 7000, 7, 500, 7547, '2020-11-23', 'sudah dibayar', 'struk_order-50.png', NULL, 'belum dikirim', NULL, 'sudah diterima', '2020-12-21', 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-11-23 04:42:58', '2020-12-20 17:41:56'),
 (51, 1, 1, 30000, NULL, NULL, 36051, '2020-12-01', 'sudah dibayar', 'struk_order-51.jpg', '182410107601', 'sudah dikirim', '2018-04-03', 'sudah diterima', '2020-12-01', 'Perumahan Gunung Batu B28', 'sumbersari', 'ajung', '22222', '082234795673', '2020-12-01 07:55:38', '2020-12-01 07:58:55'),
 (52, 4, 2, 7000, 7, 205000, 212052, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:07:13', '2020-12-03 02:07:13'),
 (53, 4, 2, 7000, 7, 205000, 212053, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:10:25', '2020-12-03 02:10:25'),
@@ -772,10 +772,11 @@ INSERT INTO `orders` (`id`, `users_id`, `expedition`, `shipping_charge`, `coupon
 (64, 4, 3, 6000, 6, 96000, 870064, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:42:32', '2020-12-03 02:42:32'),
 (65, 4, 3, 6000, NULL, NULL, 966065, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:49:07', '2020-12-03 02:49:07'),
 (66, 4, 2, 7000, NULL, NULL, 967066, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 02:54:44', '2020-12-03 02:54:44'),
-(67, 4, 1, 10000, NULL, NULL, 970067, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 03:12:27', '2020-12-03 03:12:27'),
+(67, 4, 1, 10000, NULL, NULL, 970067, '2020-12-03', 'belum dibayar', 'struk_order-67.png', NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 03:12:27', '2020-12-20 18:13:12'),
 (68, 5, 2, 7000, NULL, NULL, 547068, '2020-12-03', 'sudah dibayar', 'struk_order-68.png', '9340875082', 'sudah dikirim', '2020-11-20', 'sudah diterima', '2020-12-03', 'Jalan Mawar', 'qwqwwqwqew', 'qwwqeqwqwqw', '23412', '456332345689', '2020-12-03 03:15:15', '2020-12-03 03:21:50'),
 (69, 4, 3, 6000, NULL, NULL, 1236069, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 05:10:54', '2020-12-03 05:10:54'),
-(70, 4, 1, 10000, NULL, NULL, 540070, '2020-12-05', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-05 16:42:15', '2020-12-05 16:42:15');
+(70, 4, 1, 10000, NULL, NULL, 540070, '2020-12-05', 'sudah dibayar', NULL, 'ghgg54565656', 'sudah dikirim', '2017-08-04', 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-05 16:42:15', '2020-12-20 06:08:59'),
+(71, 4, 3, 6000, NULL, NULL, 546071, '2020-12-21', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Jalan Mawar Merah Gang 3 no 15', 'Kebonsari', 'Sumbersari', '68111', '082234795673', '2020-12-20 19:32:59', '2020-12-20 19:32:59');
 
 -- --------------------------------------------------------
 
@@ -840,7 +841,8 @@ INSERT INTO `order_details` (`id`, `orders_id`, `products_id`, `quantity`, `crea
 (41, 67, 43, 1, '2020-12-03 03:12:27', '2020-12-03 03:12:27'),
 (42, 68, 46, 1, '2020-12-03 03:15:15', '2020-12-03 03:15:15'),
 (43, 69, 45, 3, '2020-12-03 05:10:54', '2020-12-03 05:10:54'),
-(44, 70, 46, 1, '2020-12-05 16:42:15', '2020-12-05 16:42:15');
+(44, 70, 46, 1, '2020-12-05 16:42:15', '2020-12-05 16:42:15'),
+(45, 71, 46, 1, '2020-12-20 19:32:59', '2020-12-20 19:32:59');
 
 -- --------------------------------------------------------
 
@@ -881,7 +883,7 @@ INSERT INTO `products` (`id`, `categories_id`, `p_name`, `description`, `stock`,
 (43, 10, 'Intel Pentium Gold G6400 4.0Ghz', '<b></b>SKU Product&nbsp;: 166283<br><br>Est. Weight&nbsp;&nbsp;&nbsp;: 0.3 Kg<br><br>Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Processor<br><br>Subcategory :&nbsp;Intel Pentium Socket LGA 1200<br><br>Brand&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Intel<br><br>Tags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;-', 7, 960000, 300, 'intel-pentium-gold-g6400-40ghz.jpg', '2020-12-02 23:36:16', '2020-12-03 03:12:27'),
 (44, 10, 'AMD Ryzen 3 3100 3.6Ghz Up To 3.9Ghz', 'SKU Product&nbsp;: 165826<br><br>Est. Weight&nbsp;&nbsp;&nbsp;: 0.3 Kg<br><br>Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Processor<br><br>Subcategory :&nbsp;AMD Socket AM4<br><br>Brand&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;AMD<br><br>Tags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;-', 10, 2100000, 300, 'amd-ryzen-3-3100-36ghz-up-to-39ghz.jpg', '2020-12-02 23:40:05', '2020-12-02 23:40:05'),
 (45, 12, 'KLEVV SSD NEO N400 240GB', 'SKU Product&nbsp;: 162329<br><br>Est. Weight&nbsp;&nbsp;&nbsp;: N/A Kg<br><br>Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;SSD<br><br>Subcategory :&nbsp;Internal SSD (SOLID STATE DISK)<br><br>Brand&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;KLEVV<br><br>Tags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;-', 0, 410000, 100, 'klevv-ssd-neo-n400-240gb.jpg', '2020-12-02 23:42:44', '2020-12-03 05:10:54'),
-(46, 11, 'V-GeN Platinum SO-DIMM DDR4 8GB PC17000', 'SKU Product&nbsp;: 123093<br><br>Est. Weight&nbsp;&nbsp;&nbsp;: 0.05 Kg<br><br>Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;<a target=\"_blank\" rel=\"nofollow\" href=\"https://www.enterkomputer.com/category/11/memory-ram\">Ram</a><br><br>Subcategory :&nbsp;Notebook<br><br>Brand&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;V-GEN<br><br>Tags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;-', 2, 540000, 50, 'v-gen-platinum-so-dimm-ddr4-8gb-pc17000.jpg', '2020-12-02 23:49:49', '2020-12-05 16:42:15');
+(46, 11, 'V-GeN Platinum SO-DIMM DDR4 8GB PC17000', 'SKU Product&nbsp;: 123093<br><br>Est. Weight&nbsp;&nbsp;&nbsp;: 0.05 Kg<br><br>Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;<a target=\"_blank\" rel=\"nofollow\" href=\"https://www.enterkomputer.com/category/11/memory-ram\">Ram</a><br><br>Subcategory :&nbsp;Notebook<br><br>Brand&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;V-GEN<br><br>Tags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;-', 1, 540000, 50, 'v-gen-platinum-so-dimm-ddr4-8gb-pc17000.jpg', '2020-12-02 23:49:49', '2020-12-20 19:32:59');
 
 -- --------------------------------------------------------
 
@@ -979,9 +981,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `address`, `kelurahan`, `kecamatan`, `postcode`, `mobile`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'WeShare', 'demo@gmail.com', '$2y$10$ktiMqsnbFw9c0re24BHC0ee5f/SuTibMTNezUkU2yeD3zvGbpjAgq', NULL, NULL, NULL, NULL, NULL, 1, '4IyP2cbX1UW7WWtjFHcaahJxT0q6p9J1NVgOQfjJN1pfxwvZkk2U4wFn7FWO', '2018-10-15 02:32:54', '2020-12-07 15:22:13'),
+(1, 'WeShare', 'demo@gmail.com', '$2y$10$ktiMqsnbFw9c0re24BHC0ee5f/SuTibMTNezUkU2yeD3zvGbpjAgq', NULL, NULL, NULL, NULL, NULL, 1, 'ktXngFuWab1fYyYVnTrNAi7HXCkRBZfXKm5ByX1Po1bMbCvj8ioSSj6h5FQo', '2018-10-15 02:32:54', '2020-12-07 15:22:13'),
 (8, 'bagus aja', 'bagus@mail.com', '$2y$10$aARnscb2WX0r44Z.bZm1g.LZD6QmWQljqbCli2WSGPn9VQNQgV1j.', NULL, NULL, NULL, NULL, NULL, 2, NULL, '2020-12-07 16:55:58', '2020-12-07 16:55:58'),
-(4, 'Dandy Satrio', 'dandy@a.com', '$2y$10$UTIUgIs1TPHftODY2gRBUO8217VK1dxamjIkscIQAg7aCXJKSfNO2', 'Jalan Mawar Merah Gang 3 no 15', 'Kebonsari', 'Sumbersari', '68111', '082234795673', 3, 'Yeb3f7ASy11rmhffGoDz3tq0stjtd0AXPzokpHAtp36p2XAF461Z8ybXgpdp', '2018-12-06 01:40:27', '2020-12-07 08:07:40'),
+(4, 'Dandy Satrio', 'dandy@a.com', '$2y$10$bHnqMMJTivAnYDxlivvXPeYm5AjdfT5uC2IvSzNc2XN06hJZtTMCm', 'Jalan Mawar Merah Gang 3 no 15', 'Kebonsari', 'Sumbersari', '68111', '082234795673', 3, 'haFM4iW4KlusNrj4dpUSX0BS1LMb18spjXa61CyFRbaHvyXvu3MtvYcFdSiv', '2018-12-06 01:40:27', '2020-12-07 08:07:40'),
 (5, 'tes', 'tes@a.in', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', 'Jalan Mawar', 'qwqwwqwqew', 'qwwqeqwqwqw', '23412', '456332345689', 3, 'mEPkQFLL4Uk4widTgLXaXMxwgZ37enBzX6daoOfV1xNSYmdvofj0ICx5pL9U', NULL, NULL),
 (6, 'riki tiki', 'rikitiki@da.com', '$2y$10$WbWM5R5Zmw0J939pmnHGTefqMV9pkK07lNULgzZsiSYOqQ4KyOGoC', 'Perumahan Gunung Batu B28', '', '', '22222', '082234795673', 3, 'J1lQGCiFBnZ0f3FovhLSwlV4RLZPRBH12ckSsdlgUeexgzxrQq2I6Bns7Kv4', '2020-11-17 14:16:25', '2020-11-17 14:16:25'),
 (7, 'fajar alam', 'konsultan@tes.com', '$2y$10$eYlug0sILf5KxjYbzCJXAufyKYOhphfowA7b9/8AOilYGRMJs8Hd2', NULL, NULL, NULL, NULL, NULL, 2, 'zL8FFanekrZauu5JWOJZsKFuv8w96xv1uXXh0ZrDchI6UN0Lv0N1PbQmQd62', '2020-11-24 03:49:19', '2020-12-07 15:52:36');
@@ -1090,7 +1092,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1102,7 +1104,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `expeditions`
@@ -1126,13 +1128,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `products`

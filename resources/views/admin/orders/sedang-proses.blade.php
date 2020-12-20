@@ -54,7 +54,7 @@
                         @if ($order->shipping_status!="sudah dikirim")
                         <td style="text-align: center; vertical-align: middle;">
                             <a href="{{url('admin/orders/create-pengiriman/'.$order->id)}}"
-                                class="btn btn-warning btn-mini">Sudah Dikirim</a>
+                                class="btn btn-warning btn-mini">Konfirmasi Pengiriman</a>
                         </td>
                         @else
                         <td style="text-align: center; vertical-align: middle;">

@@ -84,7 +84,7 @@
                                         <a href=""><img src="{{url('products/small',$cart_data->image)}}" alt=""
                                                 style="width: 100px;"></a>
                                     </td>
-                                    <td class="cart_description">
+                                    <td class="cart_description" style="text-align: center">
                                         <h4><a href="">{{$cart_data->p_name}}</a></h4>
                                         <?= '<p>' . (substr($cart_data->description, 0, 30)) . '...' . '</p>' ?>
                                     </td>

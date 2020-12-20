@@ -39,17 +39,26 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'coupon_code' => 'required|min:5|max:15|unique:coupons,coupon_code',
-            'amount' => 'required|numeric|between:1,99',
-            'expiry_date' => 'required|date'
-        ]);
+        $this->validate(
+            $request,
+            [
+                'coupon_code' => 'required|max:15|unique:coupons,coupon_code',
+                'amount' => 'required|numeric|between:1,99',
+                'expiry_date' => 'required|date'
+            ],
+            [
+                'coupon_code.unique' => 'Field is not valid',
+                'coupon_code.max' => 'Field is not valid',
+                'amount.between' => 'Field is not valid',
+                'expiry_date.date' => 'Field is not valid',
+            ]
+        );
         $input_data = $request->all();
         if (empty($input_data['status'])) {
             $input_data['status'] = 0;
         }
         Coupon_model::create($input_data);
-        return redirect()->route('coupon.index')->with('message', 'Kupon berhasil dibuat');
+        return redirect()->route('coupon.index')->with('message', 'Data Kupon berhasil ditambahkan');
     }
 
     /**
@@ -96,7 +105,7 @@ class CouponController extends Controller
             $input_data['status'] = 0;
         }
         $update_coupon->update($input_data);
-        return redirect()->route('coupon.index')->with('message', 'Kupon berhasil diubah!');
+        return redirect()->route('coupon.index')->with('message', 'Data Kupon berhasil diubah');
     }
 
     /**
@@ -123,7 +132,7 @@ class CouponController extends Controller
         if ($check_coupon == 0) {
             return back()->with('message_coupon', 'Kupon tidak ditemukan');
         } else if ($check_coupon == 1) {
-            $check_status = Coupon_model::where('coupon_code', $coupon_code)->where('status', 1)->first();
+            $check_status = Coupon_model::where('coupon_code', $coupon_code)->first();
             if ($check_status->status == 0) {
                 return back()->with('message_coupon', 'Kupon sedang tidak aktif');
             } else {

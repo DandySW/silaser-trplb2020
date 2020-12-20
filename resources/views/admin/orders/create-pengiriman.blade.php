@@ -1,7 +1,9 @@
 @extends('admin.layouts.master')
 @section('title','Konfirmasi Pengiriman')
 @section('content')
-<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Orders</a> <a href="{{url('admin/orders/sedang-proses')}}" class="current">Sedang Proses</a> </div>
+<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+        Home</a> <a href="#">Orders</a> <a href="{{url('admin/orders/sedang-proses')}}" class="current">Sedang
+        Proses</a> </div>
 <div class="container-fluid">
     @if(Session::has('message'))
     <div class="alert alert-success text-center" role="alert">
@@ -20,7 +22,7 @@
                 <div class="control-group">
                     <label for="resi" class="control-label">No Resi</label>
                     <div class="controls{{$errors->has('resi')?' has-error':''}}">
-                        <input type="text" name="resi" id="resi" class="form-control" required="required" style="width: 200px;">
+                        <input type="text" name="resi" id="resi" class="form-control" style="width: 200px;">
                         <span class="text-danger">{{$errors->first('resi')}}</span>
                     </div>
                 </div>
@@ -30,7 +32,8 @@
                     <div class="controls{{$errors->has('shipping_date')?' has-error':''}}">
                         <div class="input-prepend">
                             <div data-date="12-02-2012" class="input-append date datepicker">
-                                <input type="text" name="shipping_date" id="shipping_date" data-date-format="yyyy-mm-dd" class="span11" style="width: 175px;" placeholder="yyyy-mm-dd">
+                                <input type="text" name="shipping_date" id="shipping_date" data-date-format="yyyy-mm-dd"
+                                    class="span11" style="width: 175px;" placeholder="yyyy-mm-dd">
                                 <span class="add-on"><i class="icon-th"></i></span>
                             </div>
                         </div>
@@ -40,7 +43,7 @@
                 <div class="control-group">
                     <label for="" class="control-label"></label>
                     <div class="controls">
-                        <button type="submit" class="btn btn-warning">Konfirmasi Pengiriman</button>
+                        <button type="submit" class="btn btn-warning">Edit Pengiriman</button>
                     </div>
                 </div>
             </form>

@@ -7,7 +7,7 @@
                 <div class="col-sm-6">
                     <div class="contactinfo">
                         <ul class="nav nav-pills">
-                            <li><a>SILASER - Sistem Informasi Penjualan dan Layanan Servis Laptop Jember</a></li>
+                            <li><a>SILASER - Sistem Informasi Penjualan dan Layanan Konsultasi Laptop Jember</a></li>
                         </ul>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-lock"></i> Logout </a>
                             </li>
                             @else
-                            <li><a href="{{ url('/login') }}"><i class="fa fa-lock"></i> Login</a></li>
+                            <li><a href="{{ url('/login') }}"><i class="fa fa-lock"></i> Login/Register</a></li>
                             @endif
                         </ul>
                     </div>

@@ -20,9 +20,24 @@
                     @endif
                 </div>
                 <div class="widget-content nopadding">
-                    <form class="form-horizontal" method="post" action="{{url('/konsultan/update-pwd')}}"
-                        name="password_validate" id="password_validate" novalidate="novalidate">
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                    <form class="form-horizontal" method="post" action="{{url('/konsultan/updateprofile/'.$user->id)}}"
+                        name="edit-profile" id="edit-profile">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <div class="control-group">
+                            <label class="control-label">Email</label>
+                            <div class="controls">
+                                <input type="text" value="{{ $user->email }}" disabled />
+                            </div>
+                        </div>
                         <div class="control-group">
                             <label class="control-label">Nama</label>
                             <div class="controls">
@@ -30,11 +45,43 @@
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label">Email</label>
+                            <label class="control-label">Alamat</label>
                             <div class="controls">
-                                <input type="text" value="{{ $user->email }}" disabled />
+                                <input type="text" name="address" value="{{ $user->address }}" />
                             </div>
                         </div>
+                        <div class="control-group">
+                            <label class="control-label">Kelurahan</label>
+                            <div class="controls">
+                                <input type="text" name="kelurahan" value="{{ $user->kelurahan }}" />
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Kecamatan</label>
+                            <div class="controls">
+                                <input type="text" name="kecamatan" value="{{ $user->kecamatan }}" />
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Kode Pos</label>
+                            <div class="controls">
+                                <input type="text" name="postcode" value="{{ $user->postcode }}" />
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">No Handphone</label>
+                            <div class="controls">
+                                <input type="text" name="mobile" value="{{ $user->mobile }}" />
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <input type="submit" value="Edit Profile" class="btn btn-success">
+                        </div>
+                    </form>
+
+                    <form class="form-horizontal" method="post" action="{{url('/konsultan/update-pwd')}}"
+                        name="password_validate" id="password_validate" novalidate="novalidate">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <div class="control-group">
                             <label class="control-label">Current Password</label>
                             <div class="controls">
@@ -55,7 +102,7 @@
                             </div>
                         </div>
                         <div class="form-actions">
-                            <input type="submit" value="Update Password" class="btn btn-success">
+                            <input type="submit" value="Edit Password" class="btn btn-success">
                         </div>
                     </form>
                 </div>

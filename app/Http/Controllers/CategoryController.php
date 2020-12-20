@@ -52,12 +52,20 @@ class CategoryController extends Controller
     }
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|min:5|max:30|unique:categories,name'
-        ]);
+        $this->validate(
+            $request,
+            [
+                'name' => 'required|max:30|unique:categories,name'
+            ],
+            [
+                'name.required' => "Please fill out this field",
+                'name.unique' => "Field is not valid",
+            ]
+        );
+
         $data = $request->all();
         Category_model::create($data);
-        return redirect()->route('category.index')->with('message', 'Berhasil menambahkan Kategori');
+        return redirect()->route('category.index')->with('message', 'Daftar Kategori berhasil ditambahkan');
     }
 
     /**
@@ -97,13 +105,16 @@ class CategoryController extends Controller
         $this->validate(
             $request,
             [
-                'name' => 'required|min:5|max:30|unique:categories,name'
+                'name' => 'required|min:5|max:30|unique:categories,name',
+            ],
+            [
+                'name.unique' => 'Field is not valid',
             ]
         );
         $input_data = $request->all();
 
         $update_categories->update($input_data);
-        return redirect()->route('category.index')->with('message', 'Berhasil mengubah Kategori');
+        return redirect()->route('category.index')->with('message', 'Daftar Kategori berhasil diubah');
     }
 
     /**

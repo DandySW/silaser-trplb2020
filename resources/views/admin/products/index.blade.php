@@ -1,7 +1,8 @@
 @extends('admin.layouts.master')
 @section('title','Data Produk | Sistem Informasi Penjualan dan Layanan Servis Laptop ')
 @section('content')
-<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('product.index')}}" class="current">Products</a></div>
+<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+        Home</a> <a href="{{route('product.index')}}" class="current">Products</a></div>
 <div class="container-fluid">
     @if(Session::has('message'))
     <div class="alert alert-success text-center" role="alert">
@@ -33,17 +34,23 @@
                     <tr class="gradeC">
                         <td style="vertical-align: middle;text-align: center;">{{$loop->iteration}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$product->id}}</td>
-                        <td style="text-align: center;"><img src="{{url('products/small',$product->image)}}" alt="" width="50"></td>
+                        <td style="text-align: center;"><img src="{{url('products/small',$product->image)}}" alt=""
+                                width="50"></td>
                         <td style="vertical-align: middle;">{{$product->p_name}}</td>
                         <td style="vertical-align: middle;">{{$product->category->name}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$product->price}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$product->weight}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$product->stock}}</td>
-                        <td style="vertical-align: middle;text-align: center;"><a href="{{route('image-gallery.show',$product->id)}}" class="btn btn-default btn-mini">Add Images</a></td>
+                        <td style="vertical-align: middle;text-align: center;"><a
+                                href="{{route('image-gallery.show',$product->id)}}" class="btn btn-default btn-mini">Add
+                                Images</a></td>
                         <td style="text-align: center; vertical-align: middle;">
-                            <a href="#myModal{{$product->id}}" data-toggle="modal" class="btn btn-info btn-mini">View</a>
-                            <a href="{{route('product.edit',$product->id)}}" class="btn btn-primary btn-mini">Edit</a>
-                            <a href="javascript:" rel="{{$product->id}}" rel1="delete-product" class="btn btn-danger btn-mini deleteRecord">Delete</a>
+                            <a href="#myModal{{$product->id}}" data-toggle="modal"
+                                class="btn btn-info btn-mini">View</a>
+                            <a href="{{route('product.edit',$product->id)}}" class="btn btn-primary btn-mini">Edit Data
+                                Produk</a>
+                            {{-- <a href="javascript:" rel="{{$product->id}}" rel1="delete-product" class="btn
+                            btn-danger btn-mini deleteRecord">Delete</a> --}}
                         </td>
                     </tr>
                     {{--Pop Up Model for View Product--}}
@@ -53,7 +60,8 @@
                             <h3>{{$product->p_name}}</h3>
                         </div>
                         <div class="modal-body">
-                            <div class="text-center"><img src="{{url('/products/small',$product->image)}}" width="100" alt="{{$product->no_arcode}}"></div>
+                            <div class="text-center"><img src="{{url('/products/small',$product->image)}}" width="100"
+                                    alt="{{$product->no_arcode}}"></div>
                             <p class="text-center">{{$product->description}}</p>
                         </div>
                     </div>

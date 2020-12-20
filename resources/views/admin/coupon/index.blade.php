@@ -1,7 +1,8 @@
 @extends('admin.layouts.master')
 @section('title','List Coupons')
 @section('content')
-<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('coupon.index')}}" class="current">Kupon</a></div>
+<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+        Home</a> <a href="{{route('coupon.index')}}" class="current">Kupon</a></div>
 <div class="container-fluid">
     @if(Session::has('message'))
     <div class="alert alert-success text-center" role="alert">
@@ -39,8 +40,10 @@
                             {{$coupon->status==1?'Aktif':'Tidak Aktif'}}
                         </td>
                         <td style="text-align: center; vertical-align: middle;">
-                            <a href="{{route('coupon.edit',$coupon->id)}}" class="btn btn-primary btn-mini">Edit</a>
-                            <a href="javascript:" rel="{{$coupon->id}}" rel1="delete-coupon" class="btn btn-danger btn-mini deleteRecord">Delete</a>
+                            <a href="{{route('coupon.edit',$coupon->id)}}" class="btn btn-primary btn-mini">Edit Data
+                                Kupon</a>
+                            {{-- <a href="javascript:" rel="{{$coupon->id}}" rel1="delete-coupon" class="btn btn-danger
+                            btn-mini deleteRecord">Delete</a> --}}
                         </td>
                     </tr>
                     @endforeach

@@ -73,86 +73,86 @@
                 <div class="col-sm-2">
                     <div class="companyinfo">
                         <h2><span>SILASER</span></h2>
-                        <p>Our Team</p>
+                        <p>2020</p>
                     </div>
                 </div>
-                <div class="col-sm-7">
+                {{-- <div class="col-sm-7">
                     <div class="col-sm-3">
                         <div class="video-gallery text-center">
                             <a href="#">
                                 <div class="iframe-img">
                                     <img src="{{asset('pelanggan/images/home/iframe1.png')}}" alt="" />
-                                </div>
-                                <div class="overlay-icon">
-                                    <i class="fa fa-play-circle-o"></i>
-                                </div>
-                            </a>
-                            <p>Afir</p>
-                            <h2>24 DEC 2014</h2>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <div class="video-gallery text-center">
-                            <a href="#">
-                                <div class="iframe-img">
-                                    <img src="{{asset('pelanggan/images/home/iframe2.png')}}" alt="" />
-                                </div>
-                                <div class="overlay-icon">
-                                    <i class="fa fa-play-circle-o"></i>
-                                </div>
-                            </a>
-                            <p>Wahyu Endah</p>
-                            <h2>24 DEC 2014</h2>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <div class="video-gallery text-center">
-                            <a href="#">
-                                <div class="iframe-img">
-                                    <img src="{{asset('pelanggan/images/home/iframe3.png')}}" alt="" />
-                                </div>
-                                <div class="overlay-icon">
-                                    <i class="fa fa-play-circle-o"></i>
-                                </div>
-                            </a>
-                            <p>Nadia Tsalis</p>
-                            <h2>24 DEC 2014</h2>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <div class="video-gallery text-center">
-                            <a href="#">
-                                <div class="iframe-img">
-                                    <img src="{{asset('pelanggan/images/home/iframe4.png')}}" alt="" />
-                                </div>
-                                <div class="overlay-icon">
-                                    <i class="fa fa-play-circle-o"></i>
-                                </div>
-                            </a>
-                            <p>Naura</p>
-                            <h2>24 DEC 2014</h2>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="video-gallery text-center">
-                            <a href="#">
-                                <div class="iframe-img">
-                                    <img src="{{asset('pelanggan/images/home/iframe2.png')}}" alt="" />
-                                </div>
-                                <div class="overlay-icon">
-                                    <i class="fa fa-play-circle-o"></i>
-                                </div>
-                            </a>
-                            <p>Dandy</p>
-                            <h2>24 DEC 2014</h2>
-                        </div>
-                    </div>
-                </div>
             </div>
+            <div class="overlay-icon">
+                <i class="fa fa-play-circle-o"></i>
+            </div>
+            </a>
+            <p>Afir</p>
+            <h2>24 DEC 2014</h2>
         </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="video-gallery text-center">
+            <a href="#">
+                <div class="iframe-img">
+                    <img src="{{asset('pelanggan/images/home/iframe2.png')}}" alt="" />
+                </div>
+                <div class="overlay-icon">
+                    <i class="fa fa-play-circle-o"></i>
+                </div>
+            </a>
+            <p>Wahyu Endah</p>
+            <h2>24 DEC 2014</h2>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="video-gallery text-center">
+            <a href="#">
+                <div class="iframe-img">
+                    <img src="{{asset('pelanggan/images/home/iframe3.png')}}" alt="" />
+                </div>
+                <div class="overlay-icon">
+                    <i class="fa fa-play-circle-o"></i>
+                </div>
+            </a>
+            <p>Nadia Tsalis</p>
+            <h2>24 DEC 2014</h2>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="video-gallery text-center">
+            <a href="#">
+                <div class="iframe-img">
+                    <img src="{{asset('pelanggan/images/home/iframe4.png')}}" alt="" />
+                </div>
+                <div class="overlay-icon">
+                    <i class="fa fa-play-circle-o"></i>
+                </div>
+            </a>
+            <p>Naura</p>
+            <h2>24 DEC 2014</h2>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="video-gallery text-center">
+            <a href="#">
+                <div class="iframe-img">
+                    <img src="{{asset('pelanggan/images/home/iframe2.png')}}" alt="" />
+                </div>
+                <div class="overlay-icon">
+                    <i class="fa fa-play-circle-o"></i>
+                </div>
+            </a>
+            <p>Dandy</p>
+            <h2>24 DEC 2014</h2>
+        </div>
+    </div>
+    </div> --}}
+    </div>
+    </div>
     </div>
 
 

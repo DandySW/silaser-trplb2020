@@ -1,7 +1,8 @@
 @extends('admin.layouts.master')
 @section('title','Daftar Kategori | SILASER - Sistem Informasi Penjualan dan Layanan Servis Laptop ')
 @section('content')
-<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{route('category.index')}}" class="current">Daftar Kategori</a></div>
+<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+        Home</a> <a href="{{route('category.index')}}" class="current">Daftar Kategori</a></div>
 <div class="container-fluid">
     @if(Session::has('message'))
     <div class="alert alert-success text-center" role="alert">
@@ -29,8 +30,10 @@
                         <td style="text-align: center" ;>{{$category->id}}</td>
                         <td>{{$category->name}}</td>
                         <td style=" text-align: center;">
-                            <a href="{{route('category.edit',$category->id)}}" class="btn btn-primary btn-mini">Edit</a>
-                            <a href="javascript:" rel="{{$category->id}}" rel1="delete-category" class="btn btn-danger btn-mini deleteRecord">Delete</a>
+                            <a href="{{route('category.edit',$category->id)}}" class="btn btn-primary btn-mini">Edit
+                                Data Kategori</a>
+                            {{-- <a href="javascript:" rel="{{$category->id}}" rel1="delete-category" class="btn
+                            btn-danger btn-mini deleteRecord">Delete</a> --}}
                         </td>
                     </tr>
                     @endforeach

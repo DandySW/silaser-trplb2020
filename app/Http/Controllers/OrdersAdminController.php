@@ -33,7 +33,7 @@ class OrdersAdminController extends Controller
     public function pembayaran($id)
     {
         Orders_model::where('id', $id)->update(['checkout_status' => 'sudah dibayar']);
-        return back()->with('message', 'Berhasil mengonfirmasi Pembayaran.');
+        return back()->with('message', 'status Pembayaran berhasil diubah');
     }
 
     // orders/sedang-proses -> Menampilkan semua yang sedang proses
@@ -67,10 +67,17 @@ class OrdersAdminController extends Controller
     public function pengiriman(Request $request, $id)
     {
         $update_order = Orders_model::findOrFail($id);
-        $this->validate($request, [
-            'resi' => 'required|min:10|max:20|unique:orders,resi,' . $update_order->id,
-            'shipping_date' => 'required|date'
-        ]);
+        $this->validate(
+            $request,
+            [
+                'resi' => 'required|min:10|max:20|unique:orders,resi,' . $update_order->id,
+                'shipping_date' => 'required|date'
+            ],
+            [
+                'resi.min' => 'Resi 10-20 character',
+                'resi.max' => 'Resi 10-20 character',
+            ]
+        );
         $input_data = $request->all();
 
         $update_order = Orders_model::findOrFail($id);
@@ -89,7 +96,7 @@ class OrdersAdminController extends Controller
         });
 
         $update_order->update($input_data);
-        return redirect(url('admin/orders/sedang-proses'))->with('message', 'Berhasil mengubah status pengiriman');
+        return redirect(url('admin/orders/sedang-proses'))->with('message', 'status Pengiriman berhasil diubah');
     }
 
     public function sudahselesai()

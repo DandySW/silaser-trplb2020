@@ -1,7 +1,9 @@
 @extends('admin.layouts.master')
 @section('title','Data Produk | Sistem Informasi Penjualan dan Layanan Servis Laptop ')
 @section('content')
-<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Detail Pemesanan</a> <a href="{{url('admin/orders/belum-dibayar')}}" class="current">Belum Dibayar</a> </div>
+<div id="breadcrumb"> <a href="{{url('/admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+        Home</a> <a href="#">Detail Pemesanan</a> <a href="{{url('admin/orders/belum-dibayar')}}" class="current">Belum
+        Dibayar</a> </div>
 <div class="container-fluid">
     @if(Session::has('message'))
     <div class="alert alert-success text-center" role="alert">
@@ -35,21 +37,25 @@
                     <tr class="gradeC">
                         <td style="vertical-align: middle;text-align: center;">{{$loop->iteration}}</td>
                         <td style="text-align: center; vertical-align: middle;">
-                            <a href="#modalDetail{{$order->id}}" data-toggle="modal" class="btn btn-default btn-mini">{{$order->id}}</a>
+                            <a href="#modalDetail{{$order->id}}" data-toggle="modal"
+                                class="btn btn-default btn-mini">{{$order->id}}</a>
                         </td>
                         <td style="vertical-align: middle;">{{$order->name}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$order->expedition}}</td>
                         <td style="vertical-align: middle;">Rp {{@rupiah($order->shipping_charge)}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$order->coupon_id}}</td>
-                        <td style="vertical-align: middle;text-align: center;">Rp {{@rupiah($order->coupon_amount)}}</td>
+                        <td style="vertical-align: middle;text-align: center;">Rp {{@rupiah($order->coupon_amount)}}
+                        </td>
                         <td style="vertical-align: middle;text-align: center;">Rp {{@rupiah($order->grand_total)}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$order->order_date}}</td>
                         <td style="vertical-align: middle;text-align: center;">{{$order->checkout_status}}</td>
                         <td style="text-align: center; vertical-align: middle;">
-                            <a href="#modalStruk{{$order->id}}" data-toggle="modal" class="btn btn-info btn-mini">View</a>
+                            <a href="#modalStruk{{$order->id}}" data-toggle="modal"
+                                class="btn btn-info btn-mini">View</a>
                         </td>
                         <td style="text-align: center; vertical-align: middle;">
-                            <a href="{{route('pembayaran',$order->id)}}" class="btn btn-warning btn-mini">Sudah Dibayar</a>
+                            <a href="{{route('pembayaran',$order->id)}}" class="btn btn-warning btn-mini">Konfirmasi
+                                Pembayaran</a>
                         </td>
                     </tr>
                     {{--Pop Up Model for View Struk--}}
@@ -58,7 +64,8 @@
                             <button data-dismiss="modal" class="close" type="button">×</button>
                         </div>
                         <div class="modal-body">
-                            <div class="text-center"><img src="{{url('/checkout',$order->struk)}}" alt="Belum ada bukti pembayaran"></div>
+                            <div class="text-center"><img src="{{url('/checkout',$order->struk)}}"
+                                    alt="Belum ada bukti pembayaran"></div>
                         </div>
                     </div>
                     {{--Pop Up Model for View Struk--}}

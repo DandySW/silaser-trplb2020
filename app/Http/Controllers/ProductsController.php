@@ -42,14 +42,22 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'p_name' => 'required|min:5|max:50',
-            'description' => 'required|min:10|max:65535',
-            'stock' => 'required|numeric|min:0',
-            'weight' => 'required|min:1|numeric',
-            'price' => 'required|numeric|min:100',
-            'image' => 'required|image|mimes:png,jpg,jpeg|max:1000',
-        ]);
+        $this->validate(
+            $request,
+            [
+                'p_name' => 'required|max:50',
+                'description' => 'required|max:65535',
+                'stock' => 'required|numeric|min:0',
+                'weight' => 'required|numeric',
+                'price' => 'required|numeric',
+                'image' => 'required|image|mimes:png,jpg,jpeg|max:1000',
+            ],
+            [
+                'stock.numeric' => 'Field is not valid',
+                'weight.numeric' => 'Field is not valid',
+                'price.numeric' => 'Field is not valid',
+            ]
+        );
         $formInput = $request->all();
         if ($request->file('image')) {
             $image = $request->file('image');
@@ -105,14 +113,22 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
         $update_product = Products_model::findOrFail($id);
-        $this->validate($request, [
-            'p_name' => 'required|min:5|max:50',
-            'description' => 'required|min:10|max:65535',
-            'stock' => 'required|numeric|min:0',
-            'weight' => 'required|min:1|numeric',
-            'price' => 'required|numeric|min:100',
-            'image' => 'image|mimes:png,jpg,jpeg|max:1000',
-        ]);
+        $this->validate(
+            $request,
+            [
+                'p_name' => 'required|min:5|max:50',
+                'description' => 'required|min:10|max:65535',
+                'stock' => 'required|numeric|min:0',
+                'weight' => 'required|min:1|numeric',
+                'price' => 'required|numeric|min:100',
+                'image' => 'image|mimes:jpeg,jpg|max:1000',
+            ],
+            [
+                'stock.numeric' => 'Field is not valid',
+                'weight.numeric' => 'Field is not valid',
+                'price.numeric' => 'Field is not valid',
+            ]
+        );
         $formInput = $request->all();
         if ($update_product['image'] == '') {
             if ($request->file('image')) {
@@ -163,9 +179,10 @@ class ProductsController extends Controller
         $image_medium = public_path() . '/products/medium/' . $delete_image->image;
         $image_small = public_path() . '/products/small/' . $delete_image->image;
         if ($delete_image) {
-            // $delete_image->image = '';
-            // $delete_image->save();
-            ////// delete image ///
+            $delete_image->image = '';
+            $delete_image->save();
+
+            //// delete image ///
             unlink($image_large);
             unlink($image_medium);
             unlink($image_small);
