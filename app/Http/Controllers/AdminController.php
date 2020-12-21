@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\OrderDetails_model;
+use App\Orders_model;
+use App\Products_model;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +14,25 @@ class AdminController extends Controller
 {
     public function index()
     {
+        // $orders = Orders_model::where('checkout_status', 'belum dibayar')->get();
+        // foreach ($orders as $order) {
+        //     if (date(now()) > ($order->order_date)) {
+        //         Orders_model::where('id', $order->id)->update([
+        //             'checkout_status' => 'dibatalkan',
+        //             'shipping_status' => 'dibatalkan',
+        //             'receipt_status' => 'dibatalkan',
+        //         ]);
+
+        //         $orderdetails = OrderDetails_model::where('orders_id', $order->id)->get();
+        //         foreach ($orderdetails as $orderdetail) {
+        //             $product = new Products_model();
+        //             Products_model::where('id', $orderdetail->products_id)->update([
+        //                 'stock' => $product->stock + $orderdetail->quantity
+        //             ]);
+        //         }
+        //     }
+        // }
+
         $menu_active = 1;
         $user =  Auth::user();
         return view('admin.index', compact('menu_active', 'user'));

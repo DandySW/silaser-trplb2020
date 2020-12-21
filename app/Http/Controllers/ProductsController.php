@@ -116,7 +116,7 @@ class ProductsController extends Controller
         $this->validate(
             $request,
             [
-                'p_name' => 'required|min:5|max:50',
+                'p_name' => 'required|max:50',
                 'description' => 'required|min:10|max:65535',
                 'stock' => 'required|numeric|min:0',
                 'weight' => 'required|min:1|numeric',

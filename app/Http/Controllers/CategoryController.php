@@ -105,7 +105,7 @@ class CategoryController extends Controller
         $this->validate(
             $request,
             [
-                'name' => 'required|min:5|max:30|unique:categories,name',
+                'name' => 'required|max:30|unique:categories,name',
             ],
             [
                 'name.unique' => 'Field is not valid',
