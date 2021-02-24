@@ -73,30 +73,30 @@ class OrdersController extends Controller
             $product->stock = $product->stock - $cart_data->quantity;
             $product->save();
         }
-        
+
         // Mengirim Email notifikasi
         $order_user = DB::select("SELECT id FROM orders where users_id = $request->users_id order by id DESC LIMIT 1");
         $order_user = $order_user[0]->id;
-        
-        $order = DB::select("SELECT orders.id, users.name, orders.order_date, orders.grand_total FROM `USERS`, `orders` WHERE users.id = orders.users_id and orders.id = $order_user");        
+
+        $order = DB::select("SELECT orders.id, users.name, orders.order_date, orders.grand_total FROM `USERS`, `orders` WHERE users.id = orders.users_id and orders.id = $order_user");
         $order = $order[0];
         $admins = User::where('status', 1)->get();
-        
+
         $data = array(
             'id' => $order->id,
             'users_name' => $order->name,
             'order_date' => $order->order_date,
             'grand_total' => $order->grand_total,
         );
-        
+
         foreach ($admins as $admin) {
             Mail::send('emails.notifikasiPemesanan', $data, function ($notifikasiPemesanan) use ($admin, $order) {
                 $notifikasiPemesanan->to($admin->email, $admin->name)->subject("Pesanan baru diterima #" . $order->id);
             });
         }
-        
+
         Cart_model::where('users_id', $request->users_id)->delete();
-        
+
         return redirect(url('/order-payment', $order_id));
     }
     public function payment($id)

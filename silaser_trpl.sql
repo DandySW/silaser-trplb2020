@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2020 at 06:39 AM
+-- Generation Time: Jan 03, 2021 at 02:40 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `silaser_trpl`
+-- Database: `silaser_backup`
 --
 
 -- --------------------------------------------------------
@@ -189,7 +189,7 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `created_at`, 
 (47, 25, 9, 'Sit rerum voluptatem accusamus fugiat et reiciendis aliquid.', 1, '2020-11-23 17:48:03', '2020-11-23 17:48:03'),
 (48, 5, 17, 'Aspernatur corrupti et velit ipsam non quidem optio.', 1, '2020-11-23 17:48:03', '2020-11-23 17:48:03'),
 (49, 25, 7, 'Ipsam ipsum ullam voluptas esse quae perspiciatis.', 1, '2020-11-23 17:48:03', '2020-11-23 17:48:03'),
-(50, 8, 4, 'Autem aut dignissimos consequatur reiciendis.', 0, '2020-11-23 17:48:03', '2020-11-23 17:48:03'),
+(50, 8, 4, 'Autem aut dignissimos consequatur reiciendis.', 1, '2020-11-23 17:48:03', '2020-12-21 06:41:28'),
 (51, 22, 14, 'Sint fugiat ut voluptatem reprehenderit labore.', 1, '2020-11-23 17:48:03', '2020-11-23 17:48:03'),
 (52, 14, 21, 'Pariatur tempora corrupti minima aspernatur delectus.', 0, '2020-11-23 17:48:03', '2020-11-23 17:48:03'),
 (53, 14, 25, 'Natus debitis blanditiis ea sunt.', 1, '2020-11-23 17:48:03', '2020-11-23 17:48:03'),
@@ -376,7 +376,7 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `created_at`, 
 (234, 10, 1, 'Veritatis possimus sint omnis facere sint.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (235, 16, 10, 'Ipsum porro impedit impedit et.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (236, 18, 22, 'Eligendi vitae et qui soluta.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
-(237, 4, 7, 'Maxime ducimus nihil minima vel accusantium aut porro.', 1, '2020-11-23 17:48:04', '2020-12-21 05:30:00'),
+(237, 4, 7, 'Maxime ducimus nihil minima vel accusantium aut porro.', 1, '2020-11-23 17:48:04', '2020-12-21 06:43:57'),
 (238, 18, 20, 'Quo quasi quos assumenda vitae fuga aut commodi.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (239, 8, 13, 'Cum natus possimus distinctio quae voluptas.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (240, 3, 18, 'Eum quaerat illo qui ad.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
@@ -518,7 +518,7 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `created_at`, 
 (376, 7, 5, 'Voluptatem labore officiis iste quaerat.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (377, 2, 3, 'Totam ut placeat dolorem repudiandae qui dolorem vitae.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (378, 16, 17, 'Maxime ea similique est velit accusamus corporis non.', 0, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
-(379, 7, 4, 'Quis voluptas alias odio accusantium eos dolores non.', 1, '2020-11-23 17:48:04', '2020-12-21 05:30:00'),
+(379, 7, 4, 'Quis voluptas alias odio accusantium eos dolores non.', 1, '2020-11-23 17:48:04', '2020-12-21 06:43:57'),
 (380, 27, 25, 'Repellendus cum consequatur maxime quis rerum amet.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (381, 1, 24, 'Doloremque aut autem maxime quia quo ea.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
 (382, 3, 14, 'Ut molestiae id at quo neque.', 1, '2020-11-23 17:48:04', '2020-11-23 17:48:04'),
@@ -655,14 +655,16 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `is_read`, `created_at`, 
 (512, 5, 1, 'halo admin', 1, '2020-12-01 22:58:52', '2020-12-01 22:59:00'),
 (513, 1, 5, 'halo user', 1, '2020-12-01 22:59:00', '2020-12-01 22:59:00'),
 (514, 1, 7, 'hai konsultan', 0, '2020-12-02 08:29:29', '2020-12-02 08:29:29'),
-(515, 7, 4, 'tes', 1, '2020-12-02 14:23:05', '2020-12-21 05:30:00'),
-(516, 4, 7, 'halo', 1, '2020-12-02 14:23:14', '2020-12-21 05:30:00'),
-(517, 7, 4, 's', 1, '2020-12-03 02:43:13', '2020-12-21 05:30:00'),
-(518, 4, 7, 'tes', 1, '2020-12-03 02:43:21', '2020-12-21 05:30:00'),
-(519, 4, 7, 'tes', 1, '2020-12-03 05:09:06', '2020-12-21 05:30:00'),
-(520, 7, 4, 'iya', 1, '2020-12-03 05:09:17', '2020-12-21 05:30:00'),
-(521, 7, 4, 'halo dandy', 1, '2020-12-21 05:29:51', '2020-12-21 05:30:00'),
-(522, 4, 7, 'halo pak fajar', 1, '2020-12-21 05:29:59', '2020-12-21 05:30:00');
+(515, 7, 4, 'tes', 1, '2020-12-02 14:23:05', '2020-12-21 06:43:57'),
+(516, 4, 7, 'halo', 1, '2020-12-02 14:23:14', '2020-12-21 06:43:57'),
+(517, 7, 4, 's', 1, '2020-12-03 02:43:13', '2020-12-21 06:43:57'),
+(518, 4, 7, 'tes', 1, '2020-12-03 02:43:21', '2020-12-21 06:43:57'),
+(519, 4, 7, 'tes', 1, '2020-12-03 05:09:06', '2020-12-21 06:43:57'),
+(520, 7, 4, 'iya', 1, '2020-12-03 05:09:17', '2020-12-21 06:43:57'),
+(521, 7, 4, 'halo dandy', 1, '2020-12-21 05:29:51', '2020-12-21 06:43:57'),
+(522, 4, 7, 'halo pak fajar', 1, '2020-12-21 05:29:59', '2020-12-21 06:43:57'),
+(523, 4, 7, 'mau konsultasi', 1, '2020-12-21 06:43:44', '2020-12-21 06:43:57'),
+(524, 7, 4, 'silahkan', 1, '2020-12-21 06:43:56', '2020-12-21 06:43:57');
 
 -- --------------------------------------------------------
 
@@ -778,8 +780,9 @@ INSERT INTO `orders` (`id`, `users_id`, `expedition`, `shipping_charge`, `coupon
 (68, 5, 2, 7000, NULL, NULL, 547068, '2020-12-03', 'sudah dibayar', 'struk_order-68.png', '9340875082', 'sudah dikirim', '2020-11-20', 'sudah diterima', '2020-12-03', 'Jalan Mawar', 'qwqwwqwqew', 'qwwqeqwqwqw', '23412', '456332345689', '2020-12-03 03:15:15', '2020-12-03 03:21:50'),
 (69, 4, 3, 6000, NULL, NULL, 1236069, '2020-12-03', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-03 05:10:54', '2020-12-03 05:10:54'),
 (70, 4, 1, 10000, NULL, NULL, 540070, '2020-12-05', 'sudah dibayar', NULL, 'ghgg54565656', 'sudah dikirim', '2017-08-04', 'belum diterima', NULL, 'Perumahan Gunung Batu B-28 RT 001/RW 005 Lingkungan Krajan Barat', 'Sumbersari', 'Sumbersari', '68121', '082234795673', '2020-12-05 16:42:15', '2020-12-20 06:08:59'),
-(71, 4, 3, 6000, NULL, NULL, 546071, '2020-12-21', 'belum dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Jalan Mawar Merah Gang 3 no 15', 'Kebonsari', 'Sumbersari', '68111', '082234795673', '2020-12-20 19:32:59', '2020-12-20 19:32:59'),
-(72, 4, 2, 7000, NULL, NULL, 967072, '2020-12-21', 'sudah dibayar', 'struk_order-72.jpg', 'ygg446662562245', 'sudah dikirim', '2020-11-20', 'sudah diterima', '2020-12-21', 'Jalan Mawar Merah Gang 3 no 15', 'Kebonsari', 'Sumbersari', '68111', '082234795673', '2020-12-21 05:26:24', '2020-12-21 05:28:30');
+(71, 4, 3, 6000, NULL, NULL, 546071, '2020-12-21', 'sudah dibayar', NULL, NULL, 'belum dikirim', NULL, 'belum diterima', NULL, 'Jalan Mawar Merah Gang 3 no 15', 'Kebonsari', 'Sumbersari', '68111', '082234795673', '2020-12-20 19:32:59', '2020-12-21 06:27:11'),
+(72, 4, 2, 7000, NULL, NULL, 967072, '2020-12-21', 'sudah dibayar', 'struk_order-72.jpg', 'ygg446662562245', 'sudah dikirim', '2020-11-20', 'sudah diterima', '2020-12-21', 'Jalan Mawar Merah Gang 3 no 15', 'Kebonsari', 'Sumbersari', '68111', '082234795673', '2020-12-21 05:26:24', '2020-12-21 05:28:30'),
+(73, 4, 2, 7000, 6, 96000, 871073, '2020-12-21', 'sudah dibayar', NULL, 'jb399407639975', 'sudah dikirim', '2020-12-21', 'sudah diterima', '2020-12-21', 'Jalan Mawar Merah Gang 3 no 15', 'Kebonsari', 'Sumbersari', '68111', '082234795673', '2020-12-21 06:53:13', '2020-12-21 07:01:36');
 
 -- --------------------------------------------------------
 
@@ -846,7 +849,8 @@ INSERT INTO `order_details` (`id`, `orders_id`, `products_id`, `quantity`, `crea
 (43, 69, 45, 3, '2020-12-03 05:10:54', '2020-12-03 05:10:54'),
 (44, 70, 46, 1, '2020-12-05 16:42:15', '2020-12-05 16:42:15'),
 (45, 71, 46, 1, '2020-12-20 19:32:59', '2020-12-20 19:32:59'),
-(46, 72, 43, 1, '2020-12-21 05:26:24', '2020-12-21 05:26:24');
+(46, 72, 43, 1, '2020-12-21 05:26:24', '2020-12-21 05:26:24'),
+(47, 73, 43, 1, '2020-12-21 06:53:13', '2020-12-21 06:53:13');
 
 -- --------------------------------------------------------
 
@@ -884,7 +888,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `categories_id`, `p_name`, `description`, `stock`, `price`, `weight`, `image`, `created_at`, `updated_at`) VALUES
-(43, 10, 'Layar LED LCD Laptop Acer Swift 3 SF314 N17W7', 'Deskripsi Layar LED LCD Laptop Acer Swift 3 SF314 N17W7\r\n\r\nGaransi 1 Bulan\r\n\r\nMax. Resolution: 1920 x 1080\r\nScreen Size:14.0\" inch n \r\nConector : 30 Pin\r\nNo Screew<b></b>', 6, 960000, 300, 'layar-led-lcd-laptop-acer-swift-3-sf314-n17w7.jpg', '2020-12-02 23:36:16', '2020-12-21 05:26:24'),
+(43, 10, 'Layar LED LCD Laptop Acer Swift 3 SF314 N17W7', 'Deskripsi Layar LED LCD Laptop Acer Swift 3 SF314 N17W7\r\n\r\nGaransi 1 Bulan\r\n\r\nMax. Resolution: 1920 x 1080\r\nScreen Size:14.0\" inch n \r\nConector : 30 Pin\r\nNo Screew<b></b>', 5, 960000, 300, 'layar-led-lcd-laptop-acer-swift-3-sf314-n17w7.jpg', '2020-12-02 23:36:16', '2020-12-21 06:53:13'),
 (44, 10, 'Layar LCD LED Toshiba Satellite L745', '<br>Kondisi 100% Baru Original dan Bergaransi 2 Bulan (Garansi No ribet, Rusak ganti Baru, Bukan diservice)<br><br>Ukuran : 14.0 Standard<br>Resolusi : 1366x768 pixels<br>Jumlah PIN : 40-pin<br>Ket: Posisi soket Pin dan Posisi Kuping mur/baut silakan lihat foto', 10, 4800000, 300, 'layar-lcd-led-toshiba-satellite-l745.jpg', '2020-12-02 23:40:05', '2020-12-21 04:58:44'),
 (45, 12, 'KLEVV SSD NEO N400 240GB', 'SKU Product&nbsp;: 162329<br><br>Est. Weight&nbsp;&nbsp;&nbsp;: N/A Kg<br><br>Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;SSD<br><br>Subcategory :&nbsp;Internal SSD (SOLID STATE DISK)<br><br>Brand&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;KLEVV<br><br>Tags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;-', 45, 410000, 100, 'klevv-ssd-neo-n400-240gb.jpg', '2020-12-02 23:42:44', '2020-12-21 04:58:54'),
 (46, 11, 'V-GeN Platinum SO-DIMM DDR4 8GB PC17000', 'SKU Product&nbsp;: 123093<br><br>Est. Weight&nbsp;&nbsp;&nbsp;: 0.05 Kg<br><br>Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;<a target=\"_blank\" rel=\"nofollow\" href=\"https://www.enterkomputer.com/category/11/memory-ram\">Ram</a><br><br>Subcategory :&nbsp;Notebook<br><br>Brand&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;V-GEN<br><br>Tags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;-', 1, 540000, 50, 'v-gen-platinum-so-dimm-ddr4-8gb-pc17000.jpg', '2020-12-02 23:49:49', '2020-12-20 19:32:59');
@@ -987,12 +991,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `address`, `kelurahan`, `kecamatan`, `postcode`, `mobile`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'WeShare', 'demo@gmail.com', '$2y$10$ktiMqsnbFw9c0re24BHC0ee5f/SuTibMTNezUkU2yeD3zvGbpjAgq', NULL, NULL, NULL, NULL, NULL, 1, '7LMu247CViTMOa5H0rR3gWMyhFtRCi4dNf8ucr4k0N8fuUCwrqHa6K3GJRAt', '2018-10-15 02:32:54', '2020-12-07 15:22:13'),
-(8, 'bagus aja', 'bagus@mail.com', '$2y$10$aARnscb2WX0r44Z.bZm1g.LZD6QmWQljqbCli2WSGPn9VQNQgV1j.', NULL, NULL, NULL, NULL, NULL, 2, NULL, '2020-12-07 16:55:58', '2020-12-07 16:55:58'),
-(4, 'Dandy Satrio', 'dandy@a.com', '$2y$10$bHnqMMJTivAnYDxlivvXPeYm5AjdfT5uC2IvSzNc2XN06hJZtTMCm', 'Jalan Mawar Merah Gang 3 no 15', 'Kebonsari', 'Sumbersari', '68111', '082234795673', 3, 'FOjq7a3CNUDZEjOIcfAX4KEECiTE5uRp7vhPiZOjLjvNQQYzbZqU1fthXU8y', '2018-12-06 01:40:27', '2020-12-07 08:07:40'),
+(1, 'WeShare', 'demo@gmail.com', '$2y$10$ktiMqsnbFw9c0re24BHC0ee5f/SuTibMTNezUkU2yeD3zvGbpjAgq', NULL, NULL, NULL, NULL, NULL, 1, 'PAEzkhFAXX9rZjdYpI04TODFbLp6mvabC2LsbIIqn2nEatfoBiGMdMcoiF34', '2018-10-15 02:32:54', '2020-12-07 15:22:13'),
+(8, 'bagus aja', 'bagus@mail.com', '$2y$10$cfZ9NcctKZf7gh5ifsOU1.fAS6y9xgVI38Ucgd.VITD2/sjijCU3q\"', NULL, NULL, NULL, NULL, NULL, 2, NULL, '2020-12-07 16:55:58', '2020-12-07 16:55:58'),
+(4, 'Dandy Satrio', 'dandy@a.com', '$2y$10$bHnqMMJTivAnYDxlivvXPeYm5AjdfT5uC2IvSzNc2XN06hJZtTMCm', 'Jalan Mawar Merah Gang 3 no 15', 'Kebonsari', 'Sumbersari', '68111', '082234795673', 3, 'aRD0leMlbYX4FKCX1rPgFlh1wlH8hFA9e6MxVxNQNSIw8VaG44tyHCctZoCS', '2018-12-06 01:40:27', '2020-12-07 08:07:40'),
 (5, 'tes', 'tes@a.in', '$2y$10$m9fNpTgwyBVqqVfsJ9bXUensvx5iqlYhzqmL3khhSpKpgqNQnW0t2', 'Jalan Mawar', 'qwqwwqwqew', 'qwwqeqwqwqw', '23412', '456332345689', 3, 'mEPkQFLL4Uk4widTgLXaXMxwgZ37enBzX6daoOfV1xNSYmdvofj0ICx5pL9U', NULL, NULL),
 (6, 'riki tiki', 'rikitiki@da.com', '$2y$10$WbWM5R5Zmw0J939pmnHGTefqMV9pkK07lNULgzZsiSYOqQ4KyOGoC', 'Perumahan Gunung Batu B28', '', '', '22222', '082234795673', 3, 'J1lQGCiFBnZ0f3FovhLSwlV4RLZPRBH12ckSsdlgUeexgzxrQq2I6Bns7Kv4', '2020-11-17 14:16:25', '2020-11-17 14:16:25'),
-(7, 'fajar alam', 'konsultan@tes.com', '$2y$10$eYlug0sILf5KxjYbzCJXAufyKYOhphfowA7b9/8AOilYGRMJs8Hd2', NULL, NULL, NULL, NULL, NULL, 2, 'O1006tOAt7J8ivSfBzCcY4NSr2ZnDLYspUyKXFflmIuW4n6iaTYCBrjA65pY', '2020-11-24 03:49:19', '2020-12-07 15:52:36');
+(7, 'fajar alam', 'konsultan@tes.com', '$2y$10$eYlug0sILf5KxjYbzCJXAufyKYOhphfowA7b9/8AOilYGRMJs8Hd2', NULL, NULL, NULL, NULL, NULL, 2, 'NLfl42iGk8VAU8wuxOdAHhYyUolXbJwBz7OKtBXGTI6fgfo3MmGqj3ucA2k2', '2020-11-24 03:49:19', '2020-12-07 15:52:36');
 
 --
 -- Indexes for dumped tables
@@ -1098,7 +1102,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1122,7 +1126,7 @@ ALTER TABLE `expeditions`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=523;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=525;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1134,13 +1138,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `products`
